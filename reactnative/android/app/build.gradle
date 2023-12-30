@@ -132,7 +132,7 @@ def reactNativeArchitectures() {
 android {
     ndkVersion rootProject.ext.ndkVersion
 
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion 32
 
     defaultConfig {
         applicationId "com.reactnative"
