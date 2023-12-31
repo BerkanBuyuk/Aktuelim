@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api", (req, res) => {
-  const q = "SELECT * FROM catalogs";
+  const q = "SELECT * FROM Markets";
   db.query(q, (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
@@ -27,14 +27,11 @@ app.get("/api", (req, res) => {
 
 app.post("/api", (req, res) => {
   const q =
-    "INSERT INTO catalogs (`catalog_id`,`market_id`,`market_name`,`catalog_title`,`catalog_image_url`,`catalog_description`) VALUES (?)";
+    "INSERT INTO Markets (`market_id`, `market_name`, `market_image`) VALUES (?)";
   const values = [
-    req.body.catalog_id,
     req.body.market_id,
     req.body.market_name,
-    req.body.catalog_title,
-    req.body.catalog_image_url,
-    req.body.catalog_description,
+    req.body.market_image,
   ];
   db.query(q, [...values], (err, data) => {
     if (err) return res.json(err);

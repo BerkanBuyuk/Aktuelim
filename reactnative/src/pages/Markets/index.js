@@ -31,10 +31,10 @@ const Markets = () => {
         }}
         style={styles.touchableOpacityStyle}>
         <Image
-          source={{uri: `${item.catalog_image_url}`}}
+          source={{uri: `${item.market_image}`}}
           style={styles.marketsImage}
         />
-        <Text style={styles.marketsTitle}>{item.catalog_title}</Text>
+        <Text style={styles.marketsTitle}>{item.market_name}</Text>
       </TouchableOpacity>
     );
   };
