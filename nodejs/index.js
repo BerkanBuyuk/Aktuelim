@@ -27,10 +27,11 @@ app.get("/api", (req, res) => {
 
 app.post("/api", (req, res) => {
   const q =
-    "INSERT INTO catalogs (`catalog_id`,`market_id`,`catalog_title`,`catalog_image_url`,`catalog_description`) VALUES (?)";
+    "INSERT INTO catalogs (`catalog_id`,`market_id`,`market_name`,`catalog_title`,`catalog_image_url`,`catalog_description`) VALUES (?)";
   const values = [
     req.body.catalog_id,
     req.body.market_id,
+    req.body.market_name,
     req.body.catalog_title,
     req.body.catalog_image_url,
     req.body.catalog_description,
