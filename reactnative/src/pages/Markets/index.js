@@ -4,6 +4,7 @@ import {
   FlatList,
   TouchableOpacity,
   Image,
+  Platform,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
@@ -12,15 +13,27 @@ const Markets = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const getMarkets = async () => {
-      try {
-        const response = await axios.get('http://localhost:8800/api/markets');
-        setData(response.data);
-      } catch (error) {
-        console.log('Hata: ', error);
-      }
-    };
-    getMarkets();
+    if (Platform.OS === 'android') {
+      const getMarkets = async () => {
+        try {
+          const response = await axios.get('http://10.0.2.2:8800/api/markets');
+          setData(response.data);
+        } catch (error) {
+          console.log('Hata: ', error);
+        }
+      };
+      getMarkets();
+    } else if (Platform.OS === 'ios') {
+      const getMarkets = async () => {
+        try {
+          const response = await axios.get('http://localhost:8800/api/markets');
+          setData(response.data);
+        } catch (error) {
+          console.log('Hata: ', error);
+        }
+      };
+      getMarkets();
+    }
   }, []);
 
   const marketsContainer = ({item}) => {
