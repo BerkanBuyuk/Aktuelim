@@ -1,13 +1,16 @@
 import React from 'react';
-import Home from './src/pages/Markets';
+import Markets from './src/pages/Markets';
 import Favorites from './src/pages/Favorites';
 import ShopList from './src/pages/ShopList';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import Markets from './src/pages/Markets';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Catalogs from './src/pages/Catalogs';
+
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const App = () => {
-  const Tab = createBottomTabNavigator();
   return (
     <NavigationContainer>
       <Tab.Navigator>
