@@ -16,7 +16,7 @@ const Markets = ({navigation}) => {
     if (Platform.OS === 'android') {
       const getMarkets = async () => {
         try {
-          const response = await axios.get('http://10.0.2.2:8800/api/markets');
+          const response = await axios.get('http://10.0.2.2:8800/api');
           setData(response.data);
         } catch (error) {
           console.log('Hata: ', error);
@@ -26,7 +26,7 @@ const Markets = ({navigation}) => {
     } else if (Platform.OS === 'ios') {
       const getMarkets = async () => {
         try {
-          const response = await axios.get('http://localhost:8800/api/markets');
+          const response = await axios.get('http://localhost:8800/api');
           setData(response.data);
         } catch (error) {
           console.log('Hata: ', error);
@@ -44,10 +44,10 @@ const Markets = ({navigation}) => {
         }}
         style={styles.touchableOpacityStyle}>
         <Image
-          source={{uri: `${item.market_image}`}}
+          source={{uri: `${item.market.market_image}`}}
           style={styles.marketsImage}
         />
-        <Text style={styles.marketsTitle}>{item.market_name}</Text>
+        <Text style={styles.marketsTitle}>{item.market.market_name}</Text>
       </TouchableOpacity>
     );
   };
