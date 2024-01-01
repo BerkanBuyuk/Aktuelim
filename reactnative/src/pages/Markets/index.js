@@ -47,7 +47,7 @@ const Markets = ({navigation}) => {
           source={{uri: `${item.market.market_image}`}}
           style={styles.marketsImage}
         />
-        <Text style={styles.marketsTitle}>{item.market.market_name}</Text>
+        <Text style={styles.marketsTitle}>{item.catalog_title}</Text>
       </TouchableOpacity>
     );
   };
