@@ -14,7 +14,7 @@ const Markets = () => {
   useEffect(() => {
     const getMarkets = async () => {
       try {
-        const response = await axios.get('http://localhost:8800/api');
+        const response = await axios.get('http://localhost:8800/api/markets');
         setData(response.data);
       } catch (error) {
         console.log('Hata: ', error);
