@@ -8,11 +8,9 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {useNavigation} from '@react-navigation/native';
 
-const Markets = () => {
+const Markets = ({navigation}) => {
   const [data, setData] = useState([]);
-  const navigation = useNavigation();
 
   useEffect(() => {
     if (Platform.OS === 'android') {
@@ -42,7 +40,7 @@ const Markets = () => {
     return (
       <TouchableOpacity
         onPress={() => {
-          null;
+          navigation.navigate('Catalogs');
         }}
         style={styles.touchableOpacityStyle}>
         <Image

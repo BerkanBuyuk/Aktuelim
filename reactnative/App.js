@@ -10,7 +10,7 @@ import Catalogs from './src/pages/Catalogs';
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
-const MarketStack = () => {
+const ScreenStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -18,6 +18,7 @@ const MarketStack = () => {
         component={Markets}
         options={{headerShown: false}}
       />
+      <Stack.Screen name="Catalogs" component={Catalogs} />
     </Stack.Navigator>
   );
 };
@@ -28,7 +29,7 @@ const App = () => {
       <Tab.Navigator>
         <Tab.Screen
           name="Markets"
-          component={MarketStack}
+          component={ScreenStack}
           options={{headerTitle: 'Marketler'}}
         />
         <Tab.Screen name="Favorites" component={Favorites} />
