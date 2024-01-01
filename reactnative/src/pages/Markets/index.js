@@ -40,7 +40,7 @@ const Markets = ({navigation}) => {
     return (
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('Catalogs');
+          navigation.navigate('Catalogs', item);
         }}
         style={styles.touchableOpacityStyle}>
         <Image

@@ -1,10 +1,9 @@
 import {View, Text} from 'react-native';
-import React, {useEffect} from 'react';
 
-const Catalogs = ({navigation}) => {
+const Catalogs = ({route}) => {
   return (
-    <View>
-      <Text>Catalogs</Text>
+    <View style={{flex: 1}}>
+      <Text>{route.params.catalog_title}</Text>
     </View>
   );
 };

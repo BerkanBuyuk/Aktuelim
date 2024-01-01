@@ -16,7 +16,7 @@ const ScreenStack = () => {
       <Stack.Screen
         name="Market"
         component={Markets}
-        options={{headerShown: false}}
+        options={{headerTitle: 'Anasayfa', headerTitleAlign: 'center'}}
       />
       <Stack.Screen name="Catalogs" component={Catalogs} />
     </Stack.Navigator>
@@ -30,7 +30,7 @@ const App = () => {
         <Tab.Screen
           name="Markets"
           component={ScreenStack}
-          options={{headerTitle: 'Marketler'}}
+          options={{headerShown: false, tabBarLabel: 'Anasayfa'}}
         />
         <Tab.Screen name="Favorites" component={Favorites} />
         <Tab.Screen name="ShopList" component={ShopList} />
