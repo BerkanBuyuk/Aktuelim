@@ -12,27 +12,20 @@ import axios from 'axios';
 const Markets = ({navigation}) => {
   const [data, setData] = useState([]);
 
+  const getMarkets = async url => {
+    try {
+      const response = await axios.get(`${url}/markets`);
+      setData(response.data);
+    } catch (error) {
+      console.log('Hata: ', error);
+    }
+  };
+
   useEffect(() => {
     if (Platform.OS === 'android') {
-      const getMarkets = async () => {
-        try {
-          const response = await axios.get('http://10.0.2.2:8800/api');
-          setData(response.data);
-        } catch (error) {
-          console.log('Hata: ', error);
-        }
-      };
-      getMarkets();
+      getMarkets('http://10.0.2.2:8800/api');
     } else if (Platform.OS === 'ios') {
-      const getMarkets = async () => {
-        try {
-          const response = await axios.get('http://localhost:8800/api');
-          setData(response.data);
-        } catch (error) {
-          console.log('Hata: ', error);
-        }
-      };
-      getMarkets();
+      getMarkets('http://localhost:8800/api');
     }
   }, []);
 
@@ -44,10 +37,10 @@ const Markets = ({navigation}) => {
         }}
         style={styles.touchableOpacityStyle}>
         <Image
-          source={{uri: `${item.market.market_image}`}}
+          source={{uri: `${item.market_image}`}}
           style={styles.marketsImage}
         />
-        <Text style={styles.marketsTitle}>{item.catalog_title}</Text>
+        <Text style={styles.marketsTitle}>{item.market_name}</Text>
       </TouchableOpacity>
     );
   };

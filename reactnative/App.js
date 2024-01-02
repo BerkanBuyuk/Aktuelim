@@ -16,9 +16,13 @@ const ScreenStack = () => {
       <Stack.Screen
         name="Market"
         component={Markets}
-        options={{headerTitle: 'Anasayfa', headerTitleAlign: 'center'}}
+        options={{headerTitle: 'Marketler', headerTitleAlign: 'center'}}
       />
-      <Stack.Screen name="Catalogs" component={Catalogs} />
+      <Stack.Screen
+        name="Catalogs"
+        component={Catalogs}
+        options={{headerTitle: 'Kataloglar', headerTitleAlign: 'center'}}
+      />
     </Stack.Navigator>
   );
 };

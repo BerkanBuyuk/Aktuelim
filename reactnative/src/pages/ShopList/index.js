@@ -3,7 +3,7 @@ import React from 'react';
 
 const ShopList = () => {
   return (
-    <View>
+    <View style={{backgroundColor: 'red', flex: 1}}>
       <Text>ShopList</Text>
     </View>
   );
