@@ -27,7 +27,7 @@ const Catalogs = ({route}) => {
   }, []);
 
   const catalogContainer = ({item}) => {
-    console.log(item);
+    // console.log(item);
     return (
       <View key={item.catalog_id} style={{flex: 1}}>
         <Text>{item.catalog_title}</Text>

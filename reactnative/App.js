@@ -6,6 +6,8 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Catalogs from './src/pages/Catalogs';
+import AddAlert from './src/components/AddAlert';
+import DeleteBtn from './src/components/DeleteBtn';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -37,7 +39,17 @@ const App = () => {
           options={{headerShown: false, tabBarLabel: 'Anasayfa'}}
         />
         <Tab.Screen name="Favorites" component={Favorites} />
-        <Tab.Screen name="ShopList" component={ShopList} />
+        <Tab.Screen
+          name="ShopList"
+          component={ShopList}
+          options={{
+            headerLeft: () => <DeleteBtn />,
+            headerRight: () => <AddAlert />,
+            headerTitle: 'Alışveriş Listesi',
+            tabBarLabel: 'Alışveriş Listesi',
+            headerTitleAlign: 'center',
+          }}
+        />
       </Tab.Navigator>
     </NavigationContainer>
   );
