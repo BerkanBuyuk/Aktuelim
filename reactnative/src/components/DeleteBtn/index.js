@@ -1,10 +1,16 @@
-import {View, Text, Button} from 'react-native';
+import {View, Text, Button, Alert} from 'react-native';
 import React from 'react';
+import {deleteData} from '../../pages/ShopList/SQLiteDB';
 
 const DeleteBtn = () => {
   return (
     <View>
-      <Button title="-" />
+      <Button
+        title="-"
+        onPress={() => {
+          console.log('- Basıldı');
+        }}
+      />
     </View>
   );
 };

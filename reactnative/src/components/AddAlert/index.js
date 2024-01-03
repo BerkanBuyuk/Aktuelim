@@ -1,5 +1,6 @@
-import {View, Button, Alert, TextInput} from 'react-native';
+import {View, Button, Alert} from 'react-native';
 import React, {useState} from 'react';
+import {addData} from '../../pages/ShopList/SQLiteDB'; // SQLiteDB.js dosyanızın doğru yolunu belirttiğinizden emin olun
 
 const AddAlert = () => {
   const [inputValue, setInputValue] = useState('');
@@ -9,27 +10,7 @@ const AddAlert = () => {
       <Button
         title="+"
         onPress={() => {
-          Alert.prompt(
-            'Yeni Ürün',
-            'Listeye Ekle',
-            [
-              {
-                text: 'İptal',
-                onPress: () => console.log('İptale basıldı'),
-                style: 'destructive',
-              },
-              {
-                text: 'Ekle',
-                onPress: value => {
-                  console.log('Ekle basıldı:', value);
-                  // 'value' burada TextInput'den alınan değeri temsil eder
-                },
-                style: 'default',
-              },
-            ],
-            'plain-text', // Bu, TextInput'un türünü belirtir
-            inputValue, // Bu, TextInput'un varsayılan değeridir
-          );
+          console.log('+ basıldı');
         }}
       />
     </View>

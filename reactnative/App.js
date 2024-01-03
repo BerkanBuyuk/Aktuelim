@@ -32,7 +32,7 @@ const ScreenStack = () => {
 const App = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
+      <Tab.Navigator initialRouteName="ShopList">
         <Tab.Screen
           name="Markets"
           component={ScreenStack}
