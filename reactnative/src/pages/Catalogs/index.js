@@ -1,8 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, Platform, FlatList} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  Platform,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 import axios from 'axios';
 
-const Catalogs = ({route}) => {
+const Catalogs = ({route, navigation}) => {
   const [catalogs, setCatalogs] = useState([]);
 
   const getCatalogs = async url => {
@@ -29,23 +37,38 @@ const Catalogs = ({route}) => {
   const catalogContainer = ({item}) => {
     // console.log(item);
     return (
-      <View key={item.catalog_id} style={{flex: 1}}>
-        <Text>{item.catalog_title}</Text>
-        {/* <Image
-          source={{uri: `${item.catalog_image}`}}
-          style={{width: 420, height: 650}}
-        /> */}
+      <View key={item.catalog_id} style={styles.flatListRenderItemStyle}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('CatalogDetails', item)}>
+          <Image
+            source={{uri: `${item.catalog_image}`}}
+            style={{width: 150, height: 150}}
+          />
+          <Text>{item.catalog_title}</Text>
+        </TouchableOpacity>
       </View>
     );
   };
 
   return (
-    <FlatList
-      numColumns={2}
-      data={catalogs}
-      renderItem={item => catalogContainer(item)}
-    />
+    <View style={{flex: 1, alignItems: 'center'}}>
+      <FlatList
+        numColumns={2}
+        data={catalogs}
+        renderItem={item => catalogContainer(item)}
+      />
+    </View>
   );
 };
 
 export default Catalogs;
+
+const styles = StyleSheet.create({
+  flatListRenderItemStyle: {
+    // backgroundColor: 'red',
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 10,
+    margin: 10,
+  },
+});

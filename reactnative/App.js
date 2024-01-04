@@ -6,6 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Catalogs from './src/pages/Catalogs';
+import CatalogDetails from './src/pages/CatalogDetails';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -23,6 +24,11 @@ const ScreenStack = () => {
         component={Catalogs}
         options={{headerTitle: 'Kataloglar', headerTitleAlign: 'center'}}
       />
+      <Stack.Screen
+        name="CatalogDetails"
+        component={CatalogDetails}
+        options={{headerTitle: 'Detay', headerTitleAlign: 'center'}}
+      />
     </Stack.Navigator>
   );
 };
@@ -30,7 +36,7 @@ const ScreenStack = () => {
 const App = () => {
   return (
     <NavigationContainer>
-      <Tab.Navigator initialRouteName="ShopList">
+      <Tab.Navigator>
         <Tab.Screen
           name="Markets"
           component={ScreenStack}

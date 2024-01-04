@@ -136,13 +136,7 @@ const ShopList = () => {
 
   return (
     <View style={{flex: 1}}>
-      <View
-        style={{
-          flexDirection: 'row',
-          alignItems: 'center',
-          // backgroundColor: 'red',
-          marginHorizontal: 16,
-        }}>
+      <View style={styles.input_addBtn_View}>
         <TextInput
           placeholder="Eklemek istediğinizi yazın."
           value={inputText}
@@ -183,6 +177,12 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginHorizontal: 16,
     flex: 1,
+  },
+  input_addBtn_View: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    // backgroundColor: 'red',
+    marginHorizontal: 16,
   },
 });
 
