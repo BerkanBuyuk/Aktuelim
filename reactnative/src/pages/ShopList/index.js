@@ -116,7 +116,7 @@ const ShopList = () => {
 
   const renderShopList = ({item}) => {
     return (
-      <View style={styles.container}>
+      <View>
         <View style={styles.itemContainer}>
           <Text style={styles.item_style}>{item.text}</Text>
           <UpdateBtn
@@ -135,14 +135,22 @@ const ShopList = () => {
   }, []);
 
   return (
-    <View>
-      <TextInput
-        placeholder="Eklemek istediğinizi yazın."
-        value={inputText}
-        onChangeText={setInputText}
-        style={styles.input_style}
-      />
-      <AddBtn onPress={addShopList} />
+    <View style={{flex: 1}}>
+      <View
+        style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          // backgroundColor: 'red',
+          marginHorizontal: 16,
+        }}>
+        <TextInput
+          placeholder="Eklemek istediğinizi yazın."
+          value={inputText}
+          onChangeText={setInputText}
+          style={styles.input_style}
+        />
+        <AddBtn onPress={addShopList} />
+      </View>
       <FlatList data={list} renderItem={renderShopList} key={cat => cat.id} />
     </View>
   );
@@ -163,8 +171,10 @@ const styles = StyleSheet.create({
     padding: 20,
     fontSize: 20,
     marginVertical: 8,
-    marginHorizontal: 16,
+    // marginHorizontal: 16,
+    // margin: 16,
     borderRadius: 10,
+    flex: 1,
   },
   itemContainer: {
     flexDirection: 'row',
