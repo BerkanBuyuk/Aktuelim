@@ -6,7 +6,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Catalogs from './src/pages/Catalogs';
-import AddAlert from './src/components/AddAlert';
+import AddAlert from './src/components/AddButton';
 import DeleteBtn from './src/components/DeleteBtn';
 
 const Tab = createBottomTabNavigator();
@@ -43,8 +43,6 @@ const App = () => {
           name="ShopList"
           component={ShopList}
           options={{
-            headerLeft: () => <DeleteBtn />,
-            headerRight: () => <AddAlert />,
             headerTitle: 'Alışveriş Listesi',
             tabBarLabel: 'Alışveriş Listesi',
             headerTitleAlign: 'center',
