@@ -6,8 +6,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Catalogs from './src/pages/Catalogs';
-import AddAlert from './src/components/AddButton';
-import DeleteBtn from './src/components/DeleteBtn';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();

@@ -1,8 +1,9 @@
 import {View, Text, TextInput, FlatList, StyleSheet, Alert} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {openDatabase} from 'react-native-sqlite-storage';
-import AddButton from '../../components/AddButton';
+import AddBtn from '../../components/AddBtn';
 import DeleteBtn from '../../components/DeleteBtn';
+import UpdateBtn from '../../components/UpdateBtn';
 
 const db = openDatabase({
   name: 'shopListDB',
@@ -34,7 +35,7 @@ const ShopList = () => {
         `SELECT * FROM ShopList ORDER BY id DESC`,
         [],
         (sqlTx, res) => {
-          console.log('getCategory Başarılı.');
+          // console.log('getShopList Başarılı.');
           let len = res.rows.length;
 
           if (len > 0) {
@@ -58,7 +59,7 @@ const ShopList = () => {
       Alert.alert('Boş liste girilemez !', '', [
         {
           text: 'Tamam',
-          style: 'destructive',
+          style: 'cancel',
         },
       ]);
 
@@ -97,11 +98,31 @@ const ShopList = () => {
     });
   };
 
+  const updateShopList = (id, newText) => {
+    db.transaction(tx => {
+      tx.executeSql(
+        `UPDATE ShopList SET text = ? WHERE id = ?`,
+        [newText, id],
+        (sqlTx, res) => {
+          console.log(`ID ${id} Güncellendi.`);
+          getShopList();
+        },
+        error => {
+          console.log('Güncelleme hatası:' + error.message);
+        },
+      );
+    });
+  };
+
   const renderShopList = ({item}) => {
     return (
       <View style={styles.container}>
         <View style={styles.itemContainer}>
           <Text style={styles.item_style}>{item.text}</Text>
+          <UpdateBtn
+            onUpdate={newText => updateShopList(item.id, newText)}
+            itemText={item.text}
+          />
           <DeleteBtn onDelete={deleteShopList} itemId={item.id} />
         </View>
       </View>
@@ -121,7 +142,7 @@ const ShopList = () => {
         onChangeText={setInputText}
         style={styles.input_style}
       />
-      <AddButton onPress={addShopList} />
+      <AddBtn onPress={addShopList} />
       <FlatList data={list} renderItem={renderShopList} key={cat => cat.id} />
     </View>
   );
@@ -135,6 +156,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     flex: 1,
+    color: '#414a4c',
   },
   input_style: {
     borderWidth: 1,
@@ -150,7 +172,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginVertical: 8,
     marginHorizontal: 16,
-    // backgroundColor: 'yellow',
     flex: 1,
   },
 });
