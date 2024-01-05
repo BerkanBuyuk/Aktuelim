@@ -17,7 +17,7 @@ app.get("/", (req, res) => {
   res.json("Hello welcome Backend!");
 });
 
-//------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
 
 ////GET MARKETS
 app.get("/api/markets", (req, res) => {
@@ -31,11 +31,12 @@ app.get("/api/markets", (req, res) => {
 //POST MARKETS
 app.post("/api/markets", (req, res) => {
   const q =
-    "INSERT INTO Markets (`market_id`, `market_name`, `market_image`) VALUES (?, ?, ?)";
+    "INSERT INTO Markets (`market_id`, `market_name`, `market_image`, `category_id`) VALUES (?, ?, ?)";
   const values = [
     req.body.market_id,
     req.body.market_name,
     req.body.market_image,
+    req.body_category_id,
   ];
   db.query(q, [...values], (err, data) => {
     if (err) return res.json(err);
@@ -47,7 +48,7 @@ app.listen(port, () => {
   console.log(`Sunucu ${port} portunda çalışıyor.`);
 });
 
-//------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
 
 //GET CATALOGS
 app.get("/api/catalogs", (req, res) => {
@@ -84,7 +85,7 @@ app.post("/api/catalogs", (req, res) => {
   );
 });
 
-//------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
 
 //GET CATEGORIES
 app.get("/api/categories", (req, res) => {
@@ -95,4 +96,4 @@ app.get("/api/categories", (req, res) => {
   });
 });
 
-//------------------------------------------------------------
+//--------------------------------------------------------------------------------------------
