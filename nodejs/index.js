@@ -17,6 +17,8 @@ app.get("/", (req, res) => {
   res.json("Hello welcome Backend!");
 });
 
+//------------------------------------------------------------
+
 ////GET MARKETS
 app.get("/api/markets", (req, res) => {
   const q = "SELECT * FROM Markets";
@@ -81,3 +83,16 @@ app.post("/api/catalogs", (req, res) => {
     }
   );
 });
+
+//------------------------------------------------------------
+
+//GET CATEGORIES
+app.get("/api/categories", (req, res) => {
+  const q = "SELECT * FROM Categories";
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
+//------------------------------------------------------------

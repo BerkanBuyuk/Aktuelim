@@ -5,9 +5,11 @@ import {
   TouchableOpacity,
   Image,
   Platform,
+  View,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import Categories from '../../components/Categories';
 
 const Markets = ({navigation}) => {
   const [data, setData] = useState([]);
@@ -46,12 +48,15 @@ const Markets = ({navigation}) => {
   };
 
   return (
-    <FlatList
-      numColumns={2}
-      data={data}
-      renderItem={item => marketsContainer(item)}
-      style={styles.flatListStyle}
-    />
+    <View>
+      <Categories />
+      <FlatList
+        numColumns={2}
+        data={data}
+        renderItem={item => marketsContainer(item)}
+        style={styles.flatListStyle}
+      />
+    </View>
   );
 };
 
@@ -68,9 +73,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   flatListStyle: {
-    flex: 1,
+    // flex: 1,
     margin: 10,
     padding: 10,
+    backgroundColor: 'green',
   },
   touchableOpacityStyle: {
     marginHorizontal: 20,
