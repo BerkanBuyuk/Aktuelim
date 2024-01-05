@@ -54,6 +54,7 @@ const Categories = () => {
         renderItem={item => categoriesContainer(item)}
         style={styles.flatListStyle}
         horizontal
+        showsHorizontalScrollIndicator={false}
       />
     </View>
   );

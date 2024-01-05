@@ -57,6 +57,7 @@ const Markets = ({navigation}) => {
         data={data}
         renderItem={item => marketsContainer(item)}
         style={styles.flatListStyle}
+        showsVerticalScrollIndicator={false}
       />
     </View>
   );
