@@ -48,8 +48,10 @@ const Markets = ({navigation}) => {
   };
 
   return (
-    <View>
+    <View style={{flex: 1}}>
+      <Text style={styles.textStyle}>Kategoriler</Text>
       <Categories />
+      <Text style={styles.textStyle}>Marketler</Text>
       <FlatList
         numColumns={2}
         data={data}
@@ -76,11 +78,21 @@ const styles = StyleSheet.create({
     // flex: 1,
     margin: 10,
     padding: 10,
-    backgroundColor: 'green',
+    // backgroundColor: '#e0e0e0',
+    // borderWidth: 1,
   },
   touchableOpacityStyle: {
     marginHorizontal: 20,
     marginBottom: 20,
+    borderWidth: 0.5,
+    borderRadius: 10,
+    borderColor: '#e0e0e0',
+    // backgroundColor: 'red',
+  },
+  textStyle: {
+    marginHorizontal: 10,
+    fontSize: 20,
+    fontStyle: 'italic',
   },
 });
 
