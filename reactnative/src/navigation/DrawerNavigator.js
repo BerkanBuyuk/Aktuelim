@@ -1,28 +1,38 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import TabNavigator from './TabNavigator';
-import Ayarlar from '../components/Ayarlar';
-import Notifications from '../components/Notifications';
+import {
+  AyarlarStackNavigator,
+  NotificationsStackNavigator,
+} from './StackNavigator';
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = () => {
+const DrawerNavigator = ({navigation}) => {
   return (
     <Drawer.Navigator>
       <Drawer.Screen
-        name="Home"
+        name="TabNavigator"
         component={TabNavigator}
-        options={{headerShown: false}}
+        options={{headerShown: false, drawerLabel: 'Anasayfa'}}
       />
       <Drawer.Screen
-        name="Ayarlar"
-        component={Ayarlar}
-        options={{headerShown: true}}
+        name="Ayarlar1"
+        component={AyarlarStackNavigator}
+        options={{
+          headerShown: false,
+          drawerLabel: 'Ayarlar',
+          //   drawerType: 'back',
+        }}
       />
       <Drawer.Screen
-        name="Notifications"
-        component={Notifications}
-        options={{headerTitleAlign: 'center'}}
+        name="Notifications1"
+        component={NotificationsStackNavigator}
+        options={{
+          headerShown: false,
+          drawerLabel: 'Bildirimler',
+          //   drawerType: 'back',
+        }}
       />
     </Drawer.Navigator>
   );
