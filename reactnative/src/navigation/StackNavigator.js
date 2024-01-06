@@ -6,7 +6,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Button} from 'react-native';
 import Ayarlar from '../components/Ayarlar';
 import Notifications from '../components/Notifications';
-import Icon from 'react-native-vector-icons/dist/AntDesign';
+import Entypo from 'react-native-vector-icons/dist/Entypo';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,10 +20,10 @@ const AyarlarStackNavigator = ({navigation}) => {
           // headerTitle: 'Detay',
           headerTitleAlign: 'center',
           headerLeft: () => (
-            <Icon
-              name="menuunfold"
-              size={25}
-              // color="#900"
+            <Entypo
+              name="menu"
+              size={35}
+              color="#000"
               onPress={() => {
                 navigation.openDrawer();
               }}
@@ -45,8 +45,10 @@ const NotificationsStackNavigator = ({navigation}) => {
           headerTitle: 'Bildirimler',
           headerTitleAlign: 'center',
           headerLeft: () => (
-            <Button
-              title="-"
+            <Entypo
+              name="menu"
+              size={35}
+              color="#000"
               onPress={() => {
                 navigation.openDrawer();
               }}
@@ -69,8 +71,10 @@ const MainStackNavigator = ({navigation}) => {
           headerTitleAlign: 'center',
           // headerShown: false,
           headerLeft: () => (
-            <Button
-              title="+"
+            <Entypo
+              name="menu"
+              size={35}
+              color="#000"
               onPress={() => {
                 navigation.openDrawer();
               }}
