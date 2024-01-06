@@ -10,3 +10,5 @@ const Ayarlar = () => {
 };
 
 export default Ayarlar;
+
+//AntDesign.ttf

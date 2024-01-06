@@ -6,6 +6,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {Button} from 'react-native';
 import Ayarlar from '../components/Ayarlar';
 import Notifications from '../components/Notifications';
+import Icon from 'react-native-vector-icons/dist/AntDesign';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,8 +20,10 @@ const AyarlarStackNavigator = ({navigation}) => {
           // headerTitle: 'Detay',
           headerTitleAlign: 'center',
           headerLeft: () => (
-            <Button
-              title="+"
+            <Icon
+              name="menuunfold"
+              size={25}
+              // color="#900"
               onPress={() => {
                 navigation.openDrawer();
               }}
