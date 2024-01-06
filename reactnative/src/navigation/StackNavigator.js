@@ -1,12 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Markets from '../pages/Markets';
 import Catalogs from '../pages/Catalogs';
 import CatalogDetails from '../pages/CatalogDetails';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {Button} from 'react-native';
 import Ayarlar from '../components/Ayarlar';
 import Notifications from '../components/Notifications';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
+import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +17,6 @@ const AyarlarStackNavigator = ({navigation}) => {
         name="Ayarlar"
         component={Ayarlar}
         options={{
-          // headerTitle: 'Detay',
           headerTitleAlign: 'center',
           headerLeft: () => (
             <Entypo
@@ -61,6 +60,11 @@ const NotificationsStackNavigator = ({navigation}) => {
 };
 
 const MainStackNavigator = ({navigation}) => {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const handleFavoritePress = () => {
+    setIsFavorite(prevIsFavorite => !prevIsFavorite);
+  };
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -69,7 +73,6 @@ const MainStackNavigator = ({navigation}) => {
         options={{
           headerTitle: 'Anasayfa',
           headerTitleAlign: 'center',
-          // headerShown: false,
           headerLeft: () => (
             <Entypo
               name="menu"
@@ -90,7 +93,20 @@ const MainStackNavigator = ({navigation}) => {
       <Stack.Screen
         name="CatalogDetails"
         component={CatalogDetails}
-        options={{headerTitle: 'Detay', headerTitleAlign: 'center'}}
+        options={{
+          headerTitle: 'Katalog Detayı',
+          headerTitleAlign: 'center',
+          headerRight: () => (
+            <MaterialIcons
+              name={isFavorite ? 'favorite' : 'favorite-border'}
+              size={35}
+              color="red"
+              onPress={() => {
+                handleFavoritePress();
+              }}
+            />
+          ),
+        }}
       />
     </Stack.Navigator>
   );
