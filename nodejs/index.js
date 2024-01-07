@@ -98,7 +98,7 @@ app.get("/api/categories", (req, res) => {
 
 //--------------------------------------------------------------------------------------------
 
-//GET CATEGORIES
+//GET FAVORITES
 app.get("/api/favorites", (req, res) => {
   const q = "SELECT * FROM Favorites";
   db.query(q, (err, data) => {
@@ -108,3 +108,18 @@ app.get("/api/favorites", (req, res) => {
 });
 
 //--------------------------------------------------------------------------------------------
+
+//POST FAVORITES
+app.post("/api/favorites", (req, res) => {
+  const { favori_id, catalog_id } = req.body;
+
+  const sql = "INSERT INTO Favorites (favori_id, catalog_id) VALUES (?, ?)";
+
+  db.query(sql, [favori_id, catalog_id], (err, result) => {
+    if (err) {
+      res.status(500).send("Sorgu hatası");
+    } else {
+      res.status(200).send("Yeni katalog başarıyla eklendi.");
+    }
+  });
+});
