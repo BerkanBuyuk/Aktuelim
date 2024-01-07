@@ -97,3 +97,14 @@ app.get("/api/categories", (req, res) => {
 });
 
 //--------------------------------------------------------------------------------------------
+
+//GET CATEGORIES
+app.get("/api/favorites", (req, res) => {
+  const q = "SELECT * FROM Favorites";
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
+//--------------------------------------------------------------------------------------------

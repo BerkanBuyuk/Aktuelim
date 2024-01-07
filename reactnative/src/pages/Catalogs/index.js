@@ -20,6 +20,7 @@ const Catalogs = ({route, navigation}) => {
         val => val.market_id === route.params.market_id,
       );
       setCatalogs(result);
+      // console.log(result);
     } catch (error) {
       console.log('Hata: ', error);
     }
