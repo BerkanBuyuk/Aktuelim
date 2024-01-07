@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import axios from 'axios';
+import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
 
 const Catalogs = ({route, navigation}) => {
   const [catalogs, setCatalogs] = useState([]);
@@ -28,9 +29,9 @@ const Catalogs = ({route, navigation}) => {
 
   useEffect(() => {
     if (Platform.OS === 'android') {
-      getCatalogs('http://10.0.2.2:8800/api');
+      getCatalogs(ANDROID_BASE_URL);
     } else if (Platform.OS === 'ios') {
-      getCatalogs('http://localhost:8800/api');
+      getCatalogs(IOS_BASE_URL);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

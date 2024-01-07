@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
+import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
 
 const Categories = () => {
   const [data, setData] = useState([]);
@@ -24,9 +25,9 @@ const Categories = () => {
 
   useEffect(() => {
     if (Platform.OS === 'android') {
-      getCategories('http://10.0.2.2:8800/api');
+      getCategories(ANDROID_BASE_URL);
     } else if (Platform.OS === 'ios') {
-      getCategories('http://localhost:8800/api');
+      getCategories(IOS_BASE_URL);
     }
   }, []);
 

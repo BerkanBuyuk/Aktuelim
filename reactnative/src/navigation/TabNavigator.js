@@ -28,6 +28,7 @@ const BottomTabNavigator = ({navigation}) => {
             <MaterialIcons name="favorite" size={30} color="#000" />
           ),
           headerTitle: 'Favoriler',
+          tabBarLabel: 'Favoriler',
           // headerLeft: () => (
           //   <Entypo
           //     name="menu"

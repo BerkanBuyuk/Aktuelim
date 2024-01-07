@@ -1,6 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {View, Image, FlatList, Platform} from 'react-native';
+import {View, Image, FlatList, Platform, StyleSheet, Text} from 'react-native';
 import axios from 'axios';
+import Divider from '../../components/Divider';
+import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
@@ -26,11 +28,11 @@ const Favorites = () => {
 
   useEffect(() => {
     if (Platform.OS === 'android') {
-      fetchFavorites('http://10.0.2.2:8800/api');
-      fetchCatalogs('http://10.0.2.2:8800/api');
+      fetchFavorites(ANDROID_BASE_URL);
+      fetchCatalogs(ANDROID_BASE_URL);
     } else if (Platform.OS === 'ios') {
-      fetchFavorites('http://localhost:8800/api');
-      fetchCatalogs('http://localhost:8800/api');
+      fetchFavorites(IOS_BASE_URL);
+      fetchCatalogs(IOS_BASE_URL);
     }
   }, []);
 
@@ -40,17 +42,29 @@ const Favorites = () => {
     return catalog ? catalog.catalog_image : null;
   });
 
+  const favoriteCatalogTitles = favorites.map(favorite => {
+    const catalog = catalogs.find(c => c.catalog_id === favorite.catalog_id);
+    return catalog ? catalog.catalog_title : null;
+  });
+
   return (
     <View style={{flex: 1, alignItems: 'center'}}>
       <FlatList
         data={favoriteCatalogImages}
         // numColumns={2}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({item}) => (
-          <View>
+        renderItem={({item, index}) => (
+          <View style={{flex: 1}}>
+            <Text style={styles.text_style}>
+              {favoriteCatalogTitles[index]}
+            </Text>
             {item && (
-              <Image source={{uri: item}} style={{width: 150, height: 150}} />
+              <Image
+                source={{uri: favoriteCatalogImages[index]}}
+                style={styles.image_style}
+              />
             )}
+            <Divider />
           </View>
         )}
       />
@@ -59,3 +73,16 @@ const Favorites = () => {
 };
 
 export default Favorites;
+
+const styles = StyleSheet.create({
+  image_style: {
+    width: 420,
+    height: 650,
+  },
+  text_style: {
+    textAlign: 'center',
+    marginBottom: 10,
+    // backgroundColor: 'red',
+    fontSize: 20,
+  },
+});

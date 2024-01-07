@@ -10,7 +10,7 @@ import {
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Categories from '../../components/Categories';
-import {ANDROID_MARKETS_URL, IOS_MARKETS_URL} from '@env';
+import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
 
 const Markets = ({navigation}) => {
   const [data, setData] = useState([]);
@@ -26,9 +26,9 @@ const Markets = ({navigation}) => {
 
   useEffect(() => {
     if (Platform.OS === 'android') {
-      getMarkets(ANDROID_MARKETS_URL);
+      getMarkets(ANDROID_BASE_URL);
     } else if (Platform.OS === 'ios') {
-      getMarkets(IOS_MARKETS_URL);
+      getMarkets(IOS_BASE_URL);
     }
   }, []);
 
