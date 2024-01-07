@@ -1,37 +1,37 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, FlatList} from 'react-native';
+import {View, Image, FlatList, Platform} from 'react-native';
 import axios from 'axios';
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const [catalogs, setCatalogs] = useState([]);
 
-  // Favori katalogları getir
+  const fetchFavorites = async url => {
+    try {
+      const response = await axios.get(`${url}/favorites`);
+      setFavorites(response.data);
+    } catch (error) {
+      console.error('Hata: ', error);
+    }
+  };
+
+  const fetchCatalogs = async url => {
+    try {
+      const response = await axios.get(`${url}/catalogs`);
+      setCatalogs(response.data);
+    } catch (error) {
+      console.error('Hata: ', error);
+    }
+  };
+
   useEffect(() => {
-    const fetchFavorites = async () => {
-      try {
-        const response = await axios.get('http://localhost:8800/api/favorites');
-        setFavorites(response.data);
-      } catch (error) {
-        console.error('Error fetching favorites:', error);
-      }
-    };
-
-    fetchFavorites();
-  }, []);
-
-  // Tüm katalogları getir
-  useEffect(() => {
-    const fetchCatalogs = async () => {
-      try {
-        const response = await axios.get('http://localhost:8800/api/catalogs');
-        setCatalogs(response.data);
-      } catch (error) {
-        console.error('Error fetching catalogs:', error);
-      }
-    };
-
-    fetchCatalogs();
+    if (Platform.OS === 'android') {
+      fetchFavorites('http://10.0.2.2:8800/api');
+      fetchCatalogs('http://10.0.2.2:8800/api');
+    } else if (Platform.OS === 'ios') {
+      fetchFavorites('http://localhost:8800/api');
+      fetchCatalogs('http://localhost:8800/api');
+    }
   }, []);
 
   // Favori katalogların resimlerini filtrele

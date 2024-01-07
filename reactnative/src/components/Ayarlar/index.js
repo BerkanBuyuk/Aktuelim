@@ -1,16 +1,12 @@
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import React from 'react';
-import LottieView from 'lottie-react-native';
+import Loader from '../Loader';
 
 const Ayarlar = () => {
   return (
     <View style={styles.view_style}>
-      <LottieView
-        style={styles.lottie_style}
-        source={require('../../assets/lottie/loader/loader.json')}
-        autoPlay
-        loop
-      />
+      <Text>Ayarlar</Text>
+      <Loader />
     </View>
   );
 };
