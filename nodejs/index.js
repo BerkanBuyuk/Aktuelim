@@ -1,14 +1,15 @@
 import express from "express";
 import mysql from "mysql";
+import "dotenv/config";
 
 const app = express();
-const port = 8800;
+const port = process.env.PORT;
 
 const db = mysql.createConnection({
-  host: "localhost",
+  host: `${process.env.HOST}`,
   user: "root",
-  password: "berkanbuyuk",
-  database: "aktuel",
+  password: `${process.env.PASSWORD}`,
+  database: `${process.env.DATABASE}`,
 });
 
 app.use(express.json());
@@ -87,17 +88,6 @@ app.post("/api/catalogs", (req, res) => {
 
 //--------------------------------------------------------------------------------------------
 
-//GET CATEGORIES
-app.get("/api/categories", (req, res) => {
-  const q = "SELECT * FROM Categories";
-  db.query(q, (err, data) => {
-    if (err) return res.json(err);
-    return res.json(data);
-  });
-});
-
-//--------------------------------------------------------------------------------------------
-
 //GET FAVORITES
 app.get("/api/favorites", (req, res) => {
   const q = "SELECT * FROM Favorites";
@@ -123,3 +113,16 @@ app.post("/api/favorites", (req, res) => {
     }
   });
 });
+
+//--------------------------------------------------------------------------------------------
+
+//GET CATEGORIES
+app.get("/api/categories", (req, res) => {
+  const q = "SELECT * FROM Categories";
+  db.query(q, (err, data) => {
+    if (err) return res.json(err);
+    return res.json(data);
+  });
+});
+
+//--------------------------------------------------------------------------------------------
