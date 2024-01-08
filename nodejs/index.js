@@ -3,6 +3,7 @@ import mysql from "mysql";
 import "dotenv/config";
 
 const app = express();
+const localPort = 8800;
 
 const db = mysql.createConnection({
   host: `${process.env.HOST}`,
@@ -43,8 +44,8 @@ app.post("/api/markets", (req, res) => {
   });
 });
 
-app.listen(() => {
-  console.log(`Sunucu 8800 portunda çalışıyor.`);
+app.listen(localPort, () => {
+  console.log(`Sunucu ${localPort} portunda çalışıyor.`);
 });
 
 //--------------------------------------------------------------------------------------------
