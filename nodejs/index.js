@@ -22,7 +22,7 @@ app.use(express.json());
 
 ////GET MARKETS
 app.get("/", (req, res) => {
-  const q = `${process.env.GET_MARKETS_QUERY}`;
+  const q = "SELECT * FROM Markets";
   db.query(q, (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
@@ -31,7 +31,8 @@ app.get("/", (req, res) => {
 
 //POST MARKETS
 app.post("/", (req, res) => {
-  const q = `${process.env.POST_MARKETS_QUERY}`;
+  const q =
+    "INSERT INTO Markets (`market_id`, `market_name`, `market_image`, `category_id`) VALUES (?, ?, ?)";
   const values = [
     req.body.market_id,
     req.body.market_name,
