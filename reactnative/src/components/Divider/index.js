@@ -9,9 +9,9 @@ export default Divider;
 
 const styles = StyleSheet.create({
   view_style: {
-    // flex: 1,
     height: 3,
     backgroundColor: 'rgba(0, 0, 0, 0.1)',
-    marginVertical: 15,
+    marginBottom: 20,
+    marginTop: 20,
   },
 });

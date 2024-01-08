@@ -48,25 +48,28 @@ const Favorites = () => {
   });
 
   return (
-    <View style={{flex: 1, alignItems: 'center'}}>
+    <View>
       <FlatList
         data={favoriteCatalogImages}
         // numColumns={2}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({item, index}) => (
-          <View style={{flex: 1}}>
-            <Text style={styles.text_style}>
-              {favoriteCatalogTitles[index]}
-            </Text>
-            {item && (
-              <Image
-                source={{uri: favoriteCatalogImages[index]}}
-                style={styles.image_style}
-              />
-            )}
+          <View>
+            <View style={styles.view_item}>
+              <Text style={styles.text_style}>
+                {favoriteCatalogTitles[index]}
+              </Text>
+              {item && (
+                <Image
+                  source={{uri: favoriteCatalogImages[index]}}
+                  style={styles.image_style}
+                />
+              )}
+            </View>
             <Divider />
           </View>
         )}
+        style={styles.flatList_style}
       />
     </View>
   );
@@ -78,11 +81,21 @@ const styles = StyleSheet.create({
   image_style: {
     width: 420,
     height: 650,
+    borderWidth: 1,
+    marginHorizontal: 5,
   },
   text_style: {
     textAlign: 'center',
     marginBottom: 10,
     // backgroundColor: 'red',
     fontSize: 20,
+  },
+  flatList_style: {
+    // marginTop: 10,
+  },
+  view_item: {
+    // flex: 1,
+    backgroundColor: '#e0e0e0',
+    borderRadius: 15,
   },
 });
