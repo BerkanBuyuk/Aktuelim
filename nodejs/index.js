@@ -15,7 +15,7 @@ const db = mysql.createConnection({
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.json("Hello welcome Backend!");
+  res.json("Hello welcome Backend DENEMESİ!");
 });
 
 //--------------------------------------------------------------------------------------------
