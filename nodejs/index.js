@@ -3,7 +3,6 @@ import mysql from "mysql";
 import "dotenv/config";
 
 const app = express();
-const port = process.env.PORT;
 
 const db = mysql.createConnection({
   host: `${process.env.HOST}`,
@@ -14,15 +13,15 @@ const db = mysql.createConnection({
 
 app.use(express.json());
 
-// app.get("/", (req, res) => {
-//   res.json("Hello welcome Backend DENEMESİ!");
-// });
+app.get("/", (req, res) => {
+  res.json("Hello welcome Backend DENEMESİ!");
+});
 
 //--------------------------------------------------------------------------------------------
 
 ////GET MARKETS
-app.get("/", (req, res) => {
-  const q = "SELECT * FROM Markets";
+app.get("/api/markets", (req, res) => {
+  const q = `${process.env.GET_MARKETS_QUERY}`;
   db.query(q, (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
@@ -30,9 +29,8 @@ app.get("/", (req, res) => {
 });
 
 //POST MARKETS
-app.post("/", (req, res) => {
-  const q =
-    "INSERT INTO Markets (`market_id`, `market_name`, `market_image`, `category_id`) VALUES (?, ?, ?)";
+app.post("/api/markets", (req, res) => {
+  const q = `${process.env.POST_MARKETS_QUERY}`;
   const values = [
     req.body.market_id,
     req.body.market_name,
@@ -45,8 +43,8 @@ app.post("/", (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Sunucu ${port} portunda çalışıyor.`);
+app.listen(() => {
+  console.log(`Sunucu 8800 portunda çalışıyor.`);
 });
 
 //--------------------------------------------------------------------------------------------
