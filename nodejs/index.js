@@ -14,14 +14,14 @@ const db = mysql.createConnection({
 
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.json("Hello welcome Backend DENEMESİ!");
-});
+// app.get("/", (req, res) => {
+//   res.json("Hello welcome Backend DENEMESİ!");
+// });
 
 //--------------------------------------------------------------------------------------------
 
 ////GET MARKETS
-app.get("/api/markets", (req, res) => {
+app.get("/", (req, res) => {
   const q = `${process.env.GET_MARKETS_QUERY}`;
   db.query(q, (err, data) => {
     if (err) return res.json(err);
@@ -30,7 +30,7 @@ app.get("/api/markets", (req, res) => {
 });
 
 //POST MARKETS
-app.post("/api/markets", (req, res) => {
+app.post("/", (req, res) => {
   const q = `${process.env.POST_MARKETS_QUERY}`;
   const values = [
     req.body.market_id,
