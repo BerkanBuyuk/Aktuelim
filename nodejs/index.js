@@ -100,8 +100,7 @@ app.delete("/api/catalogs/:id", (req, res) => {
 
 app.put("/api/catalogs/:id", (req, res) => {
   const catalogId = req.params.id;
-  const q =
-    "UPDATE Catalogs SET `catalog_id` = ?, `catalog_title` = ?, `catalog_image` = ?, `catalog_description` = ?, `market_id` = ? WHERE catalog_id = ?";
+  const q = process.env.PUT_CATALOGS_QUERY;
 
   const values = [
     req.body.catalog_id,
