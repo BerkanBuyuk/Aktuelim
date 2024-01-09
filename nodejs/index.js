@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 
 ////GET MARKETS
 app.get("/api/markets", (req, res) => {
-  const q = `${process.env.GET_MARKETS_QUERY}`;
+  const q = process.env.GET_MARKETS_QUERY;
   db.query(q, (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
@@ -33,7 +33,7 @@ app.get("/api/markets", (req, res) => {
 
 //POST MARKETS
 app.post("/api/markets", (req, res) => {
-  const q = `${process.env.POST_MARKETS_QUERY}`;
+  const q = process.env.POST_MARKETS_QUERY;
   const values = [
     req.body.market_id,
     req.body.market_name,
@@ -54,7 +54,7 @@ app.listen(localPort, () => {
 
 //GET CATALOGS
 app.get("/api/catalogs", (req, res) => {
-  const q = `${process.env.GET_CATALOGS_QUERY}`;
+  const q = process.env.GET_CATALOGS_QUERY;
   db.query(q, (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
@@ -71,7 +71,7 @@ app.post("/api/catalogs", (req, res) => {
     market_id,
   } = req.body;
 
-  const sql = `${process.env.POST_CATALOGS_QUERY}`;
+  const sql = process.env.POST_CATALOGS_QUERY;
   db.query(
     sql,
     [catalog_id, catalog_title, catalog_image, catalog_description, market_id],
@@ -85,11 +85,23 @@ app.post("/api/catalogs", (req, res) => {
   );
 });
 
+//DELETE CATALOGS
+
+app.delete("/api/catalogs/:id", (req, res) => {
+  const catalogId = req.params.id;
+  const q = process.env.DELETE_CATALOGS_QUERY;
+
+  db.query(q, [catalogId], (err, data) => {
+    if (err) return res.json(err);
+    return res.json("Katalog Silme Başarılı.");
+  });
+});
+
 //--------------------------------------------------------------------------------------------
 
 //GET FAVORITES
 app.get("/api/favorites", (req, res) => {
-  const q = `${process.env.GET_FAVORITES_QUERY}`;
+  const q = process.env.GET_FAVORITES_QUERY;
   db.query(q, (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
@@ -102,7 +114,7 @@ app.get("/api/favorites", (req, res) => {
 app.post("/api/favorites", (req, res) => {
   const { favori_id, catalog_id } = req.body;
 
-  const sql = `${process.env.POST_FAVORITES_QUERY}`;
+  const sql = process.env.POST_FAVORITES_QUERY;
 
   db.query(sql, [favori_id, catalog_id], (err, result) => {
     if (err) {
@@ -117,7 +129,7 @@ app.post("/api/favorites", (req, res) => {
 
 //GET CATEGORIES
 app.get("/api/categories", (req, res) => {
-  const q = `${process.env.GET_CATEGORIES_QUERY}`;
+  const q = process.env.GET_CATEGORIES_QUERY;
   db.query(q, (err, data) => {
     if (err) return res.json(err);
     return res.json(data);
