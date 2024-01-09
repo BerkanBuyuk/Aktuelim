@@ -14,6 +14,17 @@ import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
 
 const Markets = ({navigation}) => {
   const [data, setData] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(0);
+  const [filteredMarkets, setFilteredMarkets] = useState(data);
+
+  const handleListFilteredData = () => {
+    if (selectedCategory === 0) {
+      setFilteredMarkets(data);
+    } else {
+      const values = data.filter(x => x.category_id === selectedCategory);
+      setFilteredMarkets(values);
+    }
+  };
 
   const getMarkets = async url => {
     try {
@@ -23,6 +34,13 @@ const Markets = ({navigation}) => {
       console.log('Hata: ', error);
     }
   };
+
+  useEffect(() => {
+    if (selectedCategory !== 0) {
+      handleListFilteredData();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedCategory]);
 
   useEffect(() => {
     if (Platform.OS === 'android') {
@@ -51,11 +69,11 @@ const Markets = ({navigation}) => {
   return (
     <View style={{flex: 1}}>
       <Text style={styles.textStyle}>Kategoriler</Text>
-      <Categories />
+      <Categories setSelectedCategory={setSelectedCategory} />
       <Text style={styles.textStyle}>Marketler</Text>
       <FlatList
         numColumns={2}
-        data={data}
+        data={selectedCategory === 0 ? data : filteredMarkets}
         renderItem={item => marketsContainer(item)}
         style={styles.flatListStyle}
         showsVerticalScrollIndicator={false}

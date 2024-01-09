@@ -11,7 +11,7 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
 
-const Categories = () => {
+const Categories = ({setSelectedCategory}) => {
   const [data, setData] = useState([]);
 
   const getCategories = async url => {
@@ -36,7 +36,7 @@ const Categories = () => {
     return (
       <TouchableOpacity
         onPress={() => {
-          null;
+          setSelectedCategory(item.category_id);
         }}
         style={styles.touchableOpacityStyle}>
         <Image
