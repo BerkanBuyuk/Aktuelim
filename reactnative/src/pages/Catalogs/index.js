@@ -21,7 +21,6 @@ const Catalogs = ({route, navigation}) => {
         val => val.market_id === route.params.market_id,
       );
       setCatalogs(result);
-      // console.log(result);
     } catch (error) {
       console.log('Hata: ', error);
     }
@@ -37,7 +36,12 @@ const Catalogs = ({route, navigation}) => {
   }, []);
 
   const catalogContainer = ({item}) => {
-    // console.log(item);
+    const kisaltmaSiniri = 20;
+    const kisaltilmisBaslik =
+      item.catalog_title.length > kisaltmaSiniri
+        ? item.catalog_title.slice(0, kisaltmaSiniri) + '...'
+        : item.catalog_title;
+
     return (
       <View key={item.catalog_id} style={styles.flatListRenderItemStyle}>
         <TouchableOpacity
@@ -46,7 +50,7 @@ const Catalogs = ({route, navigation}) => {
             source={{uri: `${item.catalog_image}`}}
             style={{width: 150, height: 150}}
           />
-          <Text>{item.catalog_title}</Text>
+          <Text>{kisaltilmisBaslik}</Text>
         </TouchableOpacity>
       </View>
     );
@@ -58,6 +62,7 @@ const Catalogs = ({route, navigation}) => {
         numColumns={2}
         data={catalogs}
         renderItem={item => catalogContainer(item)}
+        keyExtractor={item => item.catalog_id.toString()}
       />
     </View>
   );
@@ -67,7 +72,6 @@ export default Catalogs;
 
 const styles = StyleSheet.create({
   flatListRenderItemStyle: {
-    // backgroundColor: 'red',
     padding: 10,
     borderWidth: 1,
     borderRadius: 10,

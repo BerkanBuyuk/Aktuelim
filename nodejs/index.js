@@ -11,13 +11,12 @@ const db = mysql.createConnection({
   password: `${process.env.PASSWORD}`,
   database: `${process.env.DATABASE}`,
   port: `${process.env.PORT}`,
-  insecureAuth: true,
 });
 
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.json("Hello welcome Backend DENEMESİ!");
+  res.json("Backend'e hoşgeldin. Kırmızı hap mı mavi hap mı istersin ?");
 });
 
 //--------------------------------------------------------------------------------------------
@@ -79,7 +78,7 @@ app.post("/api/catalogs", (req, res) => {
       if (err) {
         res.status(500).send("Sorgu hatası");
       } else {
-        res.status(200).send("Yeni katalog başarıyla eklendi.");
+        res.status(200).send(`Yeni katalog başarıyla eklendi.`);
       }
     }
   );
@@ -93,7 +92,28 @@ app.delete("/api/catalogs/:id", (req, res) => {
 
   db.query(q, [catalogId], (err, data) => {
     if (err) return res.json(err);
-    return res.json("Katalog Silme Başarılı.");
+    return res.json(`Katalog ID: ${catalogId} Silme Başarılı.`);
+  });
+});
+
+//PUT CATALOGS
+
+app.put("/api/catalogs/:id", (req, res) => {
+  const catalogId = req.params.id;
+  const q =
+    "UPDATE Catalogs SET `catalog_id` = ?, `catalog_title` = ?, `catalog_image` = ?, `catalog_description` = ?, `market_id` = ? WHERE catalog_id = ?";
+
+  const values = [
+    req.body.catalog_id,
+    req.body.catalog_title,
+    req.body.catalog_image,
+    req.body.catalog_description,
+    req.body.market_id,
+  ];
+
+  db.query(q, [...values, catalogId], (err, data) => {
+    if (err) return res.json(err);
+    return res.json(`Katalog ID: ${catalogId} Güncellendi.`);
   });
 });
 
