@@ -70,7 +70,7 @@ const Markets = ({navigation}) => {
     <View style={{flex: 1}}>
       <Text style={styles.textStyle}>Kategoriler</Text>
       <Categories setSelectedCategory={setSelectedCategory} />
-      <Text style={styles.textStyle}>Marketler</Text>
+      <Text style={styles.textStyle}>Mağazalar</Text>
       <FlatList
         numColumns={2}
         data={selectedCategory === 0 ? data : filteredMarkets}

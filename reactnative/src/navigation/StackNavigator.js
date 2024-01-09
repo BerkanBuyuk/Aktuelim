@@ -6,7 +6,9 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Ayarlar from '../components/Ayarlar';
 import Notifications from '../components/Notifications';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
+import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
+import AddCatalogs from '../pages/AddCatalogs';
 
 const Stack = createNativeStackNavigator();
 
@@ -83,13 +85,23 @@ const MainStackNavigator = ({navigation}) => {
               }}
             />
           ),
+          headerRight: () => (
+            <AntDesign
+              name="addfile"
+              size={30}
+              color="#000"
+              onPress={() => navigation.navigate('AddCatalogs')}
+            />
+          ),
         }}
       />
+
       <Stack.Screen
         name="Catalogs"
         component={Catalogs}
         options={{headerTitle: 'Kataloglar', headerTitleAlign: 'center'}}
       />
+
       <Stack.Screen
         name="CatalogDetails"
         component={CatalogDetails}
@@ -103,6 +115,25 @@ const MainStackNavigator = ({navigation}) => {
               color="red"
               onPress={() => {
                 handleFavoritePress();
+              }}
+            />
+          ),
+        }}
+      />
+
+      <Stack.Screen
+        name="AddCatalogs"
+        component={AddCatalogs}
+        options={{
+          headerTitle: 'Katalog Ekle',
+          headerTitleAlign: 'center',
+          headerRight: () => (
+            <MaterialIcons
+              name="add-a-photo"
+              size={30}
+              // color="red"
+              onPress={() => {
+                null;
               }}
             />
           ),
