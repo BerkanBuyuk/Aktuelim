@@ -4,6 +4,7 @@ import {openDatabase} from 'react-native-sqlite-storage';
 import AddBtn from '../../components/AddBtn';
 import DeleteBtn from '../../components/DeleteBtn';
 import UpdateBtn from '../../components/UpdateBtn';
+import {useTranslation} from 'react-i18next';
 
 const db = openDatabase({
   name: 'shopListDB',
@@ -13,6 +14,7 @@ const db = openDatabase({
 const ShopList = () => {
   const [inputText, setInputText] = useState('');
   const [list, setList] = useState([]);
+  const {t} = useTranslation();
 
   const createTable = () => {
     db.transaction(tx => {
@@ -138,7 +140,7 @@ const ShopList = () => {
     <View style={{flex: 1}}>
       <View style={styles.input_addBtn_View}>
         <TextInput
-          placeholder="Eklemek istediğinizi yazın."
+          placeholder={t('shopList_placeholder')}
           value={inputText}
           onChangeText={setInputText}
           style={styles.input_style}

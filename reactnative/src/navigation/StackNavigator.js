@@ -15,12 +15,16 @@ import {Text} from 'react-native';
 const Stack = createNativeStackNavigator();
 
 const AyarlarStackNavigator = ({navigation}) => {
+  const {t} = useTranslation();
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Ayarlar"
         component={Ayarlar}
         options={{
+          headerTitle: () => (
+            <Text style={{fontSize: 20, color: 'black'}}>{t('settings')}</Text>
+          ),
           headerTitleAlign: 'center',
           headerLeft: () => (
             <Entypo
@@ -39,13 +43,18 @@ const AyarlarStackNavigator = ({navigation}) => {
 };
 
 const NotificationsStackNavigator = ({navigation}) => {
+  const {t} = useTranslation();
   return (
     <Stack.Navigator>
       <Stack.Screen
         name="Notifications"
         component={Notifications}
         options={{
-          headerTitle: 'Bildirimler',
+          headerTitle: () => (
+            <Text style={{fontSize: 20, color: 'black'}}>
+              {t('notifications')}
+            </Text>
+          ),
           headerTitleAlign: 'center',
           headerLeft: () => (
             <Entypo

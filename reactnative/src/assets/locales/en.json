@@ -7,5 +7,14 @@
     "add_catalog": "Add Catalog",
     "home_tabBarLabel": "Home",
     "favorites": "Favorites",
-    "shop_list": "Shop List"
+    "shop_list": "Shop List",
+    "settings": "Settings",
+    "notifications": "Notifications",
+    "shopList_addBtn": "Add",
+    "shopList_updateBtn": "Update",
+    "shopList_deleteBtn": "Del",
+    "shopList_placeholder": "Type what you want to add.",
+    "shopList_dialogTitle": "Please Update.",
+    "shopList_dialogLeftbtnLabel": "Cancel",
+    "shopList_dialogRightbtnLabel": "Update"
 }

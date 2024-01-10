@@ -5,23 +5,33 @@ import {
   AyarlarStackNavigator,
   NotificationsStackNavigator,
 } from './StackNavigator';
+import {Text} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = ({navigation}) => {
+  const {t} = useTranslation();
   return (
     <Drawer.Navigator>
       <Drawer.Screen
         name="TabNavigator"
         component={TabNavigator}
-        options={{headerShown: false, drawerLabel: 'Anasayfa'}}
+        options={{
+          headerShown: false,
+          drawerLabel: () => (
+            <Text style={{fontSize: 20, color: 'black'}}>{t('home')}</Text>
+          ),
+        }}
       />
       <Drawer.Screen
         name="Ayarlar1"
         component={AyarlarStackNavigator}
         options={{
           headerShown: false,
-          drawerLabel: 'Ayarlar',
+          drawerLabel: () => (
+            <Text style={{fontSize: 20, color: 'black'}}>{t('settings')}</Text>
+          ),
           //   drawerType: 'back',
         }}
       />
@@ -30,7 +40,11 @@ const DrawerNavigator = ({navigation}) => {
         component={NotificationsStackNavigator}
         options={{
           headerShown: false,
-          drawerLabel: 'Bildirimler',
+          drawerLabel: () => (
+            <Text style={{fontSize: 20, color: 'black'}}>
+              {t('notifications')}
+            </Text>
+          ),
           //   drawerType: 'back',
         }}
       />

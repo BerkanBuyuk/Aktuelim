@@ -6,5 +6,14 @@
     "catalog_detail": "Katalog Detayı",
     "add_catalog": "Katalog Ekle",
     "favorites": "Favoriler",
-    "shop_list": "Alışveriş Listesi"
+    "shop_list": "Alışveriş Listesi",
+    "settings": "Ayarlar",
+    "notifications": "Bildirimler",
+    "shopList_addBtn": "Ekle",
+    "shopList_updateBtn": "Güncelle",
+    "shopList_deleteBtn": "Sil",
+    "shopList_placeholder": "Eklemek istediğinizi yazın.",
+    "shopList_dialogTitle": "Güncelleyiniz.",
+    "shopList_dialogLeftbtnLabel": "İptal",
+    "shopList_dialogRightbtnLabel": "Güncelle"
 }

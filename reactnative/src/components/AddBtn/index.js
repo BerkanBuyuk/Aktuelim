@@ -1,11 +1,13 @@
 import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 
 const AddBtn = ({onPress}) => {
+  const {t} = useTranslation();
   return (
     <View style={styles.view_style}>
       <TouchableOpacity onPress={onPress}>
-        <Text style={styles.text_style}>Ekle</Text>
+        <Text style={styles.text_style}>{t('shopList_addBtn')}</Text>
       </TouchableOpacity>
     </View>
   );

@@ -1,14 +1,16 @@
 import React from 'react';
 import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {useTranslation} from 'react-i18next';
 
 const DeleteBtn = ({onDelete, itemId}) => {
+  const {t} = useTranslation();
   const handleDelete = () => {
     onDelete(itemId);
   };
 
   return (
     <TouchableOpacity onPress={handleDelete}>
-      <Text style={styles.deleteBtn}>Sil</Text>
+      <Text style={styles.deleteBtn}>{t('shopList_deleteBtn')}</Text>
     </TouchableOpacity>
   );
 };

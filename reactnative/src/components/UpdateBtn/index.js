@@ -8,8 +8,10 @@ import {
   Alert,
 } from 'react-native';
 import Dialog from 'react-native-dialog';
+import {useTranslation} from 'react-i18next';
 
 const UpdateBtn = ({onUpdate, itemText}) => {
+  const {t} = useTranslation();
   const [visible, setVisible] = useState(false);
   const [newText, setNewText] = useState(itemText);
 
@@ -38,18 +40,25 @@ const UpdateBtn = ({onUpdate, itemText}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={showDialog}>
-        <Text style={styles.updateBtn}>Güncelle</Text>
+        <Text style={styles.updateBtn}>{t('shopList_updateBtn')}</Text>
       </TouchableOpacity>
       <Dialog.Container visible={visible}>
-        <Dialog.Title>Güncelleyiniz.</Dialog.Title>
+        <Dialog.Title>{t('shopList_dialogTitle')}</Dialog.Title>
         <TextInput
           value={newText}
           onChangeText={text => setNewText(text)}
           defaultValue={itemText}
           style={styles.input_style}
         />
-        <Dialog.Button label="İptal" onPress={handleCancel} color="red" />
-        <Dialog.Button label="Güncelle" onPress={handleUpdate} />
+        <Dialog.Button
+          label={t('shopList_dialogLeftbtnLabel')}
+          onPress={handleCancel}
+          color="red"
+        />
+        <Dialog.Button
+          label={t('shopList_dialogRightbtnLabel')}
+          onPress={handleUpdate}
+        />
       </Dialog.Container>
     </View>
   );
