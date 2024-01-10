@@ -9,6 +9,8 @@ import Entypo from 'react-native-vector-icons/dist/Entypo';
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import AddCatalogs from '../pages/AddCatalogs';
+import {useTranslation} from 'react-i18next';
+import {Text} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -62,6 +64,7 @@ const NotificationsStackNavigator = ({navigation}) => {
 };
 
 const MainStackNavigator = ({navigation}) => {
+  const {t} = useTranslation();
   const [isFavorite, setIsFavorite] = useState(false);
   const handleFavoritePress = () => {
     setIsFavorite(prevIsFavorite => !prevIsFavorite);
@@ -73,7 +76,7 @@ const MainStackNavigator = ({navigation}) => {
         name="Market"
         component={Markets}
         options={{
-          headerTitle: 'Anasayfa',
+          headerTitle: () => <Text style={{fontSize: 20}}>{t('home')}</Text>,
           headerTitleAlign: 'center',
           headerLeft: () => (
             <Entypo
@@ -99,14 +102,21 @@ const MainStackNavigator = ({navigation}) => {
       <Stack.Screen
         name="Catalogs"
         component={Catalogs}
-        options={{headerTitle: 'Kataloglar', headerTitleAlign: 'center'}}
+        options={{
+          headerTitle: () => (
+            <Text style={{fontSize: 20}}>{t('catalogs')}</Text>
+          ),
+          headerTitleAlign: 'center',
+        }}
       />
 
       <Stack.Screen
         name="CatalogDetails"
         component={CatalogDetails}
         options={{
-          headerTitle: 'Katalog Detayı',
+          headerTitle: () => (
+            <Text style={{fontSize: 20}}>{t('catalog_detail')}</Text>
+          ),
           headerTitleAlign: 'center',
           headerRight: () => (
             <MaterialIcons
@@ -125,7 +135,9 @@ const MainStackNavigator = ({navigation}) => {
         name="AddCatalogs"
         component={AddCatalogs}
         options={{
-          headerTitle: 'Katalog Ekle',
+          headerTitle: () => (
+            <Text style={{fontSize: 20}}>{t('add_catalog')}</Text>
+          ),
           headerTitleAlign: 'center',
           headerRight: () => (
             <MaterialIcons

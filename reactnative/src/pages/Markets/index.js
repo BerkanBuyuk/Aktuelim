@@ -11,8 +11,11 @@ import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Categories from '../../components/Categories';
 import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
+import {useTranslation} from 'react-i18next';
+import i18next from '../../assets/locales/services/i18next';
 
 const Markets = ({navigation}) => {
+  const {t} = useTranslation();
   const [data, setData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [filteredMarkets, setFilteredMarkets] = useState(data);
@@ -68,9 +71,9 @@ const Markets = ({navigation}) => {
 
   return (
     <View style={{flex: 1}}>
-      <Text style={styles.textStyle}>Kategoriler</Text>
+      <Text style={styles.textStyle}>{t('categories')}</Text>
       <Categories setSelectedCategory={setSelectedCategory} />
-      <Text style={styles.textStyle}>Mağazalar</Text>
+      <Text style={styles.textStyle}>{t('stores')}</Text>
       <FlatList
         numColumns={2}
         data={selectedCategory === 0 ? data : filteredMarkets}
