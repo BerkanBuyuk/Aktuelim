@@ -5,7 +5,6 @@
     "catalogs": "Catalogs",
     "catalog_detail": "Catalog Detail",
     "add_catalog": "Add Catalog",
-    "home_tabBarLabel": "Home",
     "favorites": "Favorites",
     "shop_list": "Shop List",
     "settings": "Settings",
@@ -16,5 +15,13 @@
     "shopList_placeholder": "Type what you want to add.",
     "shopList_dialogTitle": "Please Update.",
     "shopList_dialogLeftbtnLabel": "Cancel",
-    "shopList_dialogRightbtnLabel": "Update"
+    "shopList_dialogRightbtnLabel": "Update",
+    "category_name": "English Category Name",
+    "Tümü": "All",
+    "Market": "Market",
+    "Elektronik": "Electronics",
+    "Kozmetik": "Cosmetic",
+    "Ev ve Yapı": "House & Building",
+    "Giyim": "Clothes",
+    "Anne ve Bebek": "Mom & Baby"
 }

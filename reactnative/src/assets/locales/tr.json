@@ -15,5 +15,13 @@
     "shopList_placeholder": "Eklemek istediğinizi yazın.",
     "shopList_dialogTitle": "Güncelleyiniz.",
     "shopList_dialogLeftbtnLabel": "İptal",
-    "shopList_dialogRightbtnLabel": "Güncelle"
+    "shopList_dialogRightbtnLabel": "Güncelle",
+    "category_name": "Türkçe Kategori Adı",
+    "Tümü": "Tümü",
+    "Market": "Market",
+    "Elektronik": "Elektronik",
+    "Kozmetik": "Kozmetik",
+    "Ev ve Yapı": "Ev ve Yapı",
+    "Giyim": "Giyim",
+    "Anne ve Bebek": "Anne ve Bebek"
 }

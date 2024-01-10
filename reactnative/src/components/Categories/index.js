@@ -1,18 +1,20 @@
+import React, {useEffect, useState} from 'react';
 import {
   View,
   Text,
-  Platform,
   TouchableOpacity,
   Image,
   StyleSheet,
   FlatList,
+  Platform,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
+import {useTranslation} from 'react-i18next';
 
 const Categories = ({setSelectedCategory}) => {
   const [data, setData] = useState([]);
+  const {t} = useTranslation();
 
   const getCategories = async url => {
     try {
@@ -24,15 +26,11 @@ const Categories = ({setSelectedCategory}) => {
   };
 
   useEffect(() => {
-    if (Platform.OS === 'android') {
-      getCategories(ANDROID_BASE_URL);
-    } else if (Platform.OS === 'ios') {
-      getCategories(IOS_BASE_URL);
-    }
+    const url = Platform.OS === 'android' ? ANDROID_BASE_URL : IOS_BASE_URL;
+    getCategories(url);
   }, []);
 
   const categoriesContainer = ({item}) => {
-    // console.log(item);
     return (
       <TouchableOpacity
         onPress={() => {
@@ -43,7 +41,7 @@ const Categories = ({setSelectedCategory}) => {
           source={{uri: `${item.category_image}`}}
           style={styles.categoriesImage}
         />
-        <Text style={styles.categoriesTitle}>{item.category_name}</Text>
+        <Text style={styles.categoriesTitle}>{t(item.category_name)}</Text>
       </TouchableOpacity>
     );
   };
@@ -71,10 +69,8 @@ const styles = StyleSheet.create({
   },
   categoriesTitle: {},
   flatListStyle: {
-    // flex: 1,
     margin: 5,
     padding: 5,
-    // backgroundColor: '#e0e0e0',
     borderWidth: 0.5,
     borderColor: '#e0e0e0',
   },
