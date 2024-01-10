@@ -10,7 +10,6 @@ import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import AddCatalogs from '../pages/AddCatalogs';
 import {useTranslation} from 'react-i18next';
-import {Text} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,9 +21,7 @@ const AyarlarStackNavigator = ({navigation}) => {
         name="Ayarlar"
         component={Ayarlar}
         options={{
-          headerTitle: () => (
-            <Text style={{fontSize: 20, color: 'black'}}>{t('settings')}</Text>
-          ),
+          headerTitle: `${t('settings')}`,
           headerTitleAlign: 'center',
           headerLeft: () => (
             <Entypo
@@ -50,11 +47,7 @@ const NotificationsStackNavigator = ({navigation}) => {
         name="Notifications"
         component={Notifications}
         options={{
-          headerTitle: () => (
-            <Text style={{fontSize: 20, color: 'black'}}>
-              {t('notifications')}
-            </Text>
-          ),
+          headerTitle: `${t('notifications')}`,
           headerTitleAlign: 'center',
           headerLeft: () => (
             <Entypo
@@ -85,7 +78,7 @@ const MainStackNavigator = ({navigation}) => {
         name="Market"
         component={Markets}
         options={{
-          headerTitle: () => <Text style={{fontSize: 20}}>{t('home')}</Text>,
+          headerTitle: `${t('home')}`,
           headerTitleAlign: 'center',
           headerLeft: () => (
             <Entypo
@@ -112,9 +105,7 @@ const MainStackNavigator = ({navigation}) => {
         name="Catalogs"
         component={Catalogs}
         options={{
-          headerTitle: () => (
-            <Text style={{fontSize: 20}}>{t('catalogs')}</Text>
-          ),
+          headerTitle: `${t('catalogs')}`,
           headerTitleAlign: 'center',
         }}
       />
@@ -123,9 +114,7 @@ const MainStackNavigator = ({navigation}) => {
         name="CatalogDetails"
         component={CatalogDetails}
         options={{
-          headerTitle: () => (
-            <Text style={{fontSize: 20}}>{t('catalog_detail')}</Text>
-          ),
+          headerTitle: `${t('catalog_detail')}`,
           headerTitleAlign: 'center',
           headerRight: () => (
             <MaterialIcons
@@ -144,9 +133,7 @@ const MainStackNavigator = ({navigation}) => {
         name="AddCatalogs"
         component={AddCatalogs}
         options={{
-          headerTitle: () => (
-            <Text style={{fontSize: 20}}>{t('add_catalog')}</Text>
-          ),
+          headerTitle: `${t('add_catalog')}`,
           headerTitleAlign: 'center',
           headerRight: () => (
             <MaterialIcons
@@ -158,6 +145,7 @@ const MainStackNavigator = ({navigation}) => {
               }}
             />
           ),
+          headerBackTitle: `${t('home')}`,
         }}
       />
     </Stack.Navigator>
