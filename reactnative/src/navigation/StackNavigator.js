@@ -5,6 +5,7 @@ import CatalogDetails from '../pages/CatalogDetails';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Ayarlar from '../components/Ayarlar';
 import Notifications from '../components/Notifications';
+import ContactUs from '../components/ContactUs';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
@@ -48,6 +49,32 @@ const NotificationsStackNavigator = ({navigation}) => {
         component={Notifications}
         options={{
           headerTitle: `${t('notifications')}`,
+          headerTitleAlign: 'center',
+          headerLeft: () => (
+            <Entypo
+              name="menu"
+              size={35}
+              color="#000"
+              onPress={() => {
+                navigation.openDrawer();
+              }}
+            />
+          ),
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+const ContactUsStackNavigator = ({navigation}) => {
+  const {t} = useTranslation();
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="ContactUs"
+        component={ContactUs}
+        options={{
+          headerTitle: `${t('contact_us')}`,
           headerTitleAlign: 'center',
           headerLeft: () => (
             <Entypo
@@ -152,4 +179,9 @@ const MainStackNavigator = ({navigation}) => {
   );
 };
 
-export {MainStackNavigator, AyarlarStackNavigator, NotificationsStackNavigator};
+export {
+  MainStackNavigator,
+  AyarlarStackNavigator,
+  NotificationsStackNavigator,
+  ContactUsStackNavigator,
+};

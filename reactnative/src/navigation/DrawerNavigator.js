@@ -4,6 +4,7 @@ import TabNavigator from './TabNavigator';
 import {
   AyarlarStackNavigator,
   NotificationsStackNavigator,
+  ContactUsStackNavigator,
 } from './StackNavigator';
 import {useTranslation} from 'react-i18next';
 
@@ -36,6 +37,15 @@ const DrawerNavigator = ({navigation}) => {
         options={{
           headerShown: false,
           drawerLabel: `${t('notifications')}`,
+          //   drawerType: 'back',
+        }}
+      />
+      <Drawer.Screen
+        name="ContactUs1"
+        component={ContactUsStackNavigator}
+        options={{
+          headerShown: false,
+          drawerLabel: `${t('contact_us')}`,
           //   drawerType: 'back',
         }}
       />
