@@ -3,8 +3,8 @@ import mysql from "mysql";
 import "dotenv/config";
 
 const app = express();
-const localPort = 10000;
-//deneme4
+const localPort = 8800;
+//deneme5
 
 const db = mysql.createConnection({
   host: `${process.env.HOST}`,
