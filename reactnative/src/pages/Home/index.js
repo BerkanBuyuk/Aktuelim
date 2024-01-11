@@ -6,6 +6,7 @@ import {
   Image,
   Platform,
   View,
+  Dimensions,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
@@ -14,7 +15,10 @@ import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
 import {useTranslation} from 'react-i18next';
 import i18next from '../../assets/locales/services/i18next';
 
-const Markets = ({navigation}) => {
+const deviceHeight = Dimensions.get('window').height;
+const deviceWidth = Dimensions.get('window').width;
+
+const Home = ({navigation}) => {
   const {t} = useTranslation();
   const [data, setData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(0);
@@ -71,7 +75,6 @@ const Markets = ({navigation}) => {
 
   return (
     <View style={{flex: 1}}>
-      <Text style={styles.textStyle}>{t('categories')}</Text>
       <Categories setSelectedCategory={setSelectedCategory} />
       <Text style={styles.textStyle}>{t('stores')}</Text>
       <FlatList
@@ -89,7 +92,10 @@ const styles = StyleSheet.create({
   marketsImage: {
     height: 100,
     width: 150,
+    // Market fotoğraflarının hepsi localdbden çekilecek. htdocsta. boyutları tek tek photoshoptan ayarlanacak.
     borderRadius: 10,
+    // height: deviceWidth / 3.9,
+    // width: deviceWidth / 2.8,
   },
   marketsTitle: {
     width: 150,
@@ -119,4 +125,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Markets;
+export default Home;

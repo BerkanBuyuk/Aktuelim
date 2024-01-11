@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Markets from '../pages/Markets';
+import Home from '../pages/Home';
 import Catalogs from '../pages/Catalogs';
 import CatalogDetails from '../pages/CatalogDetails';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -11,6 +11,7 @@ import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import AddCatalogs from '../pages/AddCatalogs';
 import {useTranslation} from 'react-i18next';
+import Styles from '../assets/Styles';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,13 +23,16 @@ const AyarlarStackNavigator = ({navigation}) => {
         name="Ayarlar"
         component={Ayarlar}
         options={{
+          headerShown: true,
           headerTitle: `${t('settings')}`,
           headerTitleAlign: 'center',
+          headerStyle: {backgroundColor: Styles.baseColor},
+          headerTintColor: Styles.textColor,
           headerLeft: () => (
             <Entypo
               name="menu"
               size={35}
-              color="#000"
+              color={Styles.textColor}
               onPress={() => {
                 navigation.openDrawer();
               }}
@@ -50,11 +54,13 @@ const NotificationsStackNavigator = ({navigation}) => {
         options={{
           headerTitle: `${t('notifications')}`,
           headerTitleAlign: 'center',
+          headerStyle: {backgroundColor: Styles.baseColor},
+          headerTintColor: Styles.textColor,
           headerLeft: () => (
             <Entypo
               name="menu"
               size={35}
-              color="#000"
+              color={Styles.textColor}
               onPress={() => {
                 navigation.openDrawer();
               }}
@@ -76,11 +82,13 @@ const ContactUsStackNavigator = ({navigation}) => {
         options={{
           headerTitle: `${t('contact_us')}`,
           headerTitleAlign: 'center',
+          headerStyle: {backgroundColor: Styles.baseColor},
+          headerTintColor: Styles.textColor,
           headerLeft: () => (
             <Entypo
               name="menu"
               size={35}
-              color="#000"
+              color={Styles.textColor}
               onPress={() => {
                 navigation.openDrawer();
               }}
@@ -100,18 +108,23 @@ const MainStackNavigator = ({navigation}) => {
   };
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {backgroundColor: Styles.baseColor},
+        headerTintColor: Styles.textColor,
+      }}>
       <Stack.Screen
-        name="Market"
-        component={Markets}
+        name="Home"
+        component={Home}
         options={{
           headerTitle: `${t('home')}`,
           headerTitleAlign: 'center',
+          // headerTintColor: Styles.textColor,
           headerLeft: () => (
             <Entypo
               name="menu"
               size={35}
-              color="#000"
+              color={Styles.textColor}
               onPress={() => {
                 navigation.openDrawer();
               }}
@@ -121,7 +134,7 @@ const MainStackNavigator = ({navigation}) => {
             <AntDesign
               name="addfile"
               size={30}
-              color="#000"
+              color={Styles.textColor}
               onPress={() => navigation.navigate('AddCatalogs')}
             />
           ),
@@ -166,7 +179,7 @@ const MainStackNavigator = ({navigation}) => {
             <MaterialIcons
               name="add-a-photo"
               size={30}
-              // color="red"
+              color={Styles.textColor}
               onPress={() => {
                 null;
               }}

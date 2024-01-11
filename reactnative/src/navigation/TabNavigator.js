@@ -6,37 +6,48 @@ import ShopList from '../pages/ShopList';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import {useTranslation} from 'react-i18next';
+import Styles from '../assets/Styles';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = ({navigation}) => {
   const {t} = useTranslation();
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+      screenOptions={{headerStyle: {backgroundColor: Styles.baseColor}}}>
       <Tab.Screen
         name="Markets"
         component={MainStackNavigator}
         options={{
+          tabBarStyle: {backgroundColor: Styles.baseColor},
           headerShown: false,
           tabBarLabel: `${t('home')}`,
-          tabBarIcon: () => <Entypo name="home" size={30} color="#000" />,
+          tabBarLabelStyle: {color: Styles.textColor, fontSize: 11},
+          // headerTintColor: Styles.textColor,
+          tabBarIcon: () => (
+            <Entypo name="home" size={30} color={Styles.textColor} />
+          ),
         }}
       />
       <Tab.Screen
         name="Favorites"
         component={Favorites}
         options={{
-          headerTitleAlign: 'center',
-          tabBarIcon: () => (
-            <MaterialIcons name="favorite" size={30} color="#000" />
-          ),
+          tabBarStyle: {backgroundColor: Styles.baseColor},
           headerTitle: `${t('favorites')}`,
           tabBarLabel: `${t('favorites')}`,
+          tabBarLabelStyle: {color: Styles.textColor, fontSize: 11},
+          headerTitleAlign: 'center',
+          // headerTitleStyle: {color: Styles.textColor},
+          headerTintColor: Styles.textColor,
+          tabBarIcon: () => (
+            <MaterialIcons name="favorite" size={30} color={Styles.textColor} />
+          ),
           headerLeft: () => (
             <Entypo
               name="menu"
               size={35}
-              color="#000"
+              color={Styles.textColor}
               style={{marginHorizontal: 20}}
               onPress={() => {
                 navigation.openDrawer();
@@ -49,15 +60,23 @@ const BottomTabNavigator = ({navigation}) => {
         name="ShopList"
         component={ShopList}
         options={{
+          tabBarStyle: {backgroundColor: Styles.baseColor},
           headerTitle: `${t('shop_list')}`,
           tabBarLabel: `${t('shop_list')}`,
+          tabBarLabelStyle: {fontSize: 11, color: Styles.textColor},
           headerTitleAlign: 'center',
-          tabBarIcon: () => <Entypo name="shop" size={30} color="#000" />,
+          // tabBarActiveTintColor: Styles.textColor,
+          // tabBarInactiveTintColor: Styles.inActiveTextColor,
+          headerTitleStyle: {color: Styles.textColor},
+          headerTintColor: Styles.textColor,
+          tabBarIcon: () => (
+            <Entypo name="shop" size={30} color={Styles.textColor} />
+          ),
           headerLeft: () => (
             <Entypo
               name="menu"
               size={35}
-              color="#000"
+              color={Styles.textColor}
               style={{marginHorizontal: 20}}
               onPress={() => {
                 navigation.openDrawer();

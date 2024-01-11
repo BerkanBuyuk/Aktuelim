@@ -11,6 +11,7 @@ import {
 import axios from 'axios';
 import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
 import {useTranslation} from 'react-i18next';
+import Styles from '../../assets/Styles';
 
 const Categories = ({setSelectedCategory}) => {
   const [data, setData] = useState([]);
@@ -32,22 +33,27 @@ const Categories = ({setSelectedCategory}) => {
 
   const categoriesContainer = ({item}) => {
     return (
-      <TouchableOpacity
-        onPress={() => {
-          setSelectedCategory(item.category_id);
-        }}
-        style={styles.touchableOpacityStyle}>
-        <Image
-          source={{uri: `${item.category_image}`}}
-          style={styles.categoriesImage}
-        />
-        <Text style={styles.categoriesTitle}>{t(item.category_name)}</Text>
-      </TouchableOpacity>
+      <View style={styles.view_style}>
+        <TouchableOpacity
+          onPress={() => {
+            setSelectedCategory(item.category_id);
+          }}
+          style={styles.touchableOpacityStyle}>
+          <View>
+            <Image
+              source={{uri: `${item.category_image}`}}
+              style={styles.categoriesImage}
+            />
+          </View>
+          <Text style={styles.categoriesTitle}>{t(item.category_name)}</Text>
+        </TouchableOpacity>
+      </View>
     );
   };
 
   return (
     <View>
+      <Text style={styles.textStyle}>{t('categories')}</Text>
       <FlatList
         data={data}
         renderItem={item => categoriesContainer(item)}
@@ -66,6 +72,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     borderRadius: 500,
+    margin: 5,
   },
   categoriesTitle: {},
   flatListStyle: {
@@ -76,6 +83,16 @@ const styles = StyleSheet.create({
   },
   touchableOpacityStyle: {
     alignItems: 'center',
+    marginHorizontal: 5,
+  },
+  textStyle: {
+    marginHorizontal: 10,
+    fontSize: 20,
+    fontStyle: 'italic',
+  },
+  view_style: {
+    backgroundColor: Styles.categories_color,
+    borderRadius: 20,
     marginHorizontal: 5,
   },
 });

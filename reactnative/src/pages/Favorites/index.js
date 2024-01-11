@@ -1,8 +1,19 @@
 import React, {useEffect, useState} from 'react';
-import {View, Image, FlatList, Platform, StyleSheet, Text} from 'react-native';
+import {
+  View,
+  Image,
+  FlatList,
+  Platform,
+  StyleSheet,
+  Text,
+  Dimensions,
+} from 'react-native';
 import axios from 'axios';
 import Divider from '../../components/Divider';
 import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
+
+const deviceHeight = Dimensions.get('window').height;
+const deviceWidth = Dimensions.get('window').width;
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
@@ -79,8 +90,10 @@ export default Favorites;
 
 const styles = StyleSheet.create({
   image_style: {
-    width: 420,
-    height: 650,
+    // width: 420,
+    // height: 650,
+    width: deviceWidth / 1.02,
+    height: deviceHeight / 1.4,
     borderWidth: 1,
     marginHorizontal: 5,
   },
