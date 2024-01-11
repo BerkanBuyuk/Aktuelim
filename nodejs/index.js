@@ -4,11 +4,11 @@ import "dotenv/config";
 
 const app = express();
 const localPort = 8800;
-//deneme2
+//deneme3
 
 const db = mysql.createConnection({
   host: `${process.env.HOST}`,
-  user: "root",
+  user: "uz1wen0ri7lwj20z",
   password: `${process.env.PASSWORD}`,
   database: `${process.env.DATABASE}`,
   port: `${process.env.PORT}`,
