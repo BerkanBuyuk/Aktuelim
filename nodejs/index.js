@@ -4,7 +4,7 @@ import "dotenv/config";
 
 const app = express();
 const localPort = 8800;
-//deneme1
+//deneme2
 
 const db = mysql.createConnection({
   host: `${process.env.HOST}`,
