@@ -14,6 +14,8 @@ import Categories from '../../components/Categories';
 import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
 import {useTranslation} from 'react-i18next';
 import i18next from '../../assets/locales/services/i18next';
+import {useSelector} from 'react-redux';
+import Styles from '../../assets/Styles';
 
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
@@ -23,6 +25,7 @@ const Home = ({navigation}) => {
   const [data, setData] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [filteredMarkets, setFilteredMarkets] = useState(data);
+  const darkMode = useSelector(state => state.theme.darkMode);
 
   const handleListFilteredData = () => {
     if (selectedCategory === 0) {
@@ -74,7 +77,15 @@ const Home = ({navigation}) => {
   };
 
   return (
-    <View style={{flex: 1}}>
+    <View
+      style={[
+        styles.view_style,
+        {
+          backgroundColor: darkMode
+            ? Styles.dark_bg_color
+            : Styles.light_bg_color,
+        },
+      ]}>
       <Categories setSelectedCategory={setSelectedCategory} />
       <Text style={styles.textStyle}>{t('stores')}</Text>
       <FlatList
@@ -113,7 +124,7 @@ const styles = StyleSheet.create({
   touchableOpacityStyle: {
     marginHorizontal: 20,
     marginBottom: 20,
-    borderWidth: 0.5,
+    // borderWidth: 0.5,
     borderRadius: 10,
     borderColor: '#e0e0e0',
     // backgroundColor: 'red',
@@ -122,6 +133,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     fontSize: 20,
     fontStyle: 'italic',
+  },
+  view_style: {
+    flex: 1,
   },
 });
 

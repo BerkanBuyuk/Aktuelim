@@ -12,10 +12,12 @@ import axios from 'axios';
 import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
 import {useTranslation} from 'react-i18next';
 import Styles from '../../assets/Styles';
+import {useSelector} from 'react-redux';
 
 const Categories = ({setSelectedCategory}) => {
   const [data, setData] = useState([]);
   const {t} = useTranslation();
+  const darkMode = useSelector(state => state.theme.darkMode);
 
   const getCategories = async url => {
     try {
@@ -33,7 +35,15 @@ const Categories = ({setSelectedCategory}) => {
 
   const categoriesContainer = ({item}) => {
     return (
-      <View style={styles.view_style}>
+      <View
+        style={[
+          styles.view_style,
+          {
+            backgroundColor: darkMode
+              ? Styles.dark_categories_color
+              : Styles.categories_color,
+          },
+        ]}>
         <TouchableOpacity
           onPress={() => {
             setSelectedCategory(item.category_id);
@@ -78,8 +88,8 @@ const styles = StyleSheet.create({
   flatListStyle: {
     margin: 5,
     padding: 5,
-    borderWidth: 0.5,
-    borderColor: '#e0e0e0',
+    // borderWidth: 0.5,
+    // borderColor: '#e0e0e0',
   },
   touchableOpacityStyle: {
     alignItems: 'center',
@@ -91,7 +101,6 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
   },
   view_style: {
-    backgroundColor: Styles.categories_color,
     borderRadius: 20,
     marginHorizontal: 5,
   },

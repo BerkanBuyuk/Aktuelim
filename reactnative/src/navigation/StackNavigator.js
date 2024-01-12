@@ -12,11 +12,14 @@ import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import AddCatalogs from '../pages/AddCatalogs';
 import {useTranslation} from 'react-i18next';
 import Styles from '../assets/Styles';
+import {useSelector} from 'react-redux';
 
 const Stack = createNativeStackNavigator();
 
 const AyarlarStackNavigator = ({navigation}) => {
   const {t} = useTranslation();
+  const darkMode = useSelector(state => state.theme.darkMode);
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -26,7 +29,11 @@ const AyarlarStackNavigator = ({navigation}) => {
           headerShown: true,
           headerTitle: `${t('settings')}`,
           headerTitleAlign: 'center',
-          headerStyle: {backgroundColor: Styles.baseColor},
+          headerStyle: {
+            backgroundColor: darkMode
+              ? Styles.dark_base_color
+              : Styles.baseColor,
+          },
           headerTintColor: Styles.textColor,
           headerLeft: () => (
             <Entypo
@@ -46,6 +53,8 @@ const AyarlarStackNavigator = ({navigation}) => {
 
 const NotificationsStackNavigator = ({navigation}) => {
   const {t} = useTranslation();
+  const darkMode = useSelector(state => state.theme.darkMode);
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -54,7 +63,11 @@ const NotificationsStackNavigator = ({navigation}) => {
         options={{
           headerTitle: `${t('notifications')}`,
           headerTitleAlign: 'center',
-          headerStyle: {backgroundColor: Styles.baseColor},
+          headerStyle: {
+            backgroundColor: darkMode
+              ? Styles.dark_base_color
+              : Styles.baseColor,
+          },
           headerTintColor: Styles.textColor,
           headerLeft: () => (
             <Entypo
@@ -74,6 +87,8 @@ const NotificationsStackNavigator = ({navigation}) => {
 
 const ContactUsStackNavigator = ({navigation}) => {
   const {t} = useTranslation();
+  const darkMode = useSelector(state => state.theme.darkMode);
+
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -82,7 +97,11 @@ const ContactUsStackNavigator = ({navigation}) => {
         options={{
           headerTitle: `${t('contact_us')}`,
           headerTitleAlign: 'center',
-          headerStyle: {backgroundColor: Styles.baseColor},
+          headerStyle: {
+            backgroundColor: darkMode
+              ? Styles.dark_base_color
+              : Styles.baseColor,
+          },
           headerTintColor: Styles.textColor,
           headerLeft: () => (
             <Entypo
@@ -106,11 +125,14 @@ const MainStackNavigator = ({navigation}) => {
   const handleFavoritePress = () => {
     setIsFavorite(prevIsFavorite => !prevIsFavorite);
   };
+  const darkMode = useSelector(state => state.theme.darkMode);
 
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: {backgroundColor: Styles.baseColor},
+        headerStyle: {
+          backgroundColor: darkMode ? Styles.dark_base_color : Styles.baseColor,
+        },
         headerTintColor: Styles.textColor,
       }}>
       <Stack.Screen

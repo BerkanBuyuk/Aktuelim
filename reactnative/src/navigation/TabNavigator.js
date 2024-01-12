@@ -7,19 +7,29 @@ import Entypo from 'react-native-vector-icons/dist/Entypo';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import {useTranslation} from 'react-i18next';
 import Styles from '../assets/Styles';
+import {useSelector} from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = ({navigation}) => {
   const {t} = useTranslation();
+  const darkMode = useSelector(state => state.theme.darkMode);
+
   return (
     <Tab.Navigator
-      screenOptions={{headerStyle: {backgroundColor: Styles.baseColor}}}>
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: darkMode ? Styles.dark_base_color : Styles.baseColor,
+        },
+        tabBarStyle: {
+          backgroundColor: darkMode ? Styles.dark_base_color : Styles.baseColor,
+        },
+      }}>
       <Tab.Screen
         name="Markets"
         component={MainStackNavigator}
         options={{
-          tabBarStyle: {backgroundColor: Styles.baseColor},
+          // tabBarStyle: {backgroundColor: Styles.baseColor},
           headerShown: false,
           tabBarLabel: `${t('home')}`,
           tabBarLabelStyle: {color: Styles.textColor, fontSize: 11},
@@ -33,7 +43,7 @@ const BottomTabNavigator = ({navigation}) => {
         name="Favorites"
         component={Favorites}
         options={{
-          tabBarStyle: {backgroundColor: Styles.baseColor},
+          // tabBarStyle: {backgroundColor: Styles.baseColor},
           headerTitle: `${t('favorites')}`,
           tabBarLabel: `${t('favorites')}`,
           tabBarLabelStyle: {color: Styles.textColor, fontSize: 11},
@@ -60,7 +70,7 @@ const BottomTabNavigator = ({navigation}) => {
         name="ShopList"
         component={ShopList}
         options={{
-          tabBarStyle: {backgroundColor: Styles.baseColor},
+          // tabBarStyle: {backgroundColor: Styles.baseColor},
           headerTitle: `${t('shop_list')}`,
           tabBarLabel: `${t('shop_list')}`,
           tabBarLabelStyle: {fontSize: 11, color: Styles.textColor},

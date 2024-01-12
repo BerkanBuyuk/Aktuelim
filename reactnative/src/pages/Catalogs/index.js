@@ -10,9 +10,12 @@ import {
 } from 'react-native';
 import axios from 'axios';
 import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
+import {useSelector} from 'react-redux';
+import Styles from '../../assets/Styles';
 
 const Catalogs = ({route, navigation}) => {
   const [catalogs, setCatalogs] = useState([]);
+  const darkMode = useSelector(state => state.theme.darkMode);
 
   const getCatalogs = async url => {
     try {
@@ -43,21 +46,39 @@ const Catalogs = ({route, navigation}) => {
         : item.catalog_title;
 
     return (
-      <View key={item.catalog_id} style={styles.flatListRenderItemStyle}>
+      <View
+        key={item.catalog_id}
+        style={[
+          styles.flatListRenderItemStyle,
+          {borderColor: darkMode ? Styles.textColor : Styles.dark_text_color},
+        ]}>
         <TouchableOpacity
           onPress={() => navigation.navigate('CatalogDetails', item)}>
           <Image
             source={{uri: `${item.catalog_image}`}}
             style={{width: 150, height: 150}}
           />
-          <Text>{kisaltilmisBaslik}</Text>
+          <Text
+            style={{
+              color: darkMode ? Styles.textColor : Styles.dark_text_color,
+            }}>
+            {kisaltilmisBaslik}
+          </Text>
         </TouchableOpacity>
       </View>
     );
   };
 
   return (
-    <View style={{flex: 1, alignItems: 'center'}}>
+    <View
+      style={[
+        styles.view_style,
+        {
+          backgroundColor: darkMode
+            ? Styles.dark_bg_color
+            : Styles.light_bg_color,
+        },
+      ]}>
       <FlatList
         numColumns={2}
         data={catalogs}
@@ -76,5 +97,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     margin: 10,
+  },
+  view_style: {
+    flex: 1,
+    alignItems: 'center',
   },
 });
