@@ -5,11 +5,13 @@ import {toggleDarkMode} from '../../redux/store/themeSlice';
 import Styles from '../../assets/Styles';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import Divider from '../../components/Divider';
+import {useTranslation} from 'react-i18next';
 
 const Theme = () => {
   const dispatch = useDispatch();
   const [isEnabled, setIsEnabled] = useState(false);
   const darkMode = useSelector(state => state.theme.darkMode);
+  const {t} = useTranslation();
 
   const handleToggleDarkMode = () => {
     dispatch(toggleDarkMode());
@@ -30,7 +32,7 @@ const Theme = () => {
               styles.text,
               {color: darkMode ? Styles.textColor : Styles.dark_text_color},
             ]}>
-            Tema
+            {t('settings_theme')}
           </Text>
         </View>
         <View style={styles.rightContainer}>
