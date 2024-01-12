@@ -1,18 +1,11 @@
-import {View, StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import React from 'react';
-import Loader from '../Loader';
-import {useSelector, useDispatch} from 'react-redux';
-import {toggleDarkMode} from '../../redux/store/themeSlice';
+import Theme from '../Theme';
+import {useSelector} from 'react-redux';
 import Styles from '../../assets/Styles';
 
 const Ayarlar = () => {
-  const dispatch = useDispatch();
   const darkMode = useSelector(state => state.theme.darkMode);
-
-  const handleToggleDarkMode = () => {
-    dispatch(toggleDarkMode());
-  };
-
   return (
     <View
       style={[
@@ -23,13 +16,7 @@ const Ayarlar = () => {
             : Styles.light_bg_color,
         },
       ]}>
-      <TouchableOpacity onPress={handleToggleDarkMode}>
-        <Text
-          style={{color: darkMode ? Styles.textColor : Styles.dark_text_color}}>
-          Tema
-        </Text>
-      </TouchableOpacity>
-      <Loader />
+      <Theme />
     </View>
   );
 };
@@ -38,12 +25,10 @@ export default Ayarlar;
 
 const styles = StyleSheet.create({
   view_style: {
-    alignItems: 'center',
-    justifyContent: 'center',
     flex: 1,
-  },
-  lottie_style: {
-    width: 300,
-    height: 300,
+    // justifyContent: 'center',
+    paddingTop: 20,
+    paddingLeft: 30,
+    paddingRight: 30,
   },
 });

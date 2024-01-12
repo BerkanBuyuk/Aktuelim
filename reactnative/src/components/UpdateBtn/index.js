@@ -24,9 +24,9 @@ const UpdateBtn = ({onUpdate, itemText}) => {
 
   const handleUpdate = () => {
     if (!newText) {
-      Alert.alert('Boş liste girilemez !', '', [
+      Alert.alert(t('shopList_alertBtn'), '', [
         {
-          text: 'Tamam',
+          text: t('shopList_alertBtn_ok'),
           style: 'cancel',
         },
       ]);
