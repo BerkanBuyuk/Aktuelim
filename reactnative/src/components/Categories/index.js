@@ -55,7 +55,13 @@ const Categories = ({setSelectedCategory}) => {
               style={styles.categoriesImage}
             />
           </View>
-          <Text style={styles.categoriesTitle}>{t(item.category_name)}</Text>
+          <Text
+            style={[
+              styles.categoriesTitle,
+              {color: darkMode ? Styles.textColor : Styles.dark_text_color},
+            ]}>
+            {t(item.category_name)}
+          </Text>
         </TouchableOpacity>
       </View>
     );
@@ -63,7 +69,13 @@ const Categories = ({setSelectedCategory}) => {
 
   return (
     <View>
-      <Text style={styles.textStyle}>{t('categories')}</Text>
+      <Text
+        style={[
+          styles.textStyle,
+          {color: darkMode ? Styles.textColor : Styles.dark_text_color},
+        ]}>
+        {t('categories')}
+      </Text>
       <FlatList
         data={data}
         renderItem={item => categoriesContainer(item)}
@@ -84,7 +96,10 @@ const styles = StyleSheet.create({
     borderRadius: 500,
     margin: 5,
   },
-  categoriesTitle: {},
+  categoriesTitle: {
+    fontSize: 15,
+    marginBottom: 5,
+  },
   flatListStyle: {
     margin: 5,
     padding: 5,

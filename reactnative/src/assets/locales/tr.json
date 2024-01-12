@@ -17,6 +17,8 @@
     "shopList_dialogTitle": "Güncelleyiniz.",
     "shopList_dialogLeftbtnLabel": "İptal",
     "shopList_dialogRightbtnLabel": "Güncelle",
+    "shopList_alertBtn": "Boş liste girilemez !",
+    "shopList_alertBtn_ok": "Tamam",
     "category_name": "Türkçe Kategori Adı",
     "Tümü": "Tümü",
     "Market": "Market",

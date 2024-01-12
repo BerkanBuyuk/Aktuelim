@@ -7,18 +7,35 @@ import {
   ContactUsStackNavigator,
 } from './StackNavigator';
 import {useTranslation} from 'react-i18next';
+import {useSelector} from 'react-redux';
+import Styles from '../assets/Styles';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = ({navigation}) => {
   const {t} = useTranslation();
+  const darkMode = useSelector(state => state.theme.darkMode);
   return (
-    <Drawer.Navigator>
+    <Drawer.Navigator
+      screenOptions={{
+        headerShown: false,
+        drawerActiveBackgroundColor: darkMode
+          ? Styles.dark_categories_color
+          : Styles.light_shopList_item,
+        drawerStyle: {
+          backgroundColor: darkMode
+            ? Styles.dark_bg_color
+            : Styles.light_bg_color,
+        },
+        drawerLabelStyle: {
+          color: darkMode ? Styles.textColor : Styles.dark_text_color,
+          fontSize: 16,
+        },
+      }}>
       <Drawer.Screen
         name="TabNavigator"
         component={TabNavigator}
         options={{
-          headerShown: false,
           drawerLabel: `${t('home')}`,
         }}
       />
@@ -26,27 +43,21 @@ const DrawerNavigator = ({navigation}) => {
         name="Ayarlar1"
         component={AyarlarStackNavigator}
         options={{
-          headerShown: false,
           drawerLabel: `${t('settings')}`,
-          // drawerType: 'back',
         }}
       />
       <Drawer.Screen
         name="Notifications1"
         component={NotificationsStackNavigator}
         options={{
-          headerShown: false,
           drawerLabel: `${t('notifications')}`,
-          //   drawerType: 'back',
         }}
       />
       <Drawer.Screen
         name="ContactUs1"
         component={ContactUsStackNavigator}
         options={{
-          headerShown: false,
           drawerLabel: `${t('contact_us')}`,
-          //   drawerType: 'back',
         }}
       />
     </Drawer.Navigator>

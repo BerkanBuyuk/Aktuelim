@@ -59,7 +59,7 @@ const Favorites = () => {
   });
 
   return (
-    <View>
+    <View style={{backgroundColor: '#95999b'}}>
       <FlatList
         data={favoriteCatalogImages}
         // numColumns={2}
@@ -94,8 +94,10 @@ const styles = StyleSheet.create({
     // height: 650,
     width: deviceWidth / 1.02,
     height: deviceHeight / 1.4,
-    borderWidth: 1,
+    // borderWidth: 1,
     marginHorizontal: 5,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
   },
   text_style: {
     textAlign: 'center',

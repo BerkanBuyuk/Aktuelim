@@ -1,10 +1,20 @@
-import {View, Text, Image, StyleSheet} from 'react-native';
+import {View, Image, StyleSheet} from 'react-native';
 import React from 'react';
+import {useSelector} from 'react-redux';
+import Styles from '../../assets/Styles';
 
 const CatalogDetails = ({route}) => {
-  // console.log(route);
+  const darkMode = useSelector(state => state.theme.darkMode);
   return (
-    <View style={styles.view_style}>
+    <View
+      style={[
+        styles.view_style,
+        {
+          backgroundColor: darkMode
+            ? Styles.dark_bg_color
+            : Styles.light_bg_color,
+        },
+      ]}>
       <Image
         source={{uri: `${route.params.catalog_image}`}}
         style={styles.image_style}

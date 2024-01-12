@@ -71,7 +71,13 @@ const Home = ({navigation}) => {
           source={{uri: `${item.market_image}`}}
           style={styles.marketsImage}
         />
-        <Text style={styles.marketsTitle}>{item.market_name}</Text>
+        <Text
+          style={[
+            styles.marketsTitle,
+            {color: darkMode ? Styles.textColor : Styles.dark_text_color},
+          ]}>
+          {item.market_name}
+        </Text>
       </TouchableOpacity>
     );
   };
@@ -87,7 +93,13 @@ const Home = ({navigation}) => {
         },
       ]}>
       <Categories setSelectedCategory={setSelectedCategory} />
-      <Text style={styles.textStyle}>{t('stores')}</Text>
+      <Text
+        style={[
+          styles.textStyle,
+          {color: darkMode ? Styles.textColor : Styles.dark_text_color},
+        ]}>
+        {t('stores')}
+      </Text>
       <FlatList
         numColumns={2}
         data={selectedCategory === 0 ? data : filteredMarkets}
@@ -109,7 +121,7 @@ const styles = StyleSheet.create({
     // width: deviceWidth / 2.8,
   },
   marketsTitle: {
-    width: 150,
+    // width: 150,
     textAlign: 'center',
     marginTop: 5,
     fontSize: 16,

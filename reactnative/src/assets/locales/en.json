@@ -17,6 +17,8 @@
     "shopList_dialogTitle": "Please Update.",
     "shopList_dialogLeftbtnLabel": "Cancel",
     "shopList_dialogRightbtnLabel": "Update",
+    "shopList_alertBtn": "Empty list cannot be entered !",
+    "shopList_alertBtn_ok": "OK",
     "category_name": "English Category Name",
     "Tümü": "All",
     "Market": "Market",

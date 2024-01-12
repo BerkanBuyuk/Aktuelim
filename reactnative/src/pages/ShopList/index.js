@@ -5,6 +5,8 @@ import AddBtn from '../../components/AddBtn';
 import DeleteBtn from '../../components/DeleteBtn';
 import UpdateBtn from '../../components/UpdateBtn';
 import {useTranslation} from 'react-i18next';
+import {useSelector} from 'react-redux';
+import Styles from '../../assets/Styles';
 
 const db = openDatabase({
   name: 'shopListDB',
@@ -15,6 +17,7 @@ const ShopList = () => {
   const [inputText, setInputText] = useState('');
   const [list, setList] = useState([]);
   const {t} = useTranslation();
+  const darkMode = useSelector(state => state.theme.darkMode);
 
   const createTable = () => {
     db.transaction(tx => {
@@ -58,9 +61,9 @@ const ShopList = () => {
 
   const addShopList = () => {
     if (!inputText) {
-      Alert.alert('Boş liste girilemez !', '', [
+      Alert.alert(t('shopList_alertBtn'), '', [
         {
-          text: 'Tamam',
+          text: t('shopList_alertBtn_ok'),
           style: 'cancel',
         },
       ]);
@@ -118,15 +121,23 @@ const ShopList = () => {
 
   const renderShopList = ({item}) => {
     return (
-      <View>
-        <View style={styles.itemContainer}>
+      <View style={styles.itemContainer}>
+        <View
+          style={[
+            styles.item_text_holder_view,
+            {
+              backgroundColor: darkMode
+                ? Styles.dark_shopList_item
+                : Styles.light_shopList_item,
+            },
+          ]}>
           <Text style={styles.item_style}>{item.text}</Text>
-          <UpdateBtn
-            onUpdate={newText => updateShopList(item.id, newText)}
-            itemText={item.text}
-          />
-          <DeleteBtn onDelete={deleteShopList} itemId={item.id} />
         </View>
+        <UpdateBtn
+          onUpdate={newText => updateShopList(item.id, newText)}
+          itemText={item.text}
+        />
+        <DeleteBtn onDelete={deleteShopList} itemId={item.id} />
       </View>
     );
   };
@@ -137,13 +148,28 @@ const ShopList = () => {
   }, []);
 
   return (
-    <View style={{flex: 1}}>
+    <View
+      style={[
+        styles.view_style,
+        {
+          backgroundColor: darkMode
+            ? Styles.dark_bg_color
+            : Styles.light_bg_color,
+        },
+      ]}>
       <View style={styles.input_addBtn_View}>
         <TextInput
           placeholder={t('shopList_placeholder')}
           value={inputText}
           onChangeText={setInputText}
-          style={styles.input_style}
+          style={[
+            styles.input_style,
+            {
+              backgroundColor: darkMode
+                ? Styles.dark_textInput_color
+                : Styles.light_textInput_color,
+            },
+          ]}
         />
         <AddBtn onPress={addShopList} />
       </View>
@@ -154,7 +180,6 @@ const ShopList = () => {
 
 const styles = StyleSheet.create({
   item_style: {
-    backgroundColor: '#e0e0e0',
     padding: 20,
     fontSize: 20,
     borderRadius: 10,
@@ -185,6 +210,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     // backgroundColor: 'red',
     marginHorizontal: 16,
+  },
+  view_style: {
+    flex: 1,
+  },
+  item_text_holder_view: {
+    flex: 1,
+    borderRadius: 10,
   },
 });
 
