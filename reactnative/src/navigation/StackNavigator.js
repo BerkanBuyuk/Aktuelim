@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import Home from '../pages/Home';
 import Catalogs from '../pages/Catalogs';
 import CatalogDetails from '../pages/CatalogDetails';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -13,6 +12,7 @@ import AddCatalogs from '../pages/AddCatalogs';
 import {useTranslation} from 'react-i18next';
 import Styles from '../assets/Styles';
 import {useSelector} from 'react-redux';
+import Markets from '../components/Markets';
 
 const Stack = createNativeStackNavigator();
 
@@ -137,7 +137,7 @@ const MainStackNavigator = ({navigation}) => {
       }}>
       <Stack.Screen
         name="Home"
-        component={Home}
+        component={Markets}
         options={{
           headerTitle: `${t('home')}`,
           headerTitleAlign: 'center',
