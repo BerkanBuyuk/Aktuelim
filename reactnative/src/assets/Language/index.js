@@ -8,6 +8,7 @@ import {useTranslation} from 'react-i18next';
 import i18n from '../locales/services/i18next';
 import {setLanguage} from '../../redux/store/languageSlice';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
+import CountryFlag from 'react-native-country-flag';
 
 const Language = () => {
   const dispatch = useDispatch();
@@ -42,6 +43,13 @@ const Language = () => {
             {t('settings_language')}
           </Text>
         </View>
+        <View style={{marginHorizontal: 5}}>
+          {i18n.language === 'en' ? (
+            <CountryFlag isoCode="us" size={25} />
+          ) : (
+            <CountryFlag isoCode="tr" size={25} />
+          )}
+        </View>
         <View style={styles.rightContainer}>
           <Switch
             trackColor={{false: Styles.dark_bg_color, true: Styles.baseColor}}
@@ -73,6 +81,7 @@ const styles = StyleSheet.create({
   leftContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    flex: 1,
   },
   rightContainer: {
     // marginLeft: 'auto',

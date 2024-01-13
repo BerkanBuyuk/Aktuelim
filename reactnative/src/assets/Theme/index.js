@@ -24,7 +24,7 @@ const Theme = () => {
       <View style={styles.container}>
         <View style={styles.leftContainer}>
           <MaterialIcons
-            name={darkMode ? 'sunny' : 'nightlight'}
+            name={darkMode ? 'nightlight' : 'sunny'}
             size={30}
             color={darkMode ? Styles.textColor : Styles.dark_text_color}
           />
@@ -73,6 +73,7 @@ const styles = StyleSheet.create({
   leftContainer: {
     flexDirection: 'row',
     alignItems: 'center',
+    flex: 1,
   },
   rightContainer: {
     // marginLeft: 'auto',
