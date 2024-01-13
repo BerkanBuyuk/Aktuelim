@@ -27,5 +27,9 @@
     "Ev ve Yapı": "Ev ve Yapı",
     "Giyim": "Giyim",
     "Anne ve Bebek": "Anne ve Bebek",
-    "settings_theme": "Tema"
+    "settings_theme_en": "Light Mode",
+    "settings_theme_tr": "Aydınlık Tema",
+    "settings_theme_dark_en": "Dark Mode",
+    "settings_theme_dark_tr": "Koyu Tema",
+    "settings_language": "Dil / Türkçe"
 }
