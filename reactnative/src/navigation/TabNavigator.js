@@ -71,8 +71,8 @@ const BottomTabNavigator = ({navigation}) => {
         component={ShopList}
         options={{
           // tabBarStyle: {backgroundColor: Styles.baseColor},
-          headerTitle: `${t('shop_list')}`,
-          tabBarLabel: `${t('shop_list')}`,
+          headerTitle: `${t('ShopList.shop_list')}`,
+          tabBarLabel: `${t('ShopList.shop_list')}`,
           tabBarLabelStyle: {fontSize: 11, color: Styles.textColor},
           headerTitleAlign: 'center',
           // tabBarActiveTintColor: Styles.textColor,

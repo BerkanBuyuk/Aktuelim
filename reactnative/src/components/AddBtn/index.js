@@ -7,7 +7,7 @@ const AddBtn = ({onPress}) => {
   return (
     <View style={styles.view_style}>
       <TouchableOpacity onPress={onPress}>
-        <Text style={styles.text_style}>{t('shopList_addBtn')}</Text>
+        <Text style={styles.text_style}>{t('ShopList.shopList_addBtn')}</Text>
       </TouchableOpacity>
     </View>
   );

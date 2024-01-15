@@ -24,9 +24,9 @@ const UpdateBtn = ({onUpdate, itemText}) => {
 
   const handleUpdate = () => {
     if (!newText) {
-      Alert.alert(t('shopList_alertBtn'), '', [
+      Alert.alert(t('ShopList.shopList_alertBtn'), '', [
         {
-          text: t('shopList_alertBtn_ok'),
+          text: t('ShopList.shopList_alertBtn_ok'),
           style: 'cancel',
         },
       ]);
@@ -40,10 +40,10 @@ const UpdateBtn = ({onUpdate, itemText}) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={showDialog}>
-        <Text style={styles.updateBtn}>{t('shopList_updateBtn')}</Text>
+        <Text style={styles.updateBtn}>{t('ShopList.shopList_updateBtn')}</Text>
       </TouchableOpacity>
       <Dialog.Container visible={visible}>
-        <Dialog.Title>{t('shopList_dialogTitle')}</Dialog.Title>
+        <Dialog.Title>{t('ShopList.shopList_dialogTitle')}</Dialog.Title>
         <TextInput
           value={newText}
           onChangeText={text => setNewText(text)}
@@ -51,12 +51,12 @@ const UpdateBtn = ({onUpdate, itemText}) => {
           style={styles.input_style}
         />
         <Dialog.Button
-          label={t('shopList_dialogLeftbtnLabel')}
+          label={t('ShopList.shopList_dialogLeftbtnLabel')}
           onPress={handleCancel}
           color="red"
         />
         <Dialog.Button
-          label={t('shopList_dialogRightbtnLabel')}
+          label={t('ShopList.shopList_dialogRightbtnLabel')}
           onPress={handleUpdate}
         />
       </Dialog.Container>

@@ -10,7 +10,7 @@ const DeleteBtn = ({onDelete, itemId}) => {
 
   return (
     <TouchableOpacity onPress={handleDelete}>
-      <Text style={styles.deleteBtn}>{t('shopList_deleteBtn')}</Text>
+      <Text style={styles.deleteBtn}>{t('ShopList.shopList_deleteBtn')}</Text>
     </TouchableOpacity>
   );
 };

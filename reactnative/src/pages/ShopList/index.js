@@ -61,9 +61,9 @@ const ShopList = () => {
 
   const addShopList = () => {
     if (!inputText) {
-      Alert.alert(t('shopList_alertBtn'), '', [
+      Alert.alert(t('ShopList.shopList_alertBtn'), '', [
         {
-          text: t('shopList_alertBtn_ok'),
+          text: t('ShopList.shopList_alertBtn_ok'),
           style: 'cancel',
         },
       ]);
@@ -159,7 +159,7 @@ const ShopList = () => {
       ]}>
       <View style={styles.input_addBtn_View}>
         <TextInput
-          placeholder={t('shopList_placeholder')}
+          placeholder={t('ShopList.shopList_placeholder')}
           value={inputText}
           onChangeText={setInputText}
           style={[
