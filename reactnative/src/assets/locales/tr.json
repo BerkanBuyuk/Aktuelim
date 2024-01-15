@@ -6,7 +6,6 @@
     "catalog_detail": "Katalog Detayı",
     "add_catalog": "Katalog Ekle",
     "favorites": "Favoriler",
-    "settings": "Ayarlar",
     "notifications": "Bildirimler",
     "contact_us": "Bize Ulaşın",
     "ShopList" : {
@@ -29,9 +28,12 @@
     "Ev ve Yapı": "Ev ve Yapı",
     "Giyim": "Giyim",
     "Anne ve Bebek": "Anne ve Bebek",
-    "settings_theme_en": "Light Mode",
-    "settings_theme_tr": "Açık Tema",
-    "settings_theme_dark_en": "Dark Mode",
-    "settings_theme_dark_tr": "Koyu Tema",
-    "settings_language": "Dil / Türkçe"
+    "Settings" : {
+        "settings": "Ayarlar",
+        "settings_theme_en": "Light Mode",
+        "settings_theme_tr": "Açık Tema",
+        "settings_theme_dark_en": "Dark Mode",
+        "settings_theme_dark_tr": "Koyu Tema",
+        "settings_language": "Dil / Türkçe"
+    }
 }

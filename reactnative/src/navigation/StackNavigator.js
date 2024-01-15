@@ -27,7 +27,7 @@ const AyarlarStackNavigator = ({navigation}) => {
         component={Ayarlar}
         options={{
           headerShown: true,
-          headerTitle: `${t('settings')}`,
+          headerTitle: `${t('Settings.settings')}`,
           headerTitleAlign: 'center',
           headerStyle: {
             backgroundColor: darkMode

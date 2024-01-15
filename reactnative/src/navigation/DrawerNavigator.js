@@ -43,7 +43,7 @@ const DrawerNavigator = ({navigation}) => {
         name="Ayarlar1"
         component={AyarlarStackNavigator}
         options={{
-          drawerLabel: `${t('settings')}`,
+          drawerLabel: `${t('Settings.settings')}`,
         }}
       />
       <Drawer.Screen

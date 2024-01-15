@@ -35,13 +35,13 @@ const Theme = () => {
             ]}>
             {(() => {
               if (!darkMode && i18n.language === 'tr') {
-                return t('settings_theme_tr');
+                return t('Settings.settings_theme_tr');
               } else if (!darkMode && i18n.language === 'en') {
-                return t('settings_theme_en');
+                return t('Settings.settings_theme_en');
               } else if (darkMode && i18n.language === 'tr') {
-                return t('settings_theme_dark_tr');
+                return t('Settings.settings_theme_dark_tr');
               } else if (darkMode && i18n.language === 'en') {
-                return t('settings_theme_dark_en');
+                return t('Settings.settings_theme_dark_en');
               }
             })()}
           </Text>

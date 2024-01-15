@@ -40,7 +40,7 @@ const Language = () => {
               styles.text,
               {color: darkMode ? Styles.textColor : Styles.dark_text_color},
             ]}>
-            {t('settings_language')}
+            {t('Settings.settings_language')}
           </Text>
         </View>
         <View style={{marginHorizontal: 5}}>
