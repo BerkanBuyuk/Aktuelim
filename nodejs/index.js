@@ -5,11 +5,15 @@ import favoritesRoutes from "./routes/favorites.js";
 import catalogsRoutes from "./routes/catalogs.js";
 import authRoutes from "./routes/auth.js";
 import usersRoutes from "./routes/users.js";
+import cookieParser from "cookie-parser";
+import cors from "cors";
 
 const app = express();
 const localPort = 8800;
 
 app.use(express.json());
+app.use(cors());
+app.use(cookieParser());
 
 app.get("/", (req, res) => {
   res.json("Backend'e hoşgeldin. Kırmızı hap mı mavi hap mı istersin ?");
