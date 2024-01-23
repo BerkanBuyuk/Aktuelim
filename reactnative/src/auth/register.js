@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 import axios from 'axios';
+import {REGISTER_ENDPOINT} from '@env';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +23,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await axios.post('http://localhost:8800/api/auth/register', formData);
+      await axios.post(REGISTER_ENDPOINT, formData);
     } catch (err) {
       setErr(err.response.data);
     }
