@@ -1,7 +1,14 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  StyleSheet,
+  Platform,
+} from 'react-native';
 import axios from 'axios';
-import {REGISTER_ENDPOINT} from '@env';
+import {ANDROID_REGISTER_ENDPOINT, IOS_REGISTER_ENDPOINT} from '@env';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -23,7 +30,12 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      await axios.post(REGISTER_ENDPOINT, formData);
+      // await axios.post(ANDROID_REGISTER_ENDPOINT, formData);
+      if (Platform.OS === 'android') {
+        await axios.post(ANDROID_REGISTER_ENDPOINT, formData);
+      } else if (Platform.OS === 'ios') {
+        await axios.post(IOS_REGISTER_ENDPOINT, formData);
+      }
     } catch (err) {
       setErr(err.response.data);
     }
