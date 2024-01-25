@@ -15,13 +15,13 @@ import Register from './src/auth/register';
 import Login from './src/auth/login';
 
 const Aktuelim = () => (
-  // <Provider store={store}>
-  //   <I18nextProvider i18n={i18n}>
-  //     <App />
-  //   </I18nextProvider>
-  // </Provider>
+  <Provider store={store}>
+    <I18nextProvider i18n={i18n}>
+      <App />
+    </I18nextProvider>
+  </Provider>
   // <Register />
-  <Login />
+  // <Login />
 );
 
 AppRegistry.registerComponent(appName, () => Aktuelim);

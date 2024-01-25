@@ -1,4 +1,3 @@
-// languageSlice.js
 import {createSlice} from '@reduxjs/toolkit';
 
 const languageSlice = createSlice({
