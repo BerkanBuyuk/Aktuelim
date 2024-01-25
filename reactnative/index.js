@@ -12,6 +12,7 @@ import {I18nextProvider} from 'react-i18next';
 import {Provider} from 'react-redux';
 import store from './src/redux/store';
 import Register from './src/auth/register';
+import Login from './src/auth/login';
 
 const Aktuelim = () => (
   // <Provider store={store}>
@@ -19,7 +20,8 @@ const Aktuelim = () => (
   //     <App />
   //   </I18nextProvider>
   // </Provider>
-  <Register />
+  // <Register />
+  <Login />
 );
 
 AppRegistry.registerComponent(appName, () => Aktuelim);
