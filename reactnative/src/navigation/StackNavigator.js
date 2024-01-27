@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Catalogs from '../pages/Catalogs';
 import CatalogDetails from '../pages/CatalogDetails';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -122,7 +122,6 @@ const ContactUsStackNavigator = ({navigation}) => {
 
 const MainStackNavigator = ({navigation}) => {
   const {t} = useTranslation();
-
   const darkMode = useSelector(state => state.theme.darkMode);
 
   return (
@@ -173,11 +172,13 @@ const MainStackNavigator = ({navigation}) => {
       <Stack.Screen
         name="CatalogDetails"
         component={CatalogDetails}
-        options={{
+        options={({route}) => ({
           headerTitle: `${t('catalog_detail')}`,
           headerTitleAlign: 'center',
-          headerRight: () => <FavoriteBtn />,
-        }}
+          headerRight: () => (
+            <FavoriteBtn catalogId={route.params.catalog_id} />
+          ),
+        })}
       />
 
       <Stack.Screen

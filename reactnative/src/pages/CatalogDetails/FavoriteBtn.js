@@ -1,23 +1,76 @@
-import {View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import {Platform} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
+import axios from 'axios';
+import {ANDROID_FAVORITES_URL, IOS_FAVORITES_URL} from '@env';
 
-const FavoriteBtn = () => {
+const FavoriteBtn = ({catalogId}) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const handleFavoritePress = () => {
-    setIsFavorite(prevIsFavorite => !prevIsFavorite);
+
+  useEffect(() => {
+    const checkInitialFavoriteStatus = async () => {
+      if (Platform.OS === 'android') {
+        try {
+          const response = await axios.get(ANDROID_FAVORITES_URL);
+          const favorites = response.data;
+          const isAlreadyFavorite = favorites.some(
+            favorite => favorite.catalog_id === catalogId,
+          );
+          setIsFavorite(isAlreadyFavorite);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      } else if (Platform.OS === 'ios') {
+        try {
+          const response = await axios.get(IOS_FAVORITES_URL);
+          const favorites = response.data;
+          const isAlreadyFavorite = favorites.some(
+            favorite => favorite.catalog_id === catalogId,
+          );
+          setIsFavorite(isAlreadyFavorite);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }
+    };
+
+    checkInitialFavoriteStatus();
+  }, [catalogId]);
+
+  const handleFavoritePress = async () => {
+    try {
+      setIsFavorite(prevIsFavorite => !prevIsFavorite);
+
+      if (!isFavorite && Platform.OS === 'ios') {
+        await axios.post(IOS_FAVORITES_URL, {
+          catalog_id: catalogId,
+        });
+      } else if (!isFavorite && Platform.OS === 'android') {
+        await axios.post(ANDROID_FAVORITES_URL, {
+          catalog_id: catalogId,
+        });
+      }
+      // else {
+      //   await axios.delete('http://localhost:8800/api/favorites', {
+      //     data: {
+      //       catalog_id: catalogId,
+      //     },
+      //   });
+      // }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
+
   return (
-    <View>
-      <MaterialIcons
-        name={isFavorite ? 'favorite' : 'favorite-border'}
-        size={35}
-        color="red"
-        onPress={() => {
-          handleFavoritePress();
-        }}
-      />
-    </View>
+    <MaterialIcons
+      name={isFavorite ? 'favorite' : 'favorite-border'}
+      size={35}
+      color="red"
+      onPress={() => {
+        handleFavoritePress();
+      }}
+    />
   );
 };
 
