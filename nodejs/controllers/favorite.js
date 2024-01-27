@@ -22,3 +22,13 @@ export const postFavorite = (req, res) => {
     }
   });
 };
+
+export const deleteFavorite = (req, res) => {
+  const favoriId = req.params.id;
+  const q = process.env.DELETE_FAVORITES_QUERY;
+
+  db.query(q, [favoriId], (err, data) => {
+    if (err) return res.json(err);
+    return res.json(`Favori ID: ${favoriId} Silme Başarılı.`);
+  });
+};
