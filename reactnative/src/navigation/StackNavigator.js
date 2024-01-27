@@ -13,6 +13,7 @@ import {useTranslation} from 'react-i18next';
 import Styles from '../assets/Styles';
 import {useSelector} from 'react-redux';
 import Markets from '../components/Markets';
+import FavoriteBtn from '../pages/CatalogDetails/FavoriteBtn';
 
 const Stack = createNativeStackNavigator();
 
@@ -121,10 +122,7 @@ const ContactUsStackNavigator = ({navigation}) => {
 
 const MainStackNavigator = ({navigation}) => {
   const {t} = useTranslation();
-  const [isFavorite, setIsFavorite] = useState(false);
-  const handleFavoritePress = () => {
-    setIsFavorite(prevIsFavorite => !prevIsFavorite);
-  };
+
   const darkMode = useSelector(state => state.theme.darkMode);
 
   return (
@@ -178,16 +176,7 @@ const MainStackNavigator = ({navigation}) => {
         options={{
           headerTitle: `${t('catalog_detail')}`,
           headerTitleAlign: 'center',
-          headerRight: () => (
-            <MaterialIcons
-              name={isFavorite ? 'favorite' : 'favorite-border'}
-              size={35}
-              color="red"
-              onPress={() => {
-                handleFavoritePress();
-              }}
-            />
-          ),
+          headerRight: () => <FavoriteBtn />,
         }}
       />
 
