@@ -45,18 +45,42 @@ const FavoriteBtn = ({catalogId}) => {
         await axios.post(IOS_FAVORITES_URL, {
           catalog_id: catalogId,
         });
+        console.log(`Catalog id: ${catalogId} post edildi.`);
       } else if (!isFavorite && Platform.OS === 'android') {
         await axios.post(ANDROID_FAVORITES_URL, {
           catalog_id: catalogId,
         });
+      } else if (Platform.OS === 'ios') {
+        const response = await axios.get(IOS_FAVORITES_URL);
+        const favorites = response.data;
+        const favoriteToDelete = favorites.find(
+          favorite => favorite.catalog_id === catalogId,
+        );
+
+        if (favoriteToDelete) {
+          const favoriIdToDelete = favoriteToDelete.favori_id;
+
+          await axios.delete(`${IOS_FAVORITES_URL}/${favoriIdToDelete}`);
+          console.log(
+            `Catalog id: ${catalogId} olan favori id: ${favoriIdToDelete} silindi.`,
+          );
+        }
+      } else if (Platform.OS === 'android') {
+        const response = await axios.get(ANDROID_FAVORITES_URL);
+        const favorites = response.data;
+        const favoriteToDelete = favorites.find(
+          favorite => favorite.catalog_id === catalogId,
+        );
+
+        if (favoriteToDelete) {
+          const favoriIdToDelete = favoriteToDelete.favori_id;
+
+          await axios.delete(`${IOS_FAVORITES_URL}/${favoriIdToDelete}`);
+          console.log(
+            `Catalog id: ${catalogId} olan favori id: ${favoriIdToDelete} silindi.`,
+          );
+        }
       }
-      // else {
-      //   await axios.delete('http://localhost:8800/api/favorites', {
-      //     data: {
-      //       catalog_id: catalogId,
-      //     },
-      //   });
-      // }
     } catch (error) {
       console.error('Error:', error);
     }
