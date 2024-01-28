@@ -176,7 +176,10 @@ const MainStackNavigator = ({navigation}) => {
           headerTitle: `${t('catalog_detail')}`,
           headerTitleAlign: 'center',
           headerRight: () => (
-            <FavoriteBtn catalogId={route.params.catalog_id} />
+            <FavoriteBtn
+              catalogId={route.params.catalog_id}
+              catalogTitle={route.params.catalog_title}
+            />
           ),
         })}
       />
