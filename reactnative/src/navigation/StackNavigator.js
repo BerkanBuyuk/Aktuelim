@@ -13,7 +13,7 @@ import {useTranslation} from 'react-i18next';
 import Styles from '../assets/Styles';
 import {useSelector} from 'react-redux';
 import Markets from '../components/Markets';
-import FavoriteBtn from '../pages/CatalogDetails/FavoriteBtn';
+import FavoriteBtn from '../components/FavoriteBtn';
 
 const Stack = createNativeStackNavigator();
 

@@ -47,7 +47,6 @@ const Favorites = () => {
     }
   }, []);
 
-  // Favori katalogların resimlerini filtrele
   const favoriteCatalogImages = favorites.map(favorite => {
     const catalog = catalogs.find(c => c.catalog_id === favorite.catalog_id);
     return catalog ? catalog.catalog_image : null;
