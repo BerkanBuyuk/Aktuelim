@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {MainStackNavigator} from './StackNavigator';
 import Favorites from '../pages/Favorites';
@@ -8,12 +8,26 @@ import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import {useTranslation} from 'react-i18next';
 import Styles from '../assets/Styles';
 import {useSelector} from 'react-redux';
+import axios from 'axios';
+
+//IOS ve ANDROID get url düzeltilecek.
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = ({navigation}) => {
   const {t} = useTranslation();
   const darkMode = useSelector(state => state.theme.darkMode);
+
+  const [favorites, setFavorites] = useState([]);
+
+  const fetchFavorites = async url => {
+    try {
+      const response = await axios.get(`http://localhost:8800/api/favorites`);
+      setFavorites(response.data);
+    } catch (error) {
+      console.error('Hata: ', error);
+    }
+  };
 
   return (
     <Tab.Navigator
@@ -27,7 +41,8 @@ const BottomTabNavigator = ({navigation}) => {
       }}>
       <Tab.Screen
         name="Markets"
-        component={MainStackNavigator}
+        // component={MainStackNavigator}
+        children={() => <MainStackNavigator fetchFavorites={fetchFavorites} />}
         options={{
           // tabBarStyle: {backgroundColor: Styles.baseColor},
           headerShown: false,
@@ -41,7 +56,10 @@ const BottomTabNavigator = ({navigation}) => {
       />
       <Tab.Screen
         name="Favorites"
-        component={Favorites}
+        // component={Favorites}
+        children={() => (
+          <Favorites favorites={favorites} fetchFavorites={fetchFavorites} />
+        )}
         options={{
           // tabBarStyle: {backgroundColor: Styles.baseColor},
           headerTitle: `${t('favorites')}`,

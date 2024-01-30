@@ -14,6 +14,7 @@ import Styles from '../assets/Styles';
 import {useSelector} from 'react-redux';
 import Markets from '../components/Markets';
 import FavoriteBtn from '../components/FavoriteBtn';
+import {useNavigation} from '@react-navigation/native';
 
 const Stack = createNativeStackNavigator();
 
@@ -120,9 +121,10 @@ const ContactUsStackNavigator = ({navigation}) => {
   );
 };
 
-const MainStackNavigator = ({navigation}) => {
+const MainStackNavigator = ({fetchFavorites}) => {
   const {t} = useTranslation();
   const darkMode = useSelector(state => state.theme.darkMode);
+  const navigation = useNavigation();
 
   return (
     <Stack.Navigator
@@ -179,6 +181,7 @@ const MainStackNavigator = ({navigation}) => {
             <FavoriteBtn
               catalogId={route.params.catalog_id}
               catalogTitle={route.params.catalog_title}
+              fetchFavorites={fetchFavorites}
             />
           ),
         })}

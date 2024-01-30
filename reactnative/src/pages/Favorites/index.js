@@ -15,18 +15,18 @@ import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
 const deviceHeight = Dimensions.get('window').height;
 const deviceWidth = Dimensions.get('window').width;
 
-const Favorites = () => {
-  const [favorites, setFavorites] = useState([]);
+const Favorites = ({favorites, fetchFavorites}) => {
+  // const [favorites, setFavorites] = useState([]);
   const [catalogs, setCatalogs] = useState([]);
 
-  const fetchFavorites = async url => {
-    try {
-      const response = await axios.get(`${url}/favorites`);
-      setFavorites(response.data);
-    } catch (error) {
-      console.error('Hata: ', error);
-    }
-  };
+  // const fetchFavorites = async url => {
+  //   try {
+  //     const response = await axios.get(`${url}/favorites`);
+  //     setFavorites(response.data);
+  //   } catch (error) {
+  //     console.error('Hata: ', error);
+  //   }
+  // };
 
   const fetchCatalogs = async url => {
     try {

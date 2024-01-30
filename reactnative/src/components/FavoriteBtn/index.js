@@ -5,7 +5,7 @@ import axios from 'axios';
 import {ANDROID_FAVORITES_URL, IOS_FAVORITES_URL} from '@env';
 import {useToast} from 'react-native-toast-notifications';
 
-const FavoriteBtn = ({catalogId, catalogTitle}) => {
+const FavoriteBtn = ({catalogId, catalogTitle, fetchFavorites}) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const toast = useToast();
 
@@ -49,12 +49,14 @@ const FavoriteBtn = ({catalogId, catalogTitle}) => {
         });
         console.log(`Catalog id: ${catalogId} post edildi.`);
         toast.show(`${catalogTitle} favorilere eklendi.`, {type: 'success'});
+        await fetchFavorites();
       } else if (!isFavorite && Platform.OS === 'android') {
         await axios.post(ANDROID_FAVORITES_URL, {
           catalog_id: catalogId,
         });
         console.log(`Catalog id: ${catalogId} post edildi.`);
         toast.show(`${catalogTitle} favorilere eklendi.`, {type: 'success'});
+        await fetchFavorites();
       } else if (Platform.OS === 'ios') {
         const response = await axios.get(IOS_FAVORITES_URL);
         const favorites = response.data;
@@ -72,6 +74,7 @@ const FavoriteBtn = ({catalogId, catalogTitle}) => {
           toast.show(`${catalogTitle} favorilerden kaldırıldı.`, {
             type: 'danger',
           });
+          await fetchFavorites();
         }
       } else if (Platform.OS === 'android') {
         const response = await axios.get(ANDROID_FAVORITES_URL);
@@ -90,6 +93,7 @@ const FavoriteBtn = ({catalogId, catalogTitle}) => {
           toast.show(`${catalogTitle} favorilerden kaldırıldı.`, {
             type: 'danger',
           });
+          await fetchFavorites();
         }
       }
     } catch (error) {

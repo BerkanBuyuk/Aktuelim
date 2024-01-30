@@ -1,5 +1,5 @@
 import {Switch, View, Text, StyleSheet} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Styles from '../Styles';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
@@ -9,12 +9,24 @@ import i18n from '../locales/services/i18next';
 import {setLanguage} from '../../redux/store/languageSlice';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import CountryFlag from 'react-native-country-flag';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Language = () => {
   const dispatch = useDispatch();
   const [isEnabled, setIsEnabled] = useState(false);
   const {t} = useTranslation();
   const darkMode = useSelector(state => state.theme.darkMode);
+
+  useEffect(() => {
+    const fetchLanguage = async () => {
+      const localeLng = await AsyncStorage.getItem('language');
+      if (localeLng) {
+        setIsEnabled(localeLng === 'en');
+      }
+    };
+
+    fetchLanguage();
+  }, [dispatch]);
 
   const handleLanguageChange = newLanguage => {
     dispatch(setLanguage(newLanguage));
