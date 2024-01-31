@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity, Text} from 'react-native';
 import {useTranslation} from 'react-i18next';
 
 const DeleteBtn = ({onDelete, itemId}) => {
@@ -10,17 +10,11 @@ const DeleteBtn = ({onDelete, itemId}) => {
 
   return (
     <TouchableOpacity onPress={handleDelete}>
-      <Text style={styles.deleteBtn}>{t('ShopList.shopList_deleteBtn')}</Text>
+      <Text className="text-base p-2.5 text-red-600">
+        {t('ShopList.shopList_deleteBtn')}
+      </Text>
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  deleteBtn: {
-    color: 'red',
-    fontSize: 16,
-    padding: 10,
-  },
-});
 
 export default DeleteBtn;
