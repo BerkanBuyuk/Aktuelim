@@ -12,8 +12,6 @@ import axios from 'axios';
 import {ANDROID_FAVORITES_URL, IOS_FAVORITES_URL} from '@env';
 import {Platform} from 'react-native';
 
-//IOS ve ANDROID get url düzeltilecek.
-
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = ({navigation}) => {
@@ -22,7 +20,7 @@ const BottomTabNavigator = ({navigation}) => {
 
   const [favorites, setFavorites] = useState([]);
 
-  const fetchFavorites = async url => {
+  const fetchFavorites = async () => {
     try {
       if (Platform.OS === 'android') {
         const response = await axios.get(ANDROID_FAVORITES_URL);
@@ -38,6 +36,7 @@ const BottomTabNavigator = ({navigation}) => {
 
   return (
     <Tab.Navigator
+      initialRouteName="Markets"
       screenOptions={{
         headerStyle: {
           backgroundColor: darkMode ? Styles.dark_base_color : Styles.baseColor,
@@ -46,21 +45,6 @@ const BottomTabNavigator = ({navigation}) => {
           backgroundColor: darkMode ? Styles.dark_base_color : Styles.baseColor,
         },
       }}>
-      <Tab.Screen
-        name="Markets"
-        // component={MainStackNavigator}
-        children={() => <MainStackNavigator fetchFavorites={fetchFavorites} />}
-        options={{
-          // tabBarStyle: {backgroundColor: Styles.baseColor},
-          headerShown: false,
-          tabBarLabel: `${t('home')}`,
-          tabBarLabelStyle: {color: Styles.textColor, fontSize: 11},
-          // headerTintColor: Styles.textColor,
-          tabBarIcon: () => (
-            <Entypo name="home" size={30} color={Styles.textColor} />
-          ),
-        }}
-      />
       <Tab.Screen
         name="Favorites"
         // component={Favorites}
@@ -88,6 +72,21 @@ const BottomTabNavigator = ({navigation}) => {
                 navigation.openDrawer();
               }}
             />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Markets"
+        // component={MainStackNavigator}
+        children={() => <MainStackNavigator fetchFavorites={fetchFavorites} />}
+        options={{
+          // tabBarStyle: {backgroundColor: Styles.baseColor},
+          headerShown: false,
+          tabBarLabel: `${t('home')}`,
+          tabBarLabelStyle: {color: Styles.textColor, fontSize: 11},
+          // headerTintColor: Styles.textColor,
+          tabBarIcon: () => (
+            <Entypo name="home" size={30} color={Styles.textColor} />
           ),
         }}
       />
