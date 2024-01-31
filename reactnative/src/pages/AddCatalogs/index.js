@@ -1,21 +1,15 @@
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import React from 'react';
 import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
 import {useSelector} from 'react-redux';
-import Styles from '../../assets/Styles';
 
 const AddCatalogs = () => {
   const darkMode = useSelector(state => state.theme.darkMode);
   return (
     <View
-      style={[
-        styles.view_style,
-        {
-          backgroundColor: darkMode
-            ? Styles.dark_bg_color
-            : Styles.light_bg_color,
-        },
-      ]}>
+      className={` flex-1 items-center justify-center ${
+        darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
+      }`}>
       <FontAwesome
         name="file-photo-o"
         size={200}
@@ -29,11 +23,3 @@ const AddCatalogs = () => {
 };
 
 export default AddCatalogs;
-
-const styles = StyleSheet.create({
-  view_style: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

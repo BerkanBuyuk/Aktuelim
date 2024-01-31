@@ -15,8 +15,6 @@ const languageSlice = createSlice({
   },
 });
 
-//setLanguage async kaydet.
-
 export const {setLanguage} = languageSlice.actions;
 
 export const selectLanguage = state => state.language.language;
