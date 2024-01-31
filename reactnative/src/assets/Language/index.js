@@ -1,4 +1,4 @@
-import {Switch, View, Text, StyleSheet} from 'react-native';
+import {Switch, View, Text} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Styles from '../Styles';
@@ -36,8 +36,8 @@ const Language = () => {
 
   return (
     <View>
-      <View style={styles.container}>
-        <View style={styles.leftContainer}>
+      <View className="flex-row items-center justify-between">
+        <View className="flex-row items-center flex-1">
           {darkMode ? (
             <Entypo name="language" size={30} color={Styles.textColor} />
           ) : (
@@ -48,21 +48,20 @@ const Language = () => {
             />
           )}
           <Text
-            style={[
-              styles.text,
-              {color: darkMode ? Styles.textColor : Styles.dark_text_color},
-            ]}>
+            className={` ml-6 text-xl ${
+              darkMode ? 'text-textColor' : 'text-dark_text_color'
+            }`}>
             {t('Settings.settings_language')}
           </Text>
         </View>
-        <View style={{marginHorizontal: 5}}>
+        <View className="mx-1.5">
           {i18n.language === 'en' ? (
             <CountryFlag isoCode="us" size={25} />
           ) : (
             <CountryFlag isoCode="tr" size={25} />
           )}
         </View>
-        <View style={styles.rightContainer}>
+        <View>
           <Switch
             trackColor={{false: Styles.dark_bg_color, true: Styles.baseColor}}
             thumbColor={isEnabled ? Styles.textColor : Styles.textColor}
@@ -82,24 +81,3 @@ const Language = () => {
 };
 
 export default Language;
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    // paddingHorizontal: 16,
-  },
-  leftContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-  },
-  rightContainer: {
-    // marginLeft: 'auto',
-  },
-  text: {
-    marginLeft: 25,
-    fontSize: 20,
-  },
-});

@@ -1,4 +1,4 @@
-import {Switch, View, Text, StyleSheet} from 'react-native';
+import {Switch, View, Text} from 'react-native';
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {toggleDarkMode} from '../../redux/store/themeSlice';
@@ -21,18 +21,17 @@ const Theme = () => {
 
   return (
     <View>
-      <View style={styles.container}>
-        <View style={styles.leftContainer}>
+      <View className="flex-row items-center justify-between">
+        <View className="flex-row items-center flex-1">
           <MaterialIcons
             name={darkMode ? 'nightlight' : 'sunny'}
             size={30}
             color={darkMode ? Styles.textColor : Styles.dark_text_color}
           />
           <Text
-            style={[
-              styles.text,
-              {color: darkMode ? Styles.textColor : Styles.dark_text_color},
-            ]}>
+            className={` ml-6 text-xl ${
+              darkMode ? 'text-textColor' : 'text-dark_text_color'
+            }`}>
             {(() => {
               if (!darkMode && i18n.language === 'tr') {
                 return t('Settings.settings_theme_tr');
@@ -46,7 +45,7 @@ const Theme = () => {
             })()}
           </Text>
         </View>
-        <View style={styles.rightContainer}>
+        <View>
           <Switch
             trackColor={{false: Styles.dark_bg_color, true: Styles.baseColor}}
             thumbColor={isEnabled ? Styles.textColor : Styles.textColor}
@@ -62,24 +61,3 @@ const Theme = () => {
 };
 
 export default Theme;
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    // paddingHorizontal: 16,
-  },
-  leftContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-  },
-  rightContainer: {
-    // marginLeft: 'auto',
-  },
-  text: {
-    marginLeft: 25,
-    fontSize: 20,
-  },
-});
