@@ -1,51 +1,28 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Image,
-  FlatList,
-  Platform,
-  StyleSheet,
-  Text,
-  Dimensions,
-} from 'react-native';
+import {View, Image, FlatList, Text} from 'react-native';
 import axios from 'axios';
 import Divider from '../../components/Divider';
-import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
-
-const deviceHeight = Dimensions.get('window').height;
-const deviceWidth = Dimensions.get('window').width;
+import {BASE_URL} from '@env';
+import Loader from '../../components/Loader';
 
 const Favorites = ({favorites, fetchFavorites}) => {
-  // const [favorites, setFavorites] = useState([]);
   const [catalogs, setCatalogs] = useState([]);
-
-  // const fetchFavorites = async url => {
-  //   try {
-  //     const response = await axios.get(`${url}/favorites`);
-  //     setFavorites(response.data);
-  //   } catch (error) {
-  //     console.error('Hata: ', error);
-  //   }
-  // };
+  const [loading, setLoading] = useState(true);
 
   const fetchCatalogs = async url => {
     try {
       const response = await axios.get(`${url}/catalogs`);
       setCatalogs(response.data);
+      setLoading(false);
     } catch (error) {
       console.error('Hata: ', error);
     }
   };
 
   useEffect(() => {
-    if (Platform.OS === 'android') {
-      fetchFavorites(ANDROID_BASE_URL);
-      fetchCatalogs(ANDROID_BASE_URL);
-    } else if (Platform.OS === 'ios') {
-      fetchFavorites(IOS_BASE_URL);
-      fetchCatalogs(IOS_BASE_URL);
-    }
-  }, []);
+    fetchFavorites(BASE_URL);
+    fetchCatalogs(BASE_URL);
+  }, [fetchFavorites]);
 
   const favoriteCatalogImages = favorites.map(favorite => {
     const catalog = catalogs.find(c => c.catalog_id === favorite.catalog_id);
@@ -58,58 +35,35 @@ const Favorites = ({favorites, fetchFavorites}) => {
   });
 
   return (
-    <View style={{backgroundColor: '#95999b'}}>
-      <FlatList
-        data={favoriteCatalogImages}
-        // numColumns={2}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({item, index}) => (
-          <View>
-            <View style={styles.view_item}>
-              <Text style={styles.text_style}>
-                {favoriteCatalogTitles[index]}
-              </Text>
-              {item && (
-                <Image
-                  source={{uri: favoriteCatalogImages[index]}}
-                  style={styles.image_style}
-                />
-              )}
-            </View>
-            <Divider />
-          </View>
-        )}
-        style={styles.flatList_style}
-      />
+    <View className="flex-1 items-center justify-center">
+      {loading ? (
+        <Loader />
+      ) : (
+        <View className="bg-dark_bg_color">
+          <FlatList
+            data={favoriteCatalogImages}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item, index}) => (
+              <View>
+                <View className="bg-gray-300 rounded-2xl">
+                  <Text className="text-center mb-2.5 text-xl">
+                    {favoriteCatalogTitles[index]}
+                  </Text>
+                  {item && (
+                    <Image
+                      source={{uri: favoriteCatalogImages[index]}}
+                      className="w-[calc(100vw/1.02)] h-[calc(100vh/1.4)] mx-1 rounded-bl-lg rounded-br-lg"
+                    />
+                  )}
+                </View>
+                <Divider />
+              </View>
+            )}
+          />
+        </View>
+      )}
     </View>
   );
 };
 
 export default Favorites;
-
-const styles = StyleSheet.create({
-  image_style: {
-    // width: 420,
-    // height: 650,
-    width: deviceWidth / 1.02,
-    height: deviceHeight / 1.4,
-    // borderWidth: 1,
-    marginHorizontal: 5,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-  },
-  text_style: {
-    textAlign: 'center',
-    marginBottom: 10,
-    // backgroundColor: 'red',
-    fontSize: 20,
-  },
-  flatList_style: {
-    // marginTop: 10,
-  },
-  view_item: {
-    // flex: 1,
-    backgroundColor: '#e0e0e0',
-    borderRadius: 15,
-  },
-});
