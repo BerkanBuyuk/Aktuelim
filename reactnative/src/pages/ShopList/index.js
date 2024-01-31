@@ -1,4 +1,4 @@
-import {View, Text, TextInput, FlatList, StyleSheet, Alert} from 'react-native';
+import {View, Text, TextInput, FlatList, Alert} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {openDatabase} from 'react-native-sqlite-storage';
 import AddBtn from '../../components/AddBtn';
@@ -6,7 +6,6 @@ import DeleteBtn from '../../components/DeleteBtn';
 import UpdateBtn from '../../components/UpdateBtn';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
-import Styles from '../../assets/Styles';
 
 const db = openDatabase({
   name: 'shopListDB',
@@ -121,17 +120,12 @@ const ShopList = () => {
 
   const renderShopList = ({item}) => {
     return (
-      <View style={styles.itemContainer}>
+      <View className="flex-row justify-between items-center my-2 mx-4 flex-auto">
         <View
-          style={[
-            styles.item_text_holder_view,
-            {
-              backgroundColor: darkMode
-                ? Styles.dark_shopList_item
-                : Styles.light_shopList_item,
-            },
-          ]}>
-          <Text style={styles.item_style}>{item.text}</Text>
+          className={`flex-1 rounded-lg border ${
+            darkMode ? 'bg-dark_shopList_item' : 'bg-light_shopList_item'
+          }`}>
+          <Text className="p-5 text-xl rounded-xl flex-1">{item.text}</Text>
         </View>
         <UpdateBtn
           onUpdate={newText => updateShopList(item.id, newText)}
@@ -149,27 +143,17 @@ const ShopList = () => {
 
   return (
     <View
-      style={[
-        styles.view_style,
-        {
-          backgroundColor: darkMode
-            ? Styles.dark_bg_color
-            : Styles.light_bg_color,
-        },
-      ]}>
-      <View style={styles.input_addBtn_View}>
+      className={`flex-1 ${
+        darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
+      }`}>
+      <View className="flex-row items-center mx-4">
         <TextInput
           placeholder={t('ShopList.shopList_placeholder')}
           value={inputText}
           onChangeText={setInputText}
-          style={[
-            styles.input_style,
-            {
-              backgroundColor: darkMode
-                ? Styles.dark_textInput_color
-                : Styles.light_textInput_color,
-            },
-          ]}
+          className={`border p-5 text-xl my-2 rounded-xl flex-1 ${
+            darkMode ? 'bg-dark_textInput_color' : 'bg-light_textInput_color'
+          }`}
         />
         <AddBtn onPress={addShopList} />
       </View>
@@ -177,47 +161,5 @@ const ShopList = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  item_style: {
-    padding: 20,
-    fontSize: 20,
-    borderRadius: 10,
-    borderWidth: 1,
-    flex: 1,
-    color: '#414a4c',
-  },
-  input_style: {
-    borderWidth: 1,
-    padding: 20,
-    fontSize: 20,
-    marginVertical: 8,
-    // marginHorizontal: 16,
-    // margin: 16,
-    borderRadius: 10,
-    flex: 1,
-  },
-  itemContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginVertical: 8,
-    marginHorizontal: 16,
-    flex: 1,
-  },
-  input_addBtn_View: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    // backgroundColor: 'red',
-    marginHorizontal: 16,
-  },
-  view_style: {
-    flex: 1,
-  },
-  item_text_holder_view: {
-    flex: 1,
-    borderRadius: 10,
-  },
-});
 
 export default ShopList;
