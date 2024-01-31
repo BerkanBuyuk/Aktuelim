@@ -33,6 +33,10 @@ module.exports = {
         light_shopList_item: '#d5e0da',
         dark_shopList_item: '#f0f0f0',
       },
+      borderColor: {
+        textColor: '#fff',
+        dark_text_color: '#000',
+      },
     },
   },
   plugins: [],
