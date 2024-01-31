@@ -1,4 +1,4 @@
-import {View, Text, FlatList, Switch, StyleSheet} from 'react-native';
+import {View, Text, FlatList, Switch} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Styles from '../../assets/Styles';
@@ -35,18 +35,17 @@ const Notifications = () => {
   const notificationsContainer = ({item}) => {
     return (
       <View>
-        <View style={styles.container}>
-          <View style={styles.leftContainer}>
+        <View className="flex-row items-center justify-between">
+          <View className="flex-row items-center">
             <Fontisto
               name="shopping-store"
               size={30}
               color={darkMode ? Styles.textColor : Styles.dark_text_color}
             />
             <Text
-              style={[
-                styles.text,
-                {color: darkMode ? Styles.textColor : Styles.dark_text_color},
-              ]}>
+              className={` ml-6 text-xl ${
+                darkMode ? 'text-textColor' : 'text-dark_text_color'
+              }`}>
               {item.market_name}
             </Text>
           </View>
@@ -67,14 +66,9 @@ const Notifications = () => {
 
   return (
     <View
-      style={[
-        styles.view_style,
-        {
-          backgroundColor: darkMode
-            ? Styles.dark_bg_color
-            : Styles.light_bg_color,
-        },
-      ]}>
+      className={` flex-1 pt-5 pl-8 pr-8 ${
+        darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
+      }`}>
       {loading ? (
         <LoadingLoader />
       ) : (
@@ -90,25 +84,3 @@ const Notifications = () => {
 };
 
 export default Notifications;
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  leftContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  text: {
-    marginLeft: 25,
-    fontSize: 20,
-  },
-  view_style: {
-    flex: 1,
-    paddingTop: 20,
-    paddingLeft: 30,
-    paddingRight: 30,
-  },
-});
