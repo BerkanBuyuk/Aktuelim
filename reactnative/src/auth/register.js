@@ -1,14 +1,7 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  StyleSheet,
-  Platform,
-} from 'react-native';
+import {View, Text, TextInput, Button} from 'react-native';
 import axios from 'axios';
-import {ANDROID_REGISTER_ENDPOINT, IOS_REGISTER_ENDPOINT} from '@env';
+import {REGISTER_ENDPOINT} from '@env';
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -30,21 +23,14 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      // await axios.post(ANDROID_REGISTER_ENDPOINT, formData);
-      if (Platform.OS === 'android') {
-        await axios.post(ANDROID_REGISTER_ENDPOINT, formData);
-      } else if (Platform.OS === 'ios') {
-        await axios.post(IOS_REGISTER_ENDPOINT, formData);
-      }
+      await axios.post(REGISTER_ENDPOINT, formData);
     } catch (err) {
       setErr(err.response.data);
     }
   };
 
-  console.log(err);
-
   return (
-    <View style={styles.view_style}>
+    <View className="flex-1 items-center justify-center">
       <Text>Register</Text>
       <TextInput
         placeholder="Username"
@@ -74,11 +60,3 @@ const Register = () => {
 };
 
 export default Register;
-
-const styles = StyleSheet.create({
-  view_style: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: 1,
-  },
-});
