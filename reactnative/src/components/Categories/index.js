@@ -6,10 +6,9 @@ import {
   Image,
   StyleSheet,
   FlatList,
-  Platform,
 } from 'react-native';
 import axios from 'axios';
-import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
+import {CATEGORIES_URL} from '@env';
 import {useTranslation} from 'react-i18next';
 import Styles from '../../assets/Styles';
 import {useSelector} from 'react-redux';
@@ -21,7 +20,7 @@ const Categories = ({setSelectedCategory}) => {
 
   const getCategories = async url => {
     try {
-      const response = await axios.get(`${url}/categories`);
+      const response = await axios.get(url);
       setData(response.data);
     } catch (error) {
       console.log('Hata: ', error);
@@ -29,8 +28,7 @@ const Categories = ({setSelectedCategory}) => {
   };
 
   useEffect(() => {
-    const url = Platform.OS === 'android' ? ANDROID_BASE_URL : IOS_BASE_URL;
-    getCategories(url);
+    getCategories(CATEGORIES_URL);
   }, []);
 
   const categoriesContainer = ({item}) => {
@@ -103,8 +101,6 @@ const styles = StyleSheet.create({
   flatListStyle: {
     margin: 5,
     padding: 5,
-    // borderWidth: 0.5,
-    // borderColor: '#e0e0e0',
   },
   touchableOpacityStyle: {
     alignItems: 'center',

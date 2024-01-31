@@ -9,8 +9,7 @@ import {useTranslation} from 'react-i18next';
 import Styles from '../assets/Styles';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
-import {ANDROID_FAVORITES_URL, IOS_FAVORITES_URL} from '@env';
-import {Platform} from 'react-native';
+import {FAVORITES_URL} from '@env';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,13 +21,8 @@ const BottomTabNavigator = ({navigation}) => {
 
   const fetchFavorites = async () => {
     try {
-      if (Platform.OS === 'android') {
-        const response = await axios.get(ANDROID_FAVORITES_URL);
-        setFavorites(response.data);
-      } else if (Platform.OS === 'ios') {
-        const response = await axios.get(IOS_FAVORITES_URL);
-        setFavorites(response.data);
-      }
+      const response = await axios.get(FAVORITES_URL);
+      setFavorites(response.data);
     } catch (error) {
       console.error('Hata: ', error);
     }

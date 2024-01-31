@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Image, FlatList, Text} from 'react-native';
 import axios from 'axios';
 import Divider from '../../components/Divider';
-import {BASE_URL} from '@env';
+import {BASE_URL, CATALOGS_URL} from '@env';
 import Loader from '../../components/Loader';
 
 const Favorites = ({favorites, fetchFavorites}) => {
@@ -11,7 +11,7 @@ const Favorites = ({favorites, fetchFavorites}) => {
 
   const fetchCatalogs = async url => {
     try {
-      const response = await axios.get(`${url}/catalogs`);
+      const response = await axios.get(url);
       setCatalogs(response.data);
       setLoading(false);
     } catch (error) {
@@ -21,7 +21,7 @@ const Favorites = ({favorites, fetchFavorites}) => {
 
   useEffect(() => {
     fetchFavorites(BASE_URL);
-    fetchCatalogs(BASE_URL);
+    fetchCatalogs(CATALOGS_URL);
   }, [fetchFavorites]);
 
   const favoriteCatalogImages = favorites.map(favorite => {
