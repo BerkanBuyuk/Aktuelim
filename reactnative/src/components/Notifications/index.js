@@ -1,16 +1,18 @@
-import {View, Text, FlatList, Switch, StyleSheet, Platform} from 'react-native';
+import {View, Text, FlatList, Switch, StyleSheet} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Styles from '../../assets/Styles';
 import Divider from '../Divider';
 import {useSelector} from 'react-redux';
 import Fontisto from 'react-native-vector-icons/dist/Fontisto';
-import {ANDROID_BASE_URL, IOS_BASE_URL} from '@env';
+import {MARKETS_URL} from '@env';
+import LoadingLoader from '../Loader/loadingLoader';
 
 const Notifications = () => {
   const [marketData, setMarketData] = useState();
   const [isEnabled, setIsEnabled] = useState(false);
   const darkMode = useSelector(state => state.theme.darkMode);
+  const [loading, setLoading] = useState(true);
 
   const handleToggleNotifications = () => {
     setIsEnabled(previousState => !previousState);
@@ -18,19 +20,16 @@ const Notifications = () => {
 
   const getMarkets = async url => {
     try {
-      const response = await axios.get(`${url}/markets`);
+      const response = await axios.get(url);
       setMarketData(response.data);
+      setLoading(false);
     } catch (error) {
       console.log('Hata: ', error);
     }
   };
 
   useEffect(() => {
-    if (Platform.OS === 'android') {
-      getMarkets(ANDROID_BASE_URL);
-    } else if (Platform.OS === 'ios') {
-      getMarkets(IOS_BASE_URL);
-    }
+    getMarkets(MARKETS_URL);
   }, []);
 
   const notificationsContainer = ({item}) => {
@@ -51,7 +50,7 @@ const Notifications = () => {
               {item.market_name}
             </Text>
           </View>
-          <View style={styles.rightContainer}>
+          <View>
             <Switch
               trackColor={{false: Styles.dark_bg_color, true: Styles.baseColor}}
               thumbColor={isEnabled ? Styles.textColor : Styles.textColor}
@@ -76,12 +75,16 @@ const Notifications = () => {
             : Styles.light_bg_color,
         },
       ]}>
-      <FlatList
-        data={marketData}
-        keyExtractor={item => item.market_id}
-        renderItem={item => notificationsContainer(item)}
-        showsVerticalScrollIndicator={false}
-      />
+      {loading ? (
+        <LoadingLoader />
+      ) : (
+        <FlatList
+          data={marketData}
+          keyExtractor={item => item.market_id}
+          renderItem={item => notificationsContainer(item)}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </View>
   );
 };
@@ -93,17 +96,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    // paddingHorizontal: 16,
-    // backgroundColor: 'red',
   },
   leftContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    // flex: 1,
-    // backgroundColor: 'red',
-  },
-  rightContainer: {
-    // marginLeft: 'auto',
   },
   text: {
     marginLeft: 25,
