@@ -4,7 +4,9 @@ import Markets from '../../components/Markets';
 
 const Home = () => {
   return (
-    <View className="flex-1">
+    <View
+    // className="flex-1"
+    >
       <Markets />
     </View>
   );

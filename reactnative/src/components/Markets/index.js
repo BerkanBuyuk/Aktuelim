@@ -67,18 +67,19 @@ const Markets = ({navigation}) => {
       }`}>
       <Categories setSelectedCategory={setSelectedCategory} />
       <Text
-        className={`mx-2.5 text-xl italic ${
+        className={`ml-2.5 text-xl italic ${
           darkMode ? 'text-textColor' : 'text-dark_text_color'
         }`}>
         {t('stores')}
       </Text>
-      <FlatList
-        numColumns={2}
-        data={selectedCategory === 0 ? data : filteredMarkets}
-        renderItem={item => marketsContainer(item)}
-        className="m-2.5 p-2.5"
-        showsVerticalScrollIndicator={false}
-      />
+      <View className="items-center justify-center flex-1 mt-3">
+        <FlatList
+          numColumns={2}
+          data={selectedCategory === 0 ? data : filteredMarkets}
+          renderItem={item => marketsContainer(item)}
+          showsVerticalScrollIndicator={false}
+        />
+      </View>
     </View>
   );
 };
