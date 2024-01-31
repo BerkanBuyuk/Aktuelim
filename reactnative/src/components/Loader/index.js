@@ -6,11 +6,11 @@ const Loader = () => {
   return (
     <View className="flex-1 items-center justify-center">
       <LottieView
-        className="w-28 h-28"
+        className="w-96 h-96"
         source={require('../../assets/lottie/loader/loader.json')}
         autoPlay
         loop
-        speed={3}
+        // speed={2}
       />
     </View>
   );
