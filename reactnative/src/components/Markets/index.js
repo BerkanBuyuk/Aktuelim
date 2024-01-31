@@ -1,18 +1,10 @@
-import {
-  Text,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-  Image,
-  View,
-} from 'react-native';
+import {Text, FlatList, TouchableOpacity, Image, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Categories from '../Categories';
 import {MARKETS_URL} from '@env';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
-import Styles from '../../assets/Styles';
 
 const Markets = ({navigation}) => {
   const {t} = useTranslation();
@@ -53,16 +45,15 @@ const Markets = ({navigation}) => {
         onPress={() => {
           navigation.navigate('Catalogs', item);
         }}
-        style={styles.touchableOpacityStyle}>
+        className=" mx-5 mb-5 border-gray-300">
         <Image
           source={{uri: `${item.market_image}`}}
-          style={styles.marketsImage}
+          className="h-24 w-36 rounded-lg"
         />
         <Text
-          style={[
-            styles.marketsTitle,
-            {color: darkMode ? Styles.textColor : Styles.dark_text_color},
-          ]}>
+          className={`text-center mt-1.5 text-base ${
+            darkMode ? 'text-textColor' : 'text-dark_text_color'
+          }`}>
           {item.market_name}
         </Text>
       </TouchableOpacity>
@@ -71,64 +62,25 @@ const Markets = ({navigation}) => {
 
   return (
     <View
-      style={[
-        styles.view_style,
-        {
-          backgroundColor: darkMode
-            ? Styles.dark_bg_color
-            : Styles.light_bg_color,
-        },
-      ]}>
+      className={`flex-1 ${
+        darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
+      }`}>
       <Categories setSelectedCategory={setSelectedCategory} />
       <Text
-        style={[
-          styles.textStyle,
-          {color: darkMode ? Styles.textColor : Styles.dark_text_color},
-        ]}>
+        className={`mx-2.5 text-xl italic ${
+          darkMode ? 'text-textColor' : 'text-dark_text_color'
+        }`}>
         {t('stores')}
       </Text>
       <FlatList
         numColumns={2}
         data={selectedCategory === 0 ? data : filteredMarkets}
         renderItem={item => marketsContainer(item)}
-        style={styles.flatListStyle}
+        className="m-2.5 p-2.5"
         showsVerticalScrollIndicator={false}
       />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  marketsImage: {
-    height: 100,
-    width: 150,
-    borderRadius: 10,
-    // height: deviceWidth / 3.9,
-    // width: deviceWidth / 2.8,
-  },
-  marketsTitle: {
-    textAlign: 'center',
-    marginTop: 5,
-    fontSize: 16,
-  },
-  flatListStyle: {
-    margin: 10,
-    padding: 10,
-  },
-  touchableOpacityStyle: {
-    marginHorizontal: 20,
-    marginBottom: 20,
-    borderRadius: 10,
-    borderColor: '#e0e0e0',
-  },
-  textStyle: {
-    marginHorizontal: 10,
-    fontSize: 20,
-    fontStyle: 'italic',
-  },
-  view_style: {
-    flex: 1,
-  },
-});
 
 export default Markets;
