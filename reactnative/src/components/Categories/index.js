@@ -1,16 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-  FlatList,
-} from 'react-native';
+import {View, Text, TouchableOpacity, Image, FlatList} from 'react-native';
 import axios from 'axios';
 import {CATEGORIES_URL} from '@env';
 import {useTranslation} from 'react-i18next';
-import Styles from '../../assets/Styles';
 import {useSelector} from 'react-redux';
 
 const Categories = ({setSelectedCategory}) => {
@@ -34,30 +26,24 @@ const Categories = ({setSelectedCategory}) => {
   const categoriesContainer = ({item}) => {
     return (
       <View
-        style={[
-          styles.view_style,
-          {
-            backgroundColor: darkMode
-              ? Styles.dark_categories_color
-              : Styles.categories_color,
-          },
-        ]}>
+        className={`mx-1.5 rounded-3xl ${
+          darkMode ? 'bg-dark_categories_color' : 'bg-categories_color'
+        }`}>
         <TouchableOpacity
           onPress={() => {
             setSelectedCategory(item.category_id);
           }}
-          style={styles.touchableOpacityStyle}>
+          className="items-center mx-1.5">
           <View>
             <Image
               source={{uri: `${item.category_image}`}}
-              style={styles.categoriesImage}
+              className="w-24 h-24 rounded-full m-1.5"
             />
           </View>
           <Text
-            style={[
-              styles.categoriesTitle,
-              {color: darkMode ? Styles.textColor : Styles.dark_text_color},
-            ]}>
+            className={`text-base mb-1.5 ${
+              darkMode ? 'text-textColor' : 'text-dark_text_color'
+            }`}>
             {t(item.category_name)}
           </Text>
         </TouchableOpacity>
@@ -68,16 +54,15 @@ const Categories = ({setSelectedCategory}) => {
   return (
     <View>
       <Text
-        style={[
-          styles.textStyle,
-          {color: darkMode ? Styles.textColor : Styles.dark_text_color},
-        ]}>
+        className={`mx-2.5 text-xl italic ${
+          darkMode ? 'text-textColor' : 'text-dark_text_color'
+        }`}>
         {t('categories')}
       </Text>
       <FlatList
         data={data}
         renderItem={item => categoriesContainer(item)}
-        style={styles.flatListStyle}
+        className="m-1.5 p-1.5"
         horizontal
         showsHorizontalScrollIndicator={false}
       />
@@ -86,33 +71,3 @@ const Categories = ({setSelectedCategory}) => {
 };
 
 export default Categories;
-
-const styles = StyleSheet.create({
-  categoriesImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 500,
-    margin: 5,
-  },
-  categoriesTitle: {
-    fontSize: 15,
-    marginBottom: 5,
-  },
-  flatListStyle: {
-    margin: 5,
-    padding: 5,
-  },
-  touchableOpacityStyle: {
-    alignItems: 'center',
-    marginHorizontal: 5,
-  },
-  textStyle: {
-    marginHorizontal: 10,
-    fontSize: 20,
-    fontStyle: 'italic',
-  },
-  view_style: {
-    borderRadius: 20,
-    marginHorizontal: 5,
-  },
-});
