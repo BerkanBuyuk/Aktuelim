@@ -32,6 +32,7 @@ module.exports = {
         dark_textInput_color: '#f0f0f0',
         light_shopList_item: '#d5e0da',
         dark_shopList_item: '#f0f0f0',
+        addBtn: '#52BBFF',
       },
       borderColor: {
         textColor: '#fff',
