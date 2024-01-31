@@ -5,6 +5,7 @@ import Categories from '../Categories';
 import {MARKETS_URL} from '@env';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
+import Loader from '../Loader';
 
 const Markets = ({navigation}) => {
   const {t} = useTranslation();
@@ -12,6 +13,7 @@ const Markets = ({navigation}) => {
   const [selectedCategory, setSelectedCategory] = useState(0);
   const [filteredMarkets, setFilteredMarkets] = useState(data);
   const darkMode = useSelector(state => state.theme.darkMode);
+  const [loading, setLoading] = useState(true);
 
   const handleListFilteredData = () => {
     if (selectedCategory === 0) {
@@ -26,6 +28,7 @@ const Markets = ({navigation}) => {
     try {
       const response = await axios.get(url);
       setData(response.data);
+      setLoading(false);
     } catch (error) {
       console.log('Hata: ', error);
     }
@@ -65,21 +68,27 @@ const Markets = ({navigation}) => {
       className={`flex-1 ${
         darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
       }`}>
-      <Categories setSelectedCategory={setSelectedCategory} />
-      <Text
-        className={`ml-2.5 text-xl italic ${
-          darkMode ? 'text-textColor' : 'text-dark_text_color'
-        }`}>
-        {t('stores')}
-      </Text>
-      <View className="items-center justify-center flex-1 mt-3">
-        <FlatList
-          numColumns={2}
-          data={selectedCategory === 0 ? data : filteredMarkets}
-          renderItem={item => marketsContainer(item)}
-          showsVerticalScrollIndicator={false}
-        />
-      </View>
+      {loading ? (
+        <Loader />
+      ) : (
+        <View>
+          <Categories setSelectedCategory={setSelectedCategory} />
+          <Text
+            className={`ml-2.5 text-xl italic ${
+              darkMode ? 'text-textColor' : 'text-dark_text_color'
+            }`}>
+            {t('stores')}
+          </Text>
+          <View className="items-center justify-center mt-3">
+            <FlatList
+              numColumns={2}
+              data={selectedCategory === 0 ? data : filteredMarkets}
+              renderItem={item => marketsContainer(item)}
+              showsVerticalScrollIndicator={false}
+            />
+          </View>
+        </View>
+      )}
     </View>
   );
 };
