@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput,
-  Alert,
-} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput, Alert} from 'react-native';
 import Dialog from 'react-native-dialog';
 import {useTranslation} from 'react-i18next';
 
@@ -38,9 +31,11 @@ const UpdateBtn = ({onUpdate, itemText}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View>
       <TouchableOpacity onPress={showDialog}>
-        <Text style={styles.updateBtn}>{t('ShopList.shopList_updateBtn')}</Text>
+        <Text className="text-base text-blue-700 p-2.5">
+          {t('ShopList.shopList_updateBtn')}
+        </Text>
       </TouchableOpacity>
       <Dialog.Container visible={visible}>
         <Dialog.Title>{t('ShopList.shopList_dialogTitle')}</Dialog.Title>
@@ -48,7 +43,7 @@ const UpdateBtn = ({onUpdate, itemText}) => {
           value={newText}
           onChangeText={text => setNewText(text)}
           defaultValue={itemText}
-          style={styles.input_style}
+          className="p-2.5 text-base border rounded-xl my-2.5 mx-2.5"
         />
         <Dialog.Button
           label={t('ShopList.shopList_dialogLeftbtnLabel')}
@@ -63,21 +58,5 @@ const UpdateBtn = ({onUpdate, itemText}) => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  input_style: {
-    padding: 10,
-    fontSize: 16,
-    borderWidth: 1,
-    borderRadius: 10,
-    marginVertical: 10,
-    marginHorizontal: 10,
-  },
-  updateBtn: {
-    fontSize: 16,
-    color: 'blue',
-    padding: 10,
-  },
-});
 
 export default UpdateBtn;
