@@ -1,4 +1,4 @@
-import {View, TouchableOpacity} from 'react-native';
+import {TouchableOpacity} from 'react-native';
 import React from 'react';
 import axios from 'axios';
 import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
@@ -27,15 +27,13 @@ const DeleteCatalogBtn = ({catalogs, onDelete}) => {
   };
 
   return (
-    <View className="items-center justify-center">
-      <TouchableOpacity onPress={handleDelete}>
-        <FontAwesome
-          name={darkMode ? 'trash-o' : 'trash'}
-          size={25}
-          color={darkMode ? Styles.textColor : Styles.dark_text_color}
-        />
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity onPress={null}>
+      <FontAwesome
+        name="trash-o"
+        size={25}
+        color={darkMode ? Styles.textColor : Styles.dark_text_color}
+      />
+    </TouchableOpacity>
   );
 };
 

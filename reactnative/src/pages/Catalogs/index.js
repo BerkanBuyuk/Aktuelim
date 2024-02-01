@@ -5,6 +5,7 @@ import {CATALOGS_URL} from '@env';
 import {useSelector} from 'react-redux';
 import LoadingLoader from '../../components/Loader/loadingLoader';
 import DeleteCatalogBtn from '../../components/DeleteCatalogBtn';
+import UpdateCatalogBtn from '../../components/UpdateCatalogBtn';
 
 const Catalogs = ({route, navigation}) => {
   const [catalogs, setCatalogs] = useState([]);
@@ -27,6 +28,9 @@ const Catalogs = ({route, navigation}) => {
   const handleCatalogDelete = () => {
     getCatalogs(CATALOGS_URL);
   };
+  const handleUpdateCatalog = () => {
+    getCatalogs(CATALOGS_URL);
+  };
 
   useEffect(() => {
     getCatalogs(CATALOGS_URL);
@@ -42,7 +46,7 @@ const Catalogs = ({route, navigation}) => {
         : item.catalog_title;
 
     return (
-      <View>
+      <View className="mx-1.5">
         <View
           key={item.catalog_id}
           className={` p-2.5 border m-2.5 rounded-lg ${
@@ -62,7 +66,10 @@ const Catalogs = ({route, navigation}) => {
             </Text>
           </TouchableOpacity>
         </View>
-        <DeleteCatalogBtn catalogs={item} onDelete={handleCatalogDelete} />
+        <View className="mx-3.5 flex-row justify-between">
+          <DeleteCatalogBtn catalogs={item} onDelete={handleCatalogDelete} />
+          <UpdateCatalogBtn catalogs={item} onUpdate={handleUpdateCatalog} />
+        </View>
       </View>
     );
   };
