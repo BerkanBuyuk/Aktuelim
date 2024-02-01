@@ -51,7 +51,7 @@ export const putCatalog = (req, res) => {
   const q = process.env.PUT_CATALOGS_QUERY;
 
   const values = [
-    // req.body.catalog_id,
+    req.body.catalog_id,
     req.body.catalog_title,
     req.body.catalog_image,
     req.body.catalog_description,
