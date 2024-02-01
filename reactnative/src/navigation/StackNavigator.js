@@ -193,16 +193,16 @@ const MainStackNavigator = ({fetchFavorites}) => {
         options={{
           headerTitle: `${t('add_catalog')}`,
           headerTitleAlign: 'center',
-          headerRight: () => (
-            <MaterialIcons
-              name="add-a-photo"
-              size={30}
-              color={Styles.textColor}
-              onPress={() => {
-                null;
-              }}
-            />
-          ),
+          // headerRight: () => (
+          //   <MaterialIcons
+          //     name="add-a-photo"
+          //     size={30}
+          //     color={Styles.textColor}
+          //     onPress={() => {
+          //       null;
+          //     }}
+          //   />
+          // ),
           headerBackTitle: `${t('home')}`,
         }}
       />

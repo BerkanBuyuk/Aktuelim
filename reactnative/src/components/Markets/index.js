@@ -48,7 +48,7 @@ const Markets = ({navigation}) => {
         onPress={() => {
           navigation.navigate('Catalogs', item);
         }}
-        className=" mx-5 mb-5 border-gray-300">
+        className="mx-5 mb-5">
         <Image
           source={{uri: `${item.market_image}`}}
           className="h-24 w-36 rounded-lg"
