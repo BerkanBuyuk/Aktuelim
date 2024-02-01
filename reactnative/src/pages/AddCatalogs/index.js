@@ -1,11 +1,12 @@
 import {Text, TextInput, TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
-import {CATALOGS_URL} from '@env';
+import {CATALOGS_URL, MARKETS_URL} from '@env';
 import {useTranslation} from 'react-i18next';
 import {Dropdown} from 'react-native-element-dropdown';
 import {useToast} from 'react-native-toast-notifications';
+import LoadingLoader from '../../components/Loader/loadingLoader';
 
 const AddCatalogs = () => {
   const darkMode = useSelector(state => state.theme.darkMode);
@@ -13,21 +14,10 @@ const AddCatalogs = () => {
   const [catalogImage, setCatalogImage] = useState('');
   const [catalogDescription, setCatalogDescription] = useState('');
   const [marketId, setMarketId] = useState(null);
+  const [marketData, setMarketData] = useState([]);
+  const [loading, setLoading] = useState(true);
   const {t} = useTranslation();
   const toast = useToast();
-
-  const marketsData = [
-    {label: 'Bim', marketId: '1'},
-    {label: 'A101', marketId: '2'},
-    {label: 'Şok', marketId: '3'},
-    {label: 'Migros', marketId: '4'},
-    {label: 'Vatan Computer', marketId: '5'},
-    {label: 'Media Markt', marketId: '6'},
-    {label: 'Watsons', marketId: '7'},
-    {label: 'Farmasi', marketId: '8'},
-    {label: 'Bauhaus', marketId: '9'},
-    {label: 'Koçtaş', marketId: '10'},
-  ];
 
   const handlePostRequest = async () => {
     try {
@@ -35,7 +25,7 @@ const AddCatalogs = () => {
         catalog_title: catalogTitle,
         catalog_image: catalogImage,
         catalog_description: catalogDescription,
-        market_id: parseInt(marketId, 10),
+        market_id: marketId,
       };
 
       const response = await axios.post(CATALOGS_URL, data);
@@ -47,56 +37,76 @@ const AddCatalogs = () => {
     }
   };
 
+  const fetchMarketsData = async url => {
+    try {
+      const response = await axios.get(url);
+      setMarketData(response.data);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchMarketsData(MARKETS_URL);
+  }, []);
+
   return (
     <View
       className={` flex-1 mx-2.5 ${
         darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
       }`}>
-      <TextInput
-        placeholder="catalog_title"
-        value={catalogTitle}
-        onChangeText={text => setCatalogTitle(text)}
-        className={`border p-5 text-xl my-2 rounded-xl ${
-          darkMode ? 'bg-dark_textInput_color' : 'bg-light_textInput_color'
-        }`}
-      />
-      <TextInput
-        placeholder="catalog_image"
-        value={catalogImage}
-        onChangeText={text => setCatalogImage(text)}
-        className={`border p-5 text-xl my-2 rounded-xl ${
-          darkMode ? 'bg-dark_textInput_color' : 'bg-light_textInput_color'
-        }`}
-      />
-      <TextInput
-        placeholder="catalog_description"
-        value={catalogDescription}
-        onChangeText={text => setCatalogDescription(text)}
-        className={`border p-5 text-xl my-2 rounded-xl ${
-          darkMode ? 'bg-dark_textInput_color' : 'bg-light_textInput_color'
-        }`}
-      />
-      <Dropdown
-        className="h-12 my-2 border-b-black border-b"
-        data={marketsData}
-        search
-        maxHeight={300}
-        labelField="label"
-        valueField="marketId"
-        placeholder="Market Seç"
-        searchPlaceholder="Ara..."
-        value={marketId}
-        onChange={item => {
-          setMarketId(item.marketId);
-        }}
-      />
-      <TouchableOpacity
-        onPress={handlePostRequest}
-        className="items-center m-2.5">
-        <Text className="text-xl text-addBtn">
-          {t('ShopList.shopList_addBtn')}
-        </Text>
-      </TouchableOpacity>
+      {loading ? (
+        <LoadingLoader />
+      ) : (
+        <>
+          <TextInput
+            placeholder="catalog_title"
+            value={catalogTitle}
+            onChangeText={text => setCatalogTitle(text)}
+            className={`border p-5 text-xl my-2 rounded-xl ${
+              darkMode ? 'bg-dark_textInput_color' : 'bg-light_textInput_color'
+            }`}
+          />
+          <TextInput
+            placeholder="catalog_image"
+            value={catalogImage}
+            onChangeText={text => setCatalogImage(text)}
+            className={`border p-5 text-xl my-2 rounded-xl ${
+              darkMode ? 'bg-dark_textInput_color' : 'bg-light_textInput_color'
+            }`}
+          />
+          <TextInput
+            placeholder="catalog_description"
+            value={catalogDescription}
+            onChangeText={text => setCatalogDescription(text)}
+            className={`border p-5 text-xl my-2 rounded-xl ${
+              darkMode ? 'bg-dark_textInput_color' : 'bg-light_textInput_color'
+            }`}
+          />
+          <Dropdown
+            className="h-12 my-2 border-b-black border-b"
+            data={marketData}
+            search
+            maxHeight={300}
+            labelField="market_name"
+            valueField="market_id"
+            placeholder="Market Seç"
+            searchPlaceholder="Ara..."
+            value={marketId}
+            onChange={item => {
+              setMarketId(item.market_id);
+            }}
+          />
+          <TouchableOpacity
+            onPress={handlePostRequest}
+            className="items-center m-2.5">
+            <Text className="text-xl text-addBtn">
+              {t('ShopList.shopList_addBtn')}
+            </Text>
+          </TouchableOpacity>
+        </>
+      )}
     </View>
   );
 };
