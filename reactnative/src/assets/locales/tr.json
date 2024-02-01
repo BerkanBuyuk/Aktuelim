@@ -18,7 +18,7 @@
         "shopList_dialogLeftbtnLabel": "İptal",
         "shopList_dialogRightbtnLabel": "Güncelle",
         "shopList_alertBtn": "Boş liste girilemez !",
-        "shopList_alertBtn_ok": "Tamam",
+        "shopList_alertBtn_ok": "Tamam"
     },
     "category_name": "Türkçe Kategori Adı",
     "Tümü": "Tümü",
@@ -35,5 +35,11 @@
         "settings_theme_dark_en": "Dark Mode",
         "settings_theme_dark_tr": "Koyu Tema",
         "settings_language": "Dil / Türkçe"
+    },
+    "AddCatalogs" : {
+        "catalogTitle": "Katalog başlığı girin.",
+        "catalogImage": "Katalog görsel URL girin.",
+        "catalogDescription": "Katalog açıklaması girin.",
+        "selectMarket": "Market Seçin"
     }
 }

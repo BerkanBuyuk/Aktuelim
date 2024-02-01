@@ -35,5 +35,11 @@
         "settings_theme_dark_en": "Dark Mode",
         "settings_theme_dark_tr": "Koyu Tema",
         "settings_language": "Language / English"
+    },
+    "AddCatalogs" : {
+        "catalogTitle": "Enter catalog title.",
+        "catalogImage": "Enter catalog image URL.",
+        "catalogDescription": "Enter catalog description.",
+        "selectMarket": "Select Market"
     }
 }

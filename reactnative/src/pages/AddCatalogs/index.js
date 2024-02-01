@@ -61,7 +61,7 @@ const AddCatalogs = () => {
       ) : (
         <>
           <TextInput
-            placeholder="catalog_title"
+            placeholder={t('AddCatalogs.catalogTitle')}
             value={catalogTitle}
             onChangeText={text => setCatalogTitle(text)}
             className={`border p-5 text-xl my-2 rounded-xl ${
@@ -69,7 +69,7 @@ const AddCatalogs = () => {
             }`}
           />
           <TextInput
-            placeholder="catalog_image"
+            placeholder={t('AddCatalogs.catalogImage')}
             value={catalogImage}
             onChangeText={text => setCatalogImage(text)}
             className={`border p-5 text-xl my-2 rounded-xl ${
@@ -77,7 +77,7 @@ const AddCatalogs = () => {
             }`}
           />
           <TextInput
-            placeholder="catalog_description"
+            placeholder={t('AddCatalogs.catalogDescription')}
             value={catalogDescription}
             onChangeText={text => setCatalogDescription(text)}
             className={`border p-5 text-xl my-2 rounded-xl ${
