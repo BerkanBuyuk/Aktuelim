@@ -4,6 +4,7 @@ import axios from 'axios';
 import {CATALOGS_URL} from '@env';
 import {useSelector} from 'react-redux';
 import LoadingLoader from '../../components/Loader/loadingLoader';
+import DeleteCatalogBtn from '../../components/DeleteCatalogBtn';
 
 const Catalogs = ({route, navigation}) => {
   const [catalogs, setCatalogs] = useState([]);
@@ -23,6 +24,10 @@ const Catalogs = ({route, navigation}) => {
     }
   };
 
+  const handleCatalogDelete = () => {
+    getCatalogs(CATALOGS_URL);
+  };
+
   useEffect(() => {
     getCatalogs(CATALOGS_URL);
 
@@ -37,24 +42,27 @@ const Catalogs = ({route, navigation}) => {
         : item.catalog_title;
 
     return (
-      <View
-        key={item.catalog_id}
-        className={` p-2.5 border m-2.5 rounded-lg ${
-          darkMode ? 'border-textColor' : 'border-dark_text_color'
-        }`}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('CatalogDetails', item)}>
-          <Image
-            source={{uri: `${item.catalog_image}`}}
-            className="w-36 h-36"
-          />
-          <Text
-            className={`${
-              darkMode ? 'text-textColor' : 'text-dark_text_color'
-            }`}>
-            {abbreviatedTitle}
-          </Text>
-        </TouchableOpacity>
+      <View>
+        <View
+          key={item.catalog_id}
+          className={` p-2.5 border m-2.5 rounded-lg ${
+            darkMode ? 'border-textColor' : 'border-dark_text_color'
+          }`}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('CatalogDetails', item)}>
+            <Image
+              source={{uri: `${item.catalog_image}`}}
+              className="w-36 h-36"
+            />
+            <Text
+              className={`${
+                darkMode ? 'text-textColor' : 'text-dark_text_color'
+              }`}>
+              {abbreviatedTitle}
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <DeleteCatalogBtn catalogs={item} onDelete={handleCatalogDelete} />
       </View>
     );
   };
