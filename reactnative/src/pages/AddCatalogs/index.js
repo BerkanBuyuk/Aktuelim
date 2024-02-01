@@ -53,13 +53,13 @@ const AddCatalogs = () => {
 
   return (
     <View
-      className={` flex-1 mx-2.5 ${
+      className={` flex-1 ${
         darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
       }`}>
       {loading ? (
         <LoadingLoader />
       ) : (
-        <>
+        <View className="mx-2.5 my-2.5">
           <TextInput
             placeholder={t('AddCatalogs.catalogTitle')}
             value={catalogTitle}
@@ -91,8 +91,8 @@ const AddCatalogs = () => {
             maxHeight={300}
             labelField="market_name"
             valueField="market_id"
-            placeholder="Market Seç"
-            searchPlaceholder="Ara..."
+            placeholder={t('AddCatalogs.selectMarket')}
+            searchPlaceholder={t('AddCatalogs.searchMarket')}
             value={marketId}
             onChange={item => {
               setMarketId(item.market_id);
@@ -105,7 +105,7 @@ const AddCatalogs = () => {
               {t('ShopList.shopList_addBtn')}
             </Text>
           </TouchableOpacity>
-        </>
+        </View>
       )}
     </View>
   );

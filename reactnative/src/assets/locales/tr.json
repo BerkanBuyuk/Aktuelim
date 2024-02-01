@@ -40,6 +40,7 @@
         "catalogTitle": "Katalog başlığı girin.",
         "catalogImage": "Katalog görsel URL girin.",
         "catalogDescription": "Katalog açıklaması girin.",
-        "selectMarket": "Market Seçin"
+        "selectMarket": "Market Seçin",
+        "searchMarket": "Market Ara"
     }
 }
