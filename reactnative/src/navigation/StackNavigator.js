@@ -7,7 +7,6 @@ import Notifications from '../components/Notifications';
 import ContactUs from '../components/ContactUs';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
-import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import AddCatalogs from '../pages/AddCatalogs';
 import {useTranslation} from 'react-i18next';
 import Styles from '../assets/Styles';
@@ -140,7 +139,6 @@ const MainStackNavigator = ({fetchFavorites}) => {
         options={{
           headerTitle: `${t('home')}`,
           headerTitleAlign: 'center',
-          // headerTintColor: Styles.textColor,
           headerLeft: () => (
             <Entypo
               name="menu"
@@ -165,17 +163,17 @@ const MainStackNavigator = ({fetchFavorites}) => {
       <Stack.Screen
         name="Catalogs"
         component={Catalogs}
-        options={{
-          headerTitle: `${t('catalogs')}`,
+        options={({route}) => ({
+          headerTitle: `${route.params.market_name}`,
           headerTitleAlign: 'center',
-        }}
+        })}
       />
 
       <Stack.Screen
         name="CatalogDetails"
         component={CatalogDetails}
         options={({route}) => ({
-          headerTitle: `${t('catalog_detail')}`,
+          headerTitle: `${route.params.catalog_title}`,
           headerTitleAlign: 'center',
           headerRight: () => (
             <FavoriteBtn
@@ -193,16 +191,6 @@ const MainStackNavigator = ({fetchFavorites}) => {
         options={{
           headerTitle: `${t('add_catalog')}`,
           headerTitleAlign: 'center',
-          // headerRight: () => (
-          //   <MaterialIcons
-          //     name="add-a-photo"
-          //     size={30}
-          //     color={Styles.textColor}
-          //     onPress={() => {
-          //       null;
-          //     }}
-          //   />
-          // ),
           headerBackTitle: `${t('home')}`,
         }}
       />

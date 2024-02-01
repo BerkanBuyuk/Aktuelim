@@ -8,7 +8,7 @@ import {Dropdown} from 'react-native-element-dropdown';
 import {useToast} from 'react-native-toast-notifications';
 import LoadingLoader from '../../components/Loader/loadingLoader';
 
-const AddCatalogs = () => {
+const AddCatalogs = ({navigation}) => {
   const darkMode = useSelector(state => state.theme.darkMode);
   const [catalogTitle, setCatalogTitle] = useState('');
   const [catalogImage, setCatalogImage] = useState('');
@@ -30,6 +30,7 @@ const AddCatalogs = () => {
 
       await axios.post(CATALOGS_URL, data);
       toast.show('Yeni katalog eklendi.', {type: 'success'});
+      navigation.goBack();
     } catch (error) {
       console.log(error);
       toast.show('Yeni katalog eklenirken hata oluştu.', {type: 'danger'});
