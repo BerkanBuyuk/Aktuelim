@@ -16,7 +16,7 @@ const DeleteCatalogBtn = ({catalogs, onDelete}) => {
       await axios.delete(`${CATALOGS_URL}/${catalogs.catalog_id}`);
       onDelete();
       toast.show(`${catalogs.catalog_title} silindi.`, {
-        type: 'danger',
+        type: 'success',
       });
     } catch (error) {
       console.error('Silme hatası:', error);
@@ -27,7 +27,7 @@ const DeleteCatalogBtn = ({catalogs, onDelete}) => {
   };
 
   return (
-    <TouchableOpacity onPress={null}>
+    <TouchableOpacity onPress={handleDelete}>
       <FontAwesome
         name="trash-o"
         size={25}

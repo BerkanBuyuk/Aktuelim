@@ -28,8 +28,7 @@ const AddCatalogs = () => {
         market_id: marketId,
       };
 
-      const response = await axios.post(CATALOGS_URL, data);
-      console.log(response.data);
+      await axios.post(CATALOGS_URL, data);
       toast.show('Yeni katalog eklendi.', {type: 'success'});
     } catch (error) {
       console.log(error);
