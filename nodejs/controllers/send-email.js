@@ -17,15 +17,14 @@ export const postMail = (req, res) => {
     from: process.env.MAIL_USER,
     to: process.env.MAIL_USER,
     subject: "Müşteri Maili",
-    text: `${nameSurname}\nMail: ${mail}\nAçıklama: ${explanation}`,
+    text: `İsim Soyisim: ${nameSurname}\nMail: ${mail}\nAçıklama:\n${explanation}`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error(error);
-      res.status(500).send("Internal Server Error");
+      res.status(500).send("Hata oluştu");
     } else {
-      console.log("E-posta gönderildi: " + info.response);
       res.status(200).send("E-posta gönderildi");
     }
   });
