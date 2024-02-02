@@ -46,7 +46,7 @@ const Catalogs = ({route, navigation}) => {
         : item.catalog_title;
 
     return (
-      <View className="mx-1.5">
+      <View>
         <View
           key={item.catalog_id}
           className={` p-2.5 border m-2.5 rounded-lg ${
@@ -82,12 +82,14 @@ const Catalogs = ({route, navigation}) => {
       {loading ? (
         <LoadingLoader />
       ) : (
-        <FlatList
-          numColumns={2}
-          data={catalogs}
-          renderItem={item => catalogContainer(item)}
-          keyExtractor={item => item.catalog_id.toString()}
-        />
+        <View>
+          <FlatList
+            numColumns={2}
+            data={catalogs}
+            renderItem={item => catalogContainer(item)}
+            keyExtractor={item => item.catalog_id.toString()}
+          />
+        </View>
       )}
     </View>
   );
