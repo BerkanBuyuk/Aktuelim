@@ -5,7 +5,6 @@ import nodemailer from "nodemailer";
 export const postMail = (req, res) => {
   // Kullanıcıdan gelen verileri al
   const { isimSoyisim, mail, aciklama } = req.body;
-  const berkan = "berkan";
 
   // E-posta gönderme işlemi
   const transporter = nodemailer.createTransport({
@@ -17,8 +16,8 @@ export const postMail = (req, res) => {
   });
 
   const mailOptions = {
-    from: "buyukberkan@gmail.com",
-    to: process.env.MAIL_USER,
+    from: process.env.MAIL_USER,
+    to: "berkanbuyuk55@gmail.com",
     subject: "Konu: E-posta Başlığı",
     text: `İsim Soyisim: ${isimSoyisim}\nMail: ${mail}\nAçıklama: ${aciklama}`,
   };
