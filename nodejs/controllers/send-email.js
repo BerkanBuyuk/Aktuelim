@@ -3,10 +3,8 @@ import nodemailer from "nodemailer";
 
 //POST MAIL
 export const postMail = (req, res) => {
-  // Kullanıcıdan gelen verileri al
-  const { isimSoyisim, mail, aciklama } = req.body;
+  const { nameSurname, mail, explanation } = req.body;
 
-  // E-posta gönderme işlemi
   const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -16,10 +14,10 @@ export const postMail = (req, res) => {
   });
 
   const mailOptions = {
-    from: `${mail}`,
+    from: mail,
     to: process.env.MAIL_USER,
     subject: "Müşteri Maili",
-    text: `${isimSoyisim}\nMail: ${mail}\nAçıklama: ${aciklama}`,
+    text: `${nameSurname}\nMail: ${mail}\nAçıklama: ${explanation}`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
