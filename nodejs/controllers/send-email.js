@@ -1,5 +1,5 @@
 import "dotenv/config";
-const nodemailer = require("nodemailer");
+import nodemailer from "nodemailer";
 
 //POST MAIL
 export const postMail = (req, res) => {
