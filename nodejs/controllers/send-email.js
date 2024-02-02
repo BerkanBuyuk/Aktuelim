@@ -16,10 +16,10 @@ export const postMail = (req, res) => {
   });
 
   const mailOptions = {
-    from: process.env.MAIL_USER,
-    to: "berkanbuyuk55@gmail.com",
-    subject: "Konu: E-posta Başlığı",
-    text: `İsim Soyisim: ${isimSoyisim}\nMail: ${mail}\nAçıklama: ${aciklama}`,
+    from: mail,
+    to: process.env.MAIL_USER,
+    subject: "Müşteri Maili",
+    text: `${isimSoyisim}\nMail: ${mail}\nAçıklama: ${aciklama}`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {
