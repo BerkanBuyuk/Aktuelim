@@ -1,4 +1,4 @@
-import {View, TextInput, TouchableOpacity} from 'react-native';
+import {View, TextInput, TouchableOpacity, Alert} from 'react-native';
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
@@ -14,53 +14,82 @@ const ContactUs = () => {
   const [userNameSurname, setUserNameSurname] = useState('');
   const [userMail, setUserMail] = useState('');
   const [userExplanation, setUserExplanation] = useState('');
+  const [isModalVisible, setModalVisible] = useState(false);
   const toast = useToast();
   const darkMode = useSelector(state => state.theme.darkMode);
   const {t} = useTranslation();
 
+  const inputsControl = () => {
+    return userNameSurname && userMail && userExplanation;
+  };
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const isValidEmail = email => {
+    return emailRegex.test(email);
+  };
+
   const handleMailPostRequest = async () => {
-    try {
-      const userData = {
-        nameSurname: userNameSurname,
-        mail: userMail,
-        explanation: userExplanation,
-      };
-      await axios.post(CONTACT_ENDPOINT, userData);
-      toast.show('Mail başarıyla iletildi.', {type: 'success'});
-      setUserNameSurname('');
-      setUserMail('');
-      setUserExplanation('');
-    } catch (error) {
-      console.log(error);
+    if (!inputsControl()) {
+      Alert.alert(t('ShopList.shopList_alertBtn'), '', [
+        {
+          text: t('ShopList.shopList_alertBtn_ok'),
+          style: 'cancel',
+        },
+      ]);
+    } else if (!isValidEmail(userMail)) {
+      Alert.alert(t('ContactMail.error'), t('ContactMail.error_mail'), [
+        {
+          text: t('ShopList.shopList_alertBtn_ok'),
+          style: 'cancel',
+        },
+      ]);
+    } else {
+      setModalVisible(true);
+      try {
+        const userData = {
+          nameSurname: userNameSurname,
+          mail: userMail,
+          explanation: userExplanation,
+        };
+        const response = await axios.post(CONTACT_ENDPOINT, userData);
+        toast.show(t('ContactMail.toast_success'), {type: 'success'});
+        setUserNameSurname('');
+        setUserMail('');
+        setUserExplanation('');
+        if (response.status === 200) {
+          setModalVisible(false);
+        }
+      } catch (error) {
+        console.log(error);
+        toast.show(t('ContactMail.toast_danger'), {type: 'danger'});
+      }
     }
   };
 
   return (
     <View
-      className={`flex-1 justify-center mx-2.5 ${
+      className={`flex-1 justify-center ${
         darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
       }`}>
       <TextInput
-        placeholder="İsim Soyisim"
-        // placeholder={t('AddCatalogs.catalogTitle')}
+        placeholder={t('ContactMail.nameSurname')}
         value={userNameSurname}
         onChangeText={text => setUserNameSurname(text)}
-        className=" bg-white border p-5 text-xl my-2 rounded-xl"
+        className=" bg-white border p-5 text-xl my-2.5 mx-2.5 rounded-xl"
       />
       <TextInput
-        placeholder="Mail"
-        // placeholder={t('AddCatalogs.catalogTitle')}
+        placeholder={t('ContactMail.mail')}
         value={userMail}
         onChangeText={text => setUserMail(text)}
-        className=" bg-white border p-5 text-xl my-2 rounded-xl"
+        className=" bg-white border p-5 text-xl my-2 mx-2.5 rounded-xl"
       />
       <TextInput
-        placeholder="Açıklama"
+        placeholder={t('ContactMail.explanation')}
         value={userExplanation}
         onChangeText={text => setUserExplanation(text)}
         multiline={true}
         numberOfLines={4}
-        className="bg-white border p-5 text-xl my-2 rounded-xl"
+        className="bg-white border p-5 text-xl my-2 mx-2.5 rounded-xl"
       />
       <TouchableOpacity
         className="items-center"
@@ -71,6 +100,11 @@ const ContactUs = () => {
           color={darkMode ? Styles.textColor : Styles.dark_text_color}
         />
       </TouchableOpacity>
+      <Modal isVisible={isModalVisible}>
+        <View>
+          <LoadingLoader />
+        </View>
+      </Modal>
     </View>
   );
 };

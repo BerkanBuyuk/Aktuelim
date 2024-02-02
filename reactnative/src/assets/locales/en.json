@@ -40,5 +40,14 @@
         "catalogDescription": "Enter catalog description.",
         "selectMarket": "Select Market",
         "searchMarket": "Search Market"
+    },
+    "ContactMail" : {
+        "nameSurname": "Enter Name and Surname.",
+        "mail": "Enter e-mail.",
+        "explanation": "Enter your message.",
+        "error": "Error !",
+        "error_mail": "Write your e-mail correctly.",
+        "toast_success": "The e-mail was sent successfully.",
+        "toast_danger": "An error occurred while sending the email."
     }
 }

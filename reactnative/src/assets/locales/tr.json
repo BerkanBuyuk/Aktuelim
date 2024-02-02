@@ -40,5 +40,14 @@
         "catalogDescription": "Katalog açıklaması girin.",
         "selectMarket": "Market Seçin",
         "searchMarket": "Market Ara"
+    },
+    "ContactMail" : {
+        "nameSurname": "İsim Soyisim girin.",
+        "mail": "E-posta girin.",
+        "explanation": "Mesajınızı girin.",
+        "error": "Hata !",
+        "error_mail": "E-postanızı doğru yazın.",
+        "toast_success": "Mail başarıyla iletildi.",
+        "toast_danger": "Mail gönderilirken hata oluştu."
     }
 }
