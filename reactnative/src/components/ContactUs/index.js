@@ -1,4 +1,4 @@
-import {View, TextInput, TouchableOpacity, Alert} from 'react-native';
+import {View, TextInput, TouchableOpacity, Alert, Text} from 'react-native';
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
@@ -19,17 +19,23 @@ const ContactUs = () => {
   const darkMode = useSelector(state => state.theme.darkMode);
   const {t} = useTranslation();
 
-  const inputsControl = () => {
-    return userNameSurname && userMail && userExplanation;
-  };
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const emailer = ['gmail', 'hotmail', 'outlook', 'yandex', 'yahoo'];
+  const emailerCom = ['com'];
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[com\s@]+$/;
   const isValidEmail = email => {
-    return emailRegex.test(email);
+    const checkEmailer = emailer.includes(email.split('@')[1].split('.')[0]);
+    const checkEmailerCom = emailerCom.includes(
+      email.split('@')[1].split('.')[1],
+    );
+    if (checkEmailer && checkEmailerCom) {
+      console.log(checkEmailerCom);
+      return emailRegex.test(email);
+    }
+    return false;
   };
 
   const handleMailPostRequest = async () => {
-    if (!inputsControl()) {
+    if (!(userNameSurname && userMail && userExplanation)) {
       Alert.alert(t('ShopList.shopList_alertBtn'), '', [
         {
           text: t('ShopList.shopList_alertBtn_ok'),
@@ -94,6 +100,7 @@ const ContactUs = () => {
       <TouchableOpacity
         className="items-center"
         onPress={handleMailPostRequest}>
+        {/* <Text className="text-xl">Gönder</Text> */}
         <MaterialCommunityIcons
           name="email-send"
           size={65}

@@ -13,12 +13,15 @@ export const postMail = (req, res) => {
     },
   });
 
+  //req.body.
   const mailOptions = {
     from: process.env.MAIL_USER,
     to: process.env.MAIL_USER,
     subject: "Müşteri Maili",
     text: `İsim Soyisim: ${nameSurname}\nMail: ${mail}\nAçıklama:\n${explanation}`,
   };
+
+  console.log(req.body);
 
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
