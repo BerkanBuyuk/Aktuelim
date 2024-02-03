@@ -28,7 +28,6 @@ const ContactUs = () => {
       email.split('@')[1].split('.')[1],
     );
     if (checkEmailer && checkEmailerCom) {
-      console.log(checkEmailerCom);
       return emailRegex.test(email);
     }
     return false;
