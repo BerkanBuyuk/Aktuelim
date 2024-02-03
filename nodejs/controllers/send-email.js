@@ -15,7 +15,8 @@ export const postMail = (req, res) => {
 
   //req.body.
   const mailOptions = {
-    from: process.env.MAIL_USER,
+    // from: process.env.MAIL_USER,
+    from: req.body.mail,
     to: process.env.MAIL_USER,
     subject: "Müşteri Maili",
     text: `İsim Soyisim: ${nameSurname}\nMail: ${mail}\nAçıklama:\n${explanation}`,
