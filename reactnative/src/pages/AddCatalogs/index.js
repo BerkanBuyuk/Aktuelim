@@ -7,19 +7,22 @@ import {useTranslation} from 'react-i18next';
 import {Dropdown} from 'react-native-element-dropdown';
 import {useToast} from 'react-native-toast-notifications';
 import LoadingLoader from '../../components/Loader/loadingLoader';
+import Modal from 'react-native-modal';
 
 const AddCatalogs = ({navigation}) => {
-  const darkMode = useSelector(state => state.theme.darkMode);
   const [catalogTitle, setCatalogTitle] = useState('');
   const [catalogImage, setCatalogImage] = useState('');
   const [catalogDescription, setCatalogDescription] = useState('');
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [marketId, setMarketId] = useState(null);
   const [marketData, setMarketData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const {t} = useTranslation();
   const toast = useToast();
+  const darkMode = useSelector(state => state.theme.darkMode);
 
   const handlePostRequest = async () => {
+    setModalVisible(true);
     try {
       const data = {
         catalog_title: catalogTitle,
@@ -28,8 +31,11 @@ const AddCatalogs = ({navigation}) => {
         market_id: marketId,
       };
 
-      await axios.post(CATALOGS_URL, data);
+      const request = await axios.post(CATALOGS_URL, data);
       toast.show('Yeni katalog eklendi.', {type: 'success'});
+      if (request.status === 200) {
+        setModalVisible(false);
+      }
       navigation.goBack();
     } catch (error) {
       console.log(error);
@@ -105,6 +111,11 @@ const AddCatalogs = ({navigation}) => {
               {t('ShopList.shopList_addBtn')}
             </Text>
           </TouchableOpacity>
+          <Modal isVisible={isModalVisible}>
+            <View>
+              <LoadingLoader />
+            </View>
+          </Modal>
         </View>
       )}
     </View>

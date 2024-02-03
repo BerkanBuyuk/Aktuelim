@@ -4,7 +4,7 @@ import { getNotification } from "../controllers/notification.js";
 
 const router = express.Router();
 
-//GET NOTIFICATION
-router.get("/api/catalogs", getNotification);
+//POST NOTIFICATION
+router.post("/api/send-notification", getNotification);
 
 export default router;

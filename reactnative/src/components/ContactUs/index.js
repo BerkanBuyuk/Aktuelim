@@ -56,12 +56,12 @@ const ContactUs = () => {
           mail: userMail,
           explanation: userExplanation,
         };
-        const response = await axios.post(CONTACT_ENDPOINT, userData);
+        const request = await axios.post(CONTACT_ENDPOINT, userData);
         toast.show(t('ContactMail.toast_success'), {type: 'success'});
         setUserNameSurname('');
         setUserMail('');
         setUserExplanation('');
-        if (response.status === 200) {
+        if (request.status === 200) {
           setModalVisible(false);
         }
       } catch (error) {
