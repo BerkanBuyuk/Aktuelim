@@ -65,10 +65,10 @@ const Catalogs = ({route, navigation}) => {
               {abbreviatedTitle}
             </Text>
           </TouchableOpacity>
-        </View>
-        <View className="mx-3.5 flex-row justify-between mb-3">
-          <DeleteCatalogBtn catalogs={item} onDelete={handleCatalogDelete} />
-          <UpdateCatalogBtn catalogs={item} onUpdate={handleUpdateCatalog} />
+          <View className="flex-row justify-between mt-2">
+            <UpdateCatalogBtn catalogs={item} onUpdate={handleUpdateCatalog} />
+            <DeleteCatalogBtn catalogs={item} onDelete={handleCatalogDelete} />
+          </View>
         </View>
       </View>
     );

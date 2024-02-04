@@ -9,6 +9,9 @@ import {
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
 import Styles from '../assets/Styles';
+import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
+import Ionicons from 'react-native-vector-icons/dist/Ionicons';
+import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
 
 const Drawer = createDrawerNavigator();
 
@@ -37,6 +40,13 @@ const DrawerNavigator = ({navigation}) => {
         component={TabNavigator}
         options={{
           drawerLabel: `${t('home')}`,
+          drawerIcon: () => (
+            <FontAwesome
+              name="home"
+              size={25}
+              color={darkMode ? Styles.textColor : Styles.dark_text_color}
+            />
+          ),
         }}
       />
       <Drawer.Screen
@@ -44,6 +54,13 @@ const DrawerNavigator = ({navigation}) => {
         component={AyarlarStackNavigator}
         options={{
           drawerLabel: `${t('Settings.settings')}`,
+          drawerIcon: () => (
+            <Ionicons
+              name="settings"
+              size={25}
+              color={darkMode ? Styles.textColor : Styles.dark_text_color}
+            />
+          ),
         }}
       />
       <Drawer.Screen
@@ -51,6 +68,13 @@ const DrawerNavigator = ({navigation}) => {
         component={NotificationsStackNavigator}
         options={{
           drawerLabel: `${t('notifications')}`,
+          drawerIcon: () => (
+            <Ionicons
+              name="notifications"
+              size={25}
+              color={darkMode ? Styles.textColor : Styles.dark_text_color}
+            />
+          ),
         }}
       />
       <Drawer.Screen
@@ -58,6 +82,13 @@ const DrawerNavigator = ({navigation}) => {
         component={ContactUsStackNavigator}
         options={{
           drawerLabel: `${t('contact_us')}`,
+          drawerIcon: () => (
+            <MaterialIcons
+              name="quick-contacts-mail"
+              size={25}
+              color={darkMode ? Styles.textColor : Styles.dark_text_color}
+            />
+          ),
         }}
       />
     </Drawer.Navigator>
