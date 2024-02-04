@@ -1,4 +1,4 @@
-import {TouchableOpacity, View, TextInput} from 'react-native';
+import {TouchableOpacity, View, TextInput, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
 import {useSelector} from 'react-redux';
@@ -6,9 +6,15 @@ import Styles from '../../assets/Styles';
 import {useToast} from 'react-native-toast-notifications';
 import axios from 'axios';
 import Modal from 'react-native-modal';
-import {CATALOGS_URL, MARKETS_URL} from '@env';
+import {
+  CATALOGS_URL,
+  MARKETS_URL,
+  CLOUDINARY_CLOUDNAME,
+  CLOUDINARY_POST_URL,
+} from '@env';
 import {Dropdown} from 'react-native-element-dropdown';
 import {useTranslation} from 'react-i18next';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 const UpdateCatalogBtn = ({catalogs, onUpdate}) => {
   const {t} = useTranslation();
@@ -22,6 +28,53 @@ const UpdateCatalogBtn = ({catalogs, onUpdate}) => {
   );
   const [marketId, setMarketId] = useState(catalogs.market_id);
   const [marketData, setMarketData] = useState([]);
+
+  const selectPhotoTapped = () => {
+    const options = {
+      title: 'Select Photo',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+
+    launchImageLibrary(options, response => {
+      console.log('Response = ', response);
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else {
+        const uri = response.assets[0].uri;
+        const type = response.assets[0].type;
+        const name = response.assets[0].fileName;
+        const source = {
+          uri,
+          type,
+          name,
+        };
+        cloudinaryUpload(source);
+      }
+    });
+
+    const cloudinaryUpload = photoSource => {
+      const data = new FormData();
+      data.append('file', photoSource);
+      data.append('upload_preset', CLOUDINARY_CLOUDNAME);
+      data.append('cloud_name', CLOUDINARY_CLOUDNAME);
+      fetch(CLOUDINARY_POST_URL, {
+        method: 'POST',
+        body: data,
+      })
+        .then(res => res.json())
+        .then(photoData => {
+          setCatalogImage(photoData.secure_url);
+        })
+        .catch(err => {
+          console.log(`HATA : ${err}`);
+        });
+    };
+  };
 
   const handleUpdate = async () => {
     try {
@@ -82,12 +135,6 @@ const UpdateCatalogBtn = ({catalogs, onUpdate}) => {
             className=" bg-white border p-5 text-xl my-2 rounded-xl"
           />
           <TextInput
-            placeholder={t('AddCatalogs.catalogImage')}
-            value={catalogImage}
-            onChangeText={text => setCatalogImage(text)}
-            className=" bg-white border p-5 text-xl my-2 rounded-xl"
-          />
-          <TextInput
             placeholder={t('AddCatalogs.catalogDescription')}
             value={catalogDescription}
             onChangeText={text => setCatalogDescription(text)}
@@ -109,6 +156,13 @@ const UpdateCatalogBtn = ({catalogs, onUpdate}) => {
               setMarketId(item.market_id);
             }}
           />
+          <TouchableOpacity onPress={selectPhotoTapped}>
+            <Image
+              source={{uri: catalogImage}}
+              className="w-full h-[calc(100vh/2)]"
+            />
+          </TouchableOpacity>
+
           <TouchableOpacity className="items-center" onPress={handleUpdate}>
             <FontAwesome name="check" size={30} color={Styles.textColor} />
           </TouchableOpacity>
