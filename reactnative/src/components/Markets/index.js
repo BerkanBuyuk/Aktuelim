@@ -1,4 +1,4 @@
-import {Text, FlatList, TouchableOpacity, Image, View} from 'react-native';
+import {Text, FlatList, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 import Categories from '../Categories';
@@ -6,6 +6,8 @@ import {MARKETS_URL} from '@env';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
 import Loader from '../Loader';
+import {AdvancedImage} from 'cloudinary-react-native';
+import {marketsCloudinaryImage} from '../../assets/CloudinaryConfig';
 
 const Markets = ({navigation}) => {
   const {t} = useTranslation();
@@ -49,8 +51,8 @@ const Markets = ({navigation}) => {
           navigation.navigate('Catalogs', item);
         }}
         className="mx-5 mb-5">
-        <Image
-          source={{uri: `${item.market_image}`}}
+        <AdvancedImage
+          cldImg={marketsCloudinaryImage(item.market_image)}
           className="h-24 w-36 rounded-lg"
         />
         <Text

@@ -1,9 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TouchableOpacity, Image, FlatList} from 'react-native';
+import {View, Text, TouchableOpacity, FlatList} from 'react-native';
 import axios from 'axios';
 import {CATEGORIES_URL} from '@env';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
+import {AdvancedImage} from 'cloudinary-react-native';
+import {categoriesCloudinaryImage} from '../../assets/CloudinaryConfig';
 
 const Categories = ({setSelectedCategory}) => {
   const [data, setData] = useState([]);
@@ -35,9 +37,9 @@ const Categories = ({setSelectedCategory}) => {
           }}
           className="items-center mx-1.5">
           <View>
-            <Image
-              source={{uri: `${item.category_image}`}}
-              className="w-24 h-24 rounded-full m-1.5"
+            <AdvancedImage
+              cldImg={categoriesCloudinaryImage(item.category_image)}
+              className="w-24 h-24 rounded-full m-1.5 "
             />
           </View>
           <Text
