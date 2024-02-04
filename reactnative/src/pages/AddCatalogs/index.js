@@ -1,32 +1,93 @@
-import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+  Image,
+  ScrollView,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
-import {CATALOGS_URL, MARKETS_URL} from '@env';
+import {
+  CATALOGS_URL,
+  MARKETS_URL,
+  CLOUDINARY_POST_URL,
+  CLOUDINARY_ADDIMAGE_URL,
+  CLOUDINARY_CLOUDNAME,
+} from '@env';
 import {useTranslation} from 'react-i18next';
 import {Dropdown} from 'react-native-element-dropdown';
 import {useToast} from 'react-native-toast-notifications';
 import LoadingLoader from '../../components/Loader/loadingLoader';
 import Modal from 'react-native-modal';
+import {launchImageLibrary} from 'react-native-image-picker';
 
 const AddCatalogs = ({navigation}) => {
   const [catalogTitle, setCatalogTitle] = useState('');
-  const [catalogImage, setCatalogImage] = useState('');
   const [catalogDescription, setCatalogDescription] = useState('');
   const [isModalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(true);
   const [marketId, setMarketId] = useState(null);
   const [marketData, setMarketData] = useState([]);
+  const [photo, setPhoto] = useState(CLOUDINARY_ADDIMAGE_URL);
   const {t} = useTranslation();
   const toast = useToast();
   const darkMode = useSelector(state => state.theme.darkMode);
+
+  const selectPhotoTapped = () => {
+    const options = {
+      title: 'Select Photo',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+
+    launchImageLibrary(options, response => {
+      console.log('Response = ', response);
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else {
+        const uri = response.assets[0].uri;
+        const type = response.assets[0].type;
+        const name = response.assets[0].fileName;
+        const source = {
+          uri,
+          type,
+          name,
+        };
+        cloudinaryUpload(source);
+      }
+    });
+
+    const cloudinaryUpload = photoSource => {
+      const data = new FormData();
+      data.append('file', photoSource);
+      data.append('upload_preset', CLOUDINARY_CLOUDNAME);
+      data.append('cloud_name', CLOUDINARY_CLOUDNAME);
+      fetch(CLOUDINARY_POST_URL, {
+        method: 'POST',
+        body: data,
+      })
+        .then(res => res.json())
+        .then(photoData => {
+          setPhoto(photoData.secure_url);
+        })
+        .catch(err => {
+          console.log(`HATA : ${err}`);
+        });
+    };
+  };
 
   const handlePostRequest = async () => {
     setModalVisible(true);
     try {
       const data = {
         catalog_title: catalogTitle,
-        catalog_image: catalogImage,
+        catalog_image: photo,
         catalog_description: catalogDescription,
         market_id: marketId,
       };
@@ -58,7 +119,7 @@ const AddCatalogs = ({navigation}) => {
   }, []);
 
   return (
-    <View
+    <ScrollView
       className={` flex-1 ${
         darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
       }`}>
@@ -70,14 +131,6 @@ const AddCatalogs = ({navigation}) => {
             placeholder={t('AddCatalogs.catalogTitle')}
             value={catalogTitle}
             onChangeText={text => setCatalogTitle(text)}
-            className={`border p-5 text-xl my-2 rounded-xl ${
-              darkMode ? 'bg-dark_textInput_color' : 'bg-light_textInput_color'
-            }`}
-          />
-          <TextInput
-            placeholder={t('AddCatalogs.catalogImage')}
-            value={catalogImage}
-            onChangeText={text => setCatalogImage(text)}
             className={`border p-5 text-xl my-2 rounded-xl ${
               darkMode ? 'bg-dark_textInput_color' : 'bg-light_textInput_color'
             }`}
@@ -105,12 +158,21 @@ const AddCatalogs = ({navigation}) => {
             }}
           />
           <TouchableOpacity
+            onPress={selectPhotoTapped}
+            className="items-center my-2.5">
+            <Image
+              source={{uri: photo}}
+              className="w-full h-[calc(100vh/1.5)]"
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
             onPress={handlePostRequest}
             className="items-center m-2.5">
             <Text className="text-xl text-addBtn">
               {t('ShopList.shopList_addBtn')}
             </Text>
           </TouchableOpacity>
+
           <Modal isVisible={isModalVisible}>
             <View>
               <LoadingLoader />
@@ -118,7 +180,7 @@ const AddCatalogs = ({navigation}) => {
           </Modal>
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 };
 
