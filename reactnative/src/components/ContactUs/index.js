@@ -1,4 +1,4 @@
-import {View, TextInput, TouchableOpacity, Alert, Text} from 'react-native';
+import {View, TextInput, TouchableOpacity, Alert} from 'react-native';
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import axios from 'axios';

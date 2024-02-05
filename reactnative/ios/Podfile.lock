@@ -378,6 +378,8 @@ PODS:
     - React-jsi (= 0.70.14)
     - React-logger (= 0.70.14)
     - React-perflogger (= 0.70.14)
+  - rn-fetch-blob (0.12.0):
+    - React-Core
   - RNCAsyncStorage (1.21.0):
     - React-Core
   - RNGestureHandler (2.14.0):
@@ -482,6 +484,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - rn-fetch-blob (from `../node_modules/rn-fetch-blob`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -582,6 +585,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  rn-fetch-blob:
+    :path: "../node_modules/rn-fetch-blob"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNGestureHandler:
@@ -645,6 +650,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: d293c50100c0927379e6a80fab86a219e08792ae
   React-runtimeexecutor: 0d01d03375f996484fcc231ccca3fe604a4a5652
   ReactCommon: dce64235f8548b6e4758647310145f5356c8d0cb
+  rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
   RNCAsyncStorage: 618d03a5f52fbccb3d7010076bc54712844c18ef
   RNGestureHandler: 4279931048471f17faf46d912b2e96e10f1da99b
   RNReanimated: c5a0074efffd21f4af324e86b19468758fe39fa2
