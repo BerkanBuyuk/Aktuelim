@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import DrawerNavigator from './src/navigation/DrawerNavigator';
 import {ToastProvider} from 'react-native-toast-notifications';
@@ -15,19 +15,28 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
   const dispatch = useDispatch();
-  const isUserLoggedIn = true;
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
   useEffect(() => {
-    const fetchLanguage = async () => {
+    const fetchLanguageAndAccessToken = async () => {
       const localeLng = await AsyncStorage.getItem('language');
       if (localeLng) {
         dispatch(setLanguage(localeLng));
         i18n.changeLanguage(localeLng);
-        // setIsEnabled(localeLng === 'en');
+      }
+      const accessToken = await AsyncStorage.getItem('accessToken');
+
+      if (accessToken) {
+        setIsUserLoggedIn(true);
       }
     };
 
-    fetchLanguage();
+    fetchLanguageAndAccessToken();
   }, [dispatch]);
+
+  if (isUserLoggedIn === false) {
+    return null;
+  }
 
   return (
     <ToastProvider
