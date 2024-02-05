@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import AllNavigator from './src/navigation/AllNavigator';
+import DrawerNavigator from './src/navigation/DrawerNavigator';
 import {ToastProvider} from 'react-native-toast-notifications';
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 import Styles from './src/assets/Styles';
@@ -8,9 +8,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useDispatch} from 'react-redux';
 import {setLanguage} from './src/redux/store/languageSlice';
 import i18n from './src/assets/locales/services/i18next';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import Login from './src/auth/login';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   const dispatch = useDispatch();
+  const isUserLoggedIn = true;
   useEffect(() => {
     const fetchLanguage = async () => {
       const localeLng = await AsyncStorage.getItem('language');
@@ -40,7 +45,28 @@ const App = () => {
         <AntDesign name="close" size={30} color={Styles.textColor} />
       }>
       <NavigationContainer>
-        <AllNavigator />
+        {isUserLoggedIn ? (
+          <Stack.Navigator>
+            <Stack.Screen
+              name="DrawerNavigator"
+              component={DrawerNavigator}
+              options={{headerShown: false}}
+            />
+          </Stack.Navigator>
+        ) : (
+          <Stack.Navigator>
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="LoginDrawerNavigator"
+              component={DrawerNavigator}
+              options={{headerShown: false}}
+            />
+          </Stack.Navigator>
+        )}
       </NavigationContainer>
     </ToastProvider>
   );

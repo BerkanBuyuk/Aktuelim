@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import {View, Text, TextInput, Button} from 'react-native';
 import axios from 'axios';
 import {LOGIN_ENDPOINT} from '@env';
+import {useNavigation} from '@react-navigation/native';
 
 const Login = () => {
+  const navigation = useNavigation();
   const [formData, setFormData] = useState({
     user_username: '',
     user_password: '',
@@ -19,6 +21,7 @@ const Login = () => {
     try {
       const response = await axios.post(LOGIN_ENDPOINT, formData);
       console.log('Başarılı giriş:', response.data);
+      navigation.navigate('LoginDrawerNavigator');
     } catch (error) {
       setErr(error.response.data);
     }
