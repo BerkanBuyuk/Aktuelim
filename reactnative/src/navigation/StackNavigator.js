@@ -14,6 +14,8 @@ import {useSelector} from 'react-redux';
 import Markets from '../components/Markets';
 import FavoriteBtn from '../components/FavoriteBtn';
 import {useNavigation} from '@react-navigation/native';
+import DownloadBtn from '../components/DownloadBtn';
+import {View} from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -176,11 +178,14 @@ const MainStackNavigator = ({fetchFavorites}) => {
           headerTitle: `${route.params.catalog_title}`,
           headerTitleAlign: 'center',
           headerRight: () => (
-            <FavoriteBtn
-              catalogId={route.params.catalog_id}
-              catalogTitle={route.params.catalog_title}
-              fetchFavorites={fetchFavorites}
-            />
+            <View className="flex-row">
+              <DownloadBtn catalogImage={route.params.catalog_image} />
+              <FavoriteBtn
+                catalogId={route.params.catalog_id}
+                catalogTitle={route.params.catalog_title}
+                fetchFavorites={fetchFavorites}
+              />
+            </View>
           ),
         })}
       />

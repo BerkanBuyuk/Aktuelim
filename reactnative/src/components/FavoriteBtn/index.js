@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Platform} from 'react-native';
+import {Platform, TouchableOpacity} from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import axios from 'axios';
 import {FAVORITES_URL} from '@env';
@@ -82,14 +82,13 @@ const FavoriteBtn = ({catalogId, catalogTitle, fetchFavorites}) => {
   };
 
   return (
-    <MaterialIcons
-      name={isFavorite ? 'favorite' : 'favorite-border'}
-      size={35}
-      color="red"
-      onPress={() => {
-        handleFavoritePress();
-      }}
-    />
+    <TouchableOpacity onPress={handleFavoritePress}>
+      <MaterialIcons
+        name={isFavorite ? 'favorite' : 'favorite-border'}
+        size={35}
+        color="red"
+      />
+    </TouchableOpacity>
   );
 };
 
