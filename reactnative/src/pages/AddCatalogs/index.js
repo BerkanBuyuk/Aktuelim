@@ -165,10 +165,17 @@ const AddCatalogs = ({navigation}) => {
               className="w-full h-[calc(100vh/1.5)]"
             />
           </TouchableOpacity>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={handlePostRequest}
             className="items-center m-2.5">
             <Text className="text-xl text-addBtn">
+              {t('ShopList.shopList_addBtn')}
+            </Text>
+          </TouchableOpacity> */}
+          <TouchableOpacity
+            onPress={handlePostRequest}
+            className="items-center bg-baseColor rounded-2xl mx-2.5 my-5 p-4">
+            <Text className="text-white text-2xl">
               {t('ShopList.shopList_addBtn')}
             </Text>
           </TouchableOpacity>

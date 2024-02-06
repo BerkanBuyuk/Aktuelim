@@ -1,14 +1,19 @@
-import {View, TextInput, TouchableOpacity, Alert} from 'react-native';
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  Text,
+  ScrollView,
+} from 'react-native';
 import React, {useState} from 'react';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
 import {CONTACT_ENDPOINT} from '@env';
-import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import {useToast} from 'react-native-toast-notifications';
 import {useTranslation} from 'react-i18next';
 import LoadingLoader from '../../components/Loader/loadingLoader';
 import Modal from 'react-native-modal';
-import Styles from '../../assets/Styles';
 import MailLottie from '../Loader/mailLottie';
 
 const ContactUs = () => {
@@ -73,50 +78,55 @@ const ContactUs = () => {
   };
 
   return (
-    <View
-      className={`justify-center ${
-        darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
-      }`}>
-      <View className="items-center">
-        <MailLottie />
-      </View>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      className={` ${darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'}`}>
+      <View className="justify-center">
+        <View className="items-center">
+          <MailLottie />
+        </View>
 
-      <TextInput
-        placeholder={t('ContactMail.nameSurname')}
-        value={userNameSurname}
-        onChangeText={text => setUserNameSurname(text)}
-        className=" bg-white border p-5 text-xl my-2.5 mx-2.5 rounded-xl"
-      />
-      <TextInput
-        placeholder={t('ContactMail.mail')}
-        value={userMail}
-        onChangeText={text => setUserMail(text)}
-        className=" bg-white border p-5 text-xl my-2 mx-2.5 rounded-xl"
-      />
-      <TextInput
-        placeholder={t('ContactMail.explanation')}
-        value={userExplanation}
-        onChangeText={text => setUserExplanation(text)}
-        multiline={true}
-        numberOfLines={4}
-        className="bg-white border p-5 text-xl my-2 mx-2.5 rounded-xl"
-      />
-      <TouchableOpacity
+        <TextInput
+          placeholder={t('ContactMail.nameSurname')}
+          value={userNameSurname}
+          onChangeText={text => setUserNameSurname(text)}
+          className=" bg-white border p-5 text-xl my-2.5 mx-2.5 rounded-xl"
+        />
+        <TextInput
+          placeholder={t('ContactMail.mail')}
+          value={userMail}
+          onChangeText={text => setUserMail(text)}
+          className=" bg-white border p-5 text-xl my-2 mx-2.5 rounded-xl"
+        />
+        <TextInput
+          placeholder={t('ContactMail.explanation')}
+          value={userExplanation}
+          onChangeText={text => setUserExplanation(text)}
+          multiline={true}
+          numberOfLines={4}
+          className="bg-white border p-5 text-xl my-2 mx-2.5 rounded-xl"
+        />
+        {/* <TouchableOpacity
         className="items-center"
         onPress={handleMailPostRequest}>
-        {/* <Text className="text-xl">Gönder</Text> */}
         <MaterialCommunityIcons
           name="email-send"
           size={65}
           color={darkMode ? Styles.textColor : Styles.dark_text_color}
         />
-      </TouchableOpacity>
-      <Modal isVisible={isModalVisible}>
-        <View>
-          <LoadingLoader />
-        </View>
-      </Modal>
-    </View>
+      </TouchableOpacity> */}
+        <TouchableOpacity
+          onPress={handleMailPostRequest}
+          className="items-center bg-baseColor rounded-2xl mx-20 my-5 p-4">
+          <Text className="text-white text-2xl">Gönder</Text>
+        </TouchableOpacity>
+        <Modal isVisible={isModalVisible}>
+          <View>
+            <LoadingLoader />
+          </View>
+        </Modal>
+      </View>
+    </ScrollView>
   );
 };
 
