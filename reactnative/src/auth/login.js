@@ -4,8 +4,10 @@ import axios from 'axios';
 import {LOGIN_ENDPOINT} from '@env';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useToast} from 'react-native-toast-notifications';
 
 const Login = () => {
+  const toast = useToast();
   const navigation = useNavigation();
   const [formData, setFormData] = useState({
     user_username: '',
@@ -37,11 +39,9 @@ const Login = () => {
 
       await AsyncStorage.setItem('accessToken', accessToken);
       console.log('AccessToken: ', accessToken);
+      toast.show(`Hoşgeldin ${response.data.user_name}`, {type: 'success'});
 
-      await AsyncStorage.setItem('userMail', response.data.user_email);
-      console.log('AccessToken: ', response.data.user_email);
-
-      navigation.navigate('LoginDrawerNavigator');
+      navigation.navigate('DrawerNavigator');
     } catch (error) {
       setErr(error.response.data);
     }
