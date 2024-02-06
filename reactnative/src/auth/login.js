@@ -76,8 +76,10 @@ const Login = () => {
         </TouchableOpacity>
       </View>
 
-      <View className="items-center bg-baseColor rounded-2xl mx-2.5 my-5 p-4">
-        <TouchableOpacity onPress={handleClick}>
+      <View>
+        <TouchableOpacity
+          onPress={handleClick}
+          className="items-center bg-baseColor rounded-2xl mx-2.5 my-5 p-4">
           <Text className="text-white text-2xl">Giriş Yap</Text>
         </TouchableOpacity>
       </View>
