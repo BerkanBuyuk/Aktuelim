@@ -31,6 +31,7 @@ app.use("/", authRoutes);
 app.use("/", usersRoutes);
 app.use("/", sendMails);
 app.use("/", notificationsRoutes);
+app.use("/", usersRoutes);
 
 app.listen(localPort, () => {
   console.log(`Sunucu ${localPort} portunda çalışıyor.`);
