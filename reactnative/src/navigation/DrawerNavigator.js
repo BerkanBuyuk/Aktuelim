@@ -1,5 +1,9 @@
 import React from 'react';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import {
+  createDrawerNavigator,
+  DrawerContentScrollView,
+  DrawerItem,
+} from '@react-navigation/drawer';
 import TabNavigator from './TabNavigator';
 import {
   AyarlarStackNavigator,
@@ -12,14 +16,71 @@ import Styles from '../assets/Styles';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
+import UserInfo from '../components/userInfo';
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = ({navigation}) => {
+const CustomDrawerContent = ({navigation}) => {
   const {t} = useTranslation();
   const darkMode = useSelector(state => state.theme.darkMode);
+
+  return (
+    <DrawerContentScrollView>
+      <UserInfo />
+      <DrawerItem
+        label={t('home')}
+        icon={() => (
+          <FontAwesome
+            name="home"
+            size={25}
+            color={darkMode ? Styles.textColor : Styles.dark_text_color}
+          />
+        )}
+        onPress={() => navigation.navigate('TabNavigator')}
+      />
+      <DrawerItem
+        label={t('Settings.settings')}
+        icon={() => (
+          <Ionicons
+            name="settings"
+            size={25}
+            color={darkMode ? Styles.textColor : Styles.dark_text_color}
+          />
+        )}
+        onPress={() => navigation.navigate('Ayarlar1')}
+      />
+      <DrawerItem
+        label={t('notifications')}
+        icon={() => (
+          <Ionicons
+            name="notifications"
+            size={25}
+            color={darkMode ? Styles.textColor : Styles.dark_text_color}
+          />
+        )}
+        onPress={() => navigation.navigate('Notifications1')}
+      />
+      <DrawerItem
+        label={t('contact_us')}
+        icon={() => (
+          <MaterialIcons
+            name="quick-contacts-mail"
+            size={25}
+            color={darkMode ? Styles.textColor : Styles.dark_text_color}
+          />
+        )}
+        onPress={() => navigation.navigate('ContactUs1')}
+      />
+    </DrawerContentScrollView>
+  );
+};
+
+const DrawerNavigator = ({navigation}) => {
+  const darkMode = useSelector(state => state.theme.darkMode);
+
   return (
     <Drawer.Navigator
+      drawerContent={props => <CustomDrawerContent {...props} />}
       screenOptions={{
         headerShown: false,
         drawerActiveBackgroundColor: darkMode
@@ -38,58 +99,58 @@ const DrawerNavigator = ({navigation}) => {
       <Drawer.Screen
         name="TabNavigator"
         component={TabNavigator}
-        options={{
-          drawerLabel: `${t('home')}`,
-          drawerIcon: () => (
-            <FontAwesome
-              name="home"
-              size={25}
-              color={darkMode ? Styles.textColor : Styles.dark_text_color}
-            />
-          ),
-        }}
+        // options={{
+        //   drawerLabel: `${t('home')}`,
+        //   drawerIcon: () => (
+        //     <FontAwesome
+        //       name="home"
+        //       size={25}
+        //       color={darkMode ? Styles.textColor : Styles.dark_text_color}
+        //     />
+        //   ),
+        // }}
       />
       <Drawer.Screen
         name="Ayarlar1"
         component={AyarlarStackNavigator}
-        options={{
-          drawerLabel: `${t('Settings.settings')}`,
-          drawerIcon: () => (
-            <Ionicons
-              name="settings"
-              size={25}
-              color={darkMode ? Styles.textColor : Styles.dark_text_color}
-            />
-          ),
-        }}
+        // options={{
+        //   drawerLabel: `${t('Settings.settings')}`,
+        //   drawerIcon: () => (
+        //     <Ionicons
+        //       name="settings"
+        //       size={25}
+        //       color={darkMode ? Styles.textColor : Styles.dark_text_color}
+        //     />
+        //   ),
+        // }}
       />
       <Drawer.Screen
         name="Notifications1"
         component={NotificationsStackNavigator}
-        options={{
-          drawerLabel: `${t('notifications')}`,
-          drawerIcon: () => (
-            <Ionicons
-              name="notifications"
-              size={25}
-              color={darkMode ? Styles.textColor : Styles.dark_text_color}
-            />
-          ),
-        }}
+        // options={{
+        //   drawerLabel: `${t('notifications')}`,
+        //   drawerIcon: () => (
+        //     <Ionicons
+        //       name="notifications"
+        //       size={25}
+        //       color={darkMode ? Styles.textColor : Styles.dark_text_color}
+        //     />
+        //   ),
+        // }}
       />
       <Drawer.Screen
         name="ContactUs1"
         component={ContactUsStackNavigator}
-        options={{
-          drawerLabel: `${t('contact_us')}`,
-          drawerIcon: () => (
-            <MaterialIcons
-              name="quick-contacts-mail"
-              size={25}
-              color={darkMode ? Styles.textColor : Styles.dark_text_color}
-            />
-          ),
-        }}
+        // options={{
+        //   drawerLabel: `${t('contact_us')}`,
+        //   drawerIcon: () => (
+        //     <MaterialIcons
+        //       name="quick-contacts-mail"
+        //       size={25}
+        //       color={darkMode ? Styles.textColor : Styles.dark_text_color}
+        //     />
+        //   ),
+        // }}
       />
     </Drawer.Navigator>
   );
