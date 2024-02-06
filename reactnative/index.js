@@ -36,8 +36,6 @@ const Aktuelim = () => (
       </ToastProvider>
     </I18nextProvider>
   </Provider>
-  // <Register />
-  // <Login />
 );
 
 AppRegistry.registerComponent(appName, () => Aktuelim);

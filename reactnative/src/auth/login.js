@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, Button} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import axios from 'axios';
 import {LOGIN_ENDPOINT} from '@env';
 import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useToast} from 'react-native-toast-notifications';
+import LoginLottie from '../components/Loader/loginLottie';
+import Divider from '../components/Divider';
 
 const Login = () => {
   const toast = useToast();
@@ -48,20 +50,58 @@ const Login = () => {
   };
 
   return (
-    <View className="flex-1 items-center justify-center">
-      <Text>Login</Text>
-      <TextInput
-        placeholder="Username"
-        name="user_username"
-        onChangeText={text => handleChange('user_username', text)}
-      />
-      <TextInput
-        placeholder="Password"
-        name="user_password"
-        secureTextEntry
-        onChangeText={text => handleChange('user_password', text)}
-      />
-      <Button title="Login" onPress={handleClick} />
+    <View className="flex-1 justify-center">
+      <View className="items-center">
+        <LoginLottie />
+        <Text className="text-5xl font-bold">Hoşgeldiniz</Text>
+      </View>
+      <View className="mx-2.5 my-2.5">
+        <TextInput
+          placeholder="Kullanıcı Adı"
+          name="user_username"
+          onChangeText={text => handleChange('user_username', text)}
+          className="border p-5 text-xl my-2 rounded-xl"
+        />
+        <TextInput
+          placeholder="Şifre"
+          name="user_password"
+          secureTextEntry
+          onChangeText={text => handleChange('user_password', text)}
+          className="border p-5 text-xl my-2 rounded-xl"
+        />
+      </View>
+      <View className="items-end mx-2.5">
+        <TouchableOpacity onPress={null}>
+          <Text className="text-baseColor text-base">Şifremi Unuttum</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View className="items-center bg-baseColor rounded-2xl mx-2.5 my-5 p-4">
+        <TouchableOpacity onPress={handleClick}>
+          <Text className="text-white text-2xl">Giriş Yap</Text>
+        </TouchableOpacity>
+      </View>
+
+      <View className="mx-2.5">
+        <Divider />
+      </View>
+
+      <View className="items-center">
+        <TouchableOpacity onPress={null}>
+          <Image
+            source={require('../assets/Images/google.png')}
+            className="w-14 h-14"
+          />
+        </TouchableOpacity>
+      </View>
+
+      <View className="flex-row justify-center mt-4">
+        <Text className="text-base">Hesabınız yok mu ?</Text>
+        <TouchableOpacity onPress={null}>
+          <Text className="text-baseColor text-base"> Kaydol</Text>
+        </TouchableOpacity>
+      </View>
+
       {err && <Text>{err}</Text>}
     </View>
   );
