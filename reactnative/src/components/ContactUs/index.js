@@ -9,6 +9,7 @@ import {useTranslation} from 'react-i18next';
 import LoadingLoader from '../../components/Loader/loadingLoader';
 import Modal from 'react-native-modal';
 import Styles from '../../assets/Styles';
+import MailLottie from '../Loader/mailLottie';
 
 const ContactUs = () => {
   const [userNameSurname, setUserNameSurname] = useState('');
@@ -73,9 +74,13 @@ const ContactUs = () => {
 
   return (
     <View
-      className={`flex-1 justify-center ${
+      className={`justify-center ${
         darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
       }`}>
+      <View className="items-center">
+        <MailLottie />
+      </View>
+
       <TextInput
         placeholder={t('ContactMail.nameSurname')}
         value={userNameSurname}
