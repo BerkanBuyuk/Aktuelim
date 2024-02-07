@@ -16,6 +16,7 @@ import Styles from '../assets/Styles';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
+import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import UserInfo from '../components/userInfo';
 
 const Drawer = createDrawerNavigator();
@@ -70,6 +71,17 @@ const CustomDrawerContent = ({navigation}) => {
           />
         )}
         onPress={() => navigation.navigate('ContactUs1')}
+      />
+      <DrawerItem
+        label="Çıkış yap"
+        icon={() => (
+          <MaterialCommunityIcons
+            name="logout"
+            size={25}
+            color={darkMode ? Styles.textColor : Styles.dark_text_color}
+          />
+        )}
+        // onPress={() => navigation.navigate('Login')}
       />
     </DrawerContentScrollView>
   );
