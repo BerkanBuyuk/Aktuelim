@@ -4,7 +4,7 @@ import LottieView from 'lottie-react-native';
 const LoginLottie = () => {
   return (
     <LottieView
-      className="w-64 h-64"
+      className="w-80 h-80"
       source={require('../../assets/lottie/registerLottie/registerLottie.json')}
       autoPlay
     />
