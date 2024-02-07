@@ -99,7 +99,7 @@ const Login = () => {
 
       <View className="flex-row justify-center mt-4">
         <Text className="text-base">Hesabınız yok mu ?</Text>
-        <TouchableOpacity onPress={null}>
+        <TouchableOpacity onPress={() => navigation.navigate('Register')}>
           <Text className="text-baseColor text-base"> Kaydol</Text>
         </TouchableOpacity>
       </View>

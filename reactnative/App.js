@@ -7,7 +7,7 @@ import {setLanguage} from './src/redux/store/languageSlice';
 import i18n from './src/assets/locales/services/i18next';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Login from './src/auth/login';
-import FirstLoader from './src/components/Loader/firstLoader';
+import Register from './src/auth/register';
 
 const Stack = createNativeStackNavigator();
 
@@ -46,6 +46,11 @@ const App = () => {
           <Stack.Screen
             name="DrawerNavigator"
             component={DrawerNavigator}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Register"
+            component={Register}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

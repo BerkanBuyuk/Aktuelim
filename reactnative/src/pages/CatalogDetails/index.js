@@ -31,8 +31,8 @@ const CatalogDetails = ({route}) => {
         <LoadingLoader />
       ) : (
         <>
-          {err ? ( // Yeni eklenen satır
-            <Text className="text-red-600">{err}</Text> // Yeni eklenen satır
+          {err ? (
+            <Text className="text-red-600">{err}</Text>
           ) : (
             <Image
               source={{uri: `${route.params.catalog_image}`}}
