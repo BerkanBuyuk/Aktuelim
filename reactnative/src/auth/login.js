@@ -7,8 +7,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useToast} from 'react-native-toast-notifications';
 import LoginLottie from '../components/Loader/loginLottie';
 import Divider from '../components/Divider';
+import Modal from 'react-native-modal';
+import LoadingLoader from '../components/Loader/loadingLoader';
 
 const Login = () => {
+  const [isModalVisible, setModalVisible] = useState(false);
   const toast = useToast();
   const navigation = useNavigation();
   const [formData, setFormData] = useState({
@@ -32,6 +35,7 @@ const Login = () => {
   };
 
   const handleClick = async () => {
+    setModalVisible(true);
     try {
       const response = await axios.post(LOGIN_ENDPOINT, formData);
       console.log('Başarılı giriş:', response.data);
@@ -42,6 +46,7 @@ const Login = () => {
       await AsyncStorage.setItem('accessToken', accessToken);
       console.log('AccessToken: ', accessToken);
       toast.show(`Hoşgeldin ${response.data.user_name}`, {type: 'success'});
+      setModalVisible(false);
 
       navigation.navigate('DrawerNavigator');
     } catch (error) {
@@ -103,6 +108,11 @@ const Login = () => {
           <Text className="text-baseColor text-base"> Kaydol</Text>
         </TouchableOpacity>
       </View>
+      <Modal isVisible={isModalVisible}>
+        <View>
+          <LoadingLoader />
+        </View>
+      </Modal>
 
       {err && <Text>{err}</Text>}
     </View>
