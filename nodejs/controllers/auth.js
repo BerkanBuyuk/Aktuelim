@@ -20,6 +20,7 @@ export const register = (req, res) => {
       req.body.user_email,
       hashedPassword,
       req.body.user_name,
+      req.body.user_pic,
     ];
 
     db.query(q, [values], (err, data) => {

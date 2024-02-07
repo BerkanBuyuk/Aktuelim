@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import axios from 'axios';
 import {REGISTER_ENDPOINT} from '@env';
 import RegisterLottie from '../components/Loader/registerLottie';
@@ -44,9 +44,8 @@ const Register = () => {
     <View className="flex-1 justify-center">
       <View className="items-center">
         <RegisterLottie />
-        <Text className="text-5xl font-bold">Kayıt Ol</Text>
+        {/* <Text className="text-5xl font-bold">Kayıt Ol</Text> */}
       </View>
-      {err && <Text>{err}</Text>}
       <View className="mx-2.5 my-2.5">
         <TextInput
           placeholder="Kullanıcı Adı"
@@ -72,6 +71,12 @@ const Register = () => {
           name="user_name"
           onChangeText={text => handleChange('user_name', text)}
           className="border p-5 text-xl my-2 rounded-xl"
+        />
+      </View>
+      <View className="items-center">
+        <Image
+          source={require('../assets/Images/google.png')}
+          className="w-20 h-20 rounded-3xl"
         />
       </View>
       <View>
