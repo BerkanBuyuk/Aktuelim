@@ -17,7 +17,7 @@ import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
-import UserInfo from '../components/userInfo';
+import UserInfo from '../components/UserInfo';
 
 const Drawer = createDrawerNavigator();
 

@@ -119,8 +119,8 @@ const AddCatalogs = ({navigation}) => {
   }, []);
 
   return (
-    <ScrollView
-      className={` flex-1 ${
+    <View
+      className={`justify-center flex-1 ${
         darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
       }`}>
       {loading ? (
@@ -162,7 +162,7 @@ const AddCatalogs = ({navigation}) => {
             className="items-center my-2.5">
             <Image
               source={{uri: photo}}
-              className="w-full h-[calc(100vh/1.5)]"
+              className="w-full h-[calc(100vh/2.5)]"
             />
           </TouchableOpacity>
           {/* <TouchableOpacity
@@ -187,7 +187,7 @@ const AddCatalogs = ({navigation}) => {
           </Modal>
         </View>
       )}
-    </ScrollView>
+    </View>
   );
 };
 
