@@ -18,6 +18,7 @@ import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import UserInfo from '../components/UserInfo';
+import Entypo from 'react-native-vector-icons/dist/Entypo';
 
 const Drawer = createDrawerNavigator();
 
@@ -51,15 +52,15 @@ const CustomDrawerContent = ({navigation}) => {
         onPress={() => navigation.navigate('Ayarlar1')}
       />
       <DrawerItem
-        label={t('notifications')}
+        label={t('downloads')}
         icon={() => (
-          <Ionicons
-            name="notifications"
+          <Entypo
+            name="download"
             size={25}
             color={darkMode ? Styles.textColor : Styles.dark_text_color}
           />
         )}
-        onPress={() => navigation.navigate('Notifications1')}
+        onPress={() => navigation.navigate('Downloads1')}
       />
       <DrawerItem
         label={t('contact_us')}
@@ -137,7 +138,7 @@ const DrawerNavigator = ({navigation}) => {
         // }}
       />
       <Drawer.Screen
-        name="Notifications1"
+        name="Downloads1"
         component={NotificationsStackNavigator}
         // options={{
         //   drawerLabel: `${t('notifications')}`,

@@ -3,7 +3,7 @@ import Catalogs from '../pages/Catalogs';
 import CatalogDetails from '../pages/CatalogDetails';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Ayarlar from '../components/Ayarlar';
-import Notifications from '../components/Notifications';
+import Downloads from '../components/Notifications';
 import ContactUs from '../components/ContactUs';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
@@ -61,10 +61,10 @@ const NotificationsStackNavigator = ({navigation}) => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Notifications"
-        component={Notifications}
+        name="Downloads"
+        component={Downloads}
         options={{
-          headerTitle: `${t('notifications')}`,
+          headerTitle: `${t('downloads')}`,
           headerTitleAlign: 'center',
           headerStyle: {
             backgroundColor: darkMode

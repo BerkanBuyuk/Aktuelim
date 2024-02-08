@@ -1,11 +1,4 @@
-import {
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Image,
-  ScrollView,
-} from 'react-native';
+import {Text, TextInput, TouchableOpacity, View, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
@@ -165,13 +158,6 @@ const AddCatalogs = ({navigation}) => {
               className="w-full h-[calc(100vh/2.5)]"
             />
           </TouchableOpacity>
-          {/* <TouchableOpacity
-            onPress={handlePostRequest}
-            className="items-center m-2.5">
-            <Text className="text-xl text-addBtn">
-              {t('ShopList.shopList_addBtn')}
-            </Text>
-          </TouchableOpacity> */}
           <TouchableOpacity
             onPress={handlePostRequest}
             className="items-center bg-baseColor rounded-2xl mx-2.5 my-5 p-4">
