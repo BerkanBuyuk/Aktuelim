@@ -97,7 +97,6 @@ const Register = () => {
   };
 
   useEffect(() => {
-    // Bu efekt picPhoto değiştiğinde çalışacak
     setFormData(prevState => ({
       ...prevState,
       user_pic: picPhoto,

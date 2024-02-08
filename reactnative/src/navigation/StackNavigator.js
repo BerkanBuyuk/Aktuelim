@@ -2,8 +2,8 @@ import React from 'react';
 import Catalogs from '../pages/Catalogs';
 import CatalogDetails from '../pages/CatalogDetails';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Ayarlar from '../components/Ayarlar';
-import Downloads from '../components/Notifications';
+import Settings from '../components/Settings';
+import Downloads from '../components/Downloads';
 import ContactUs from '../components/ContactUs';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
 import AntDesign from 'react-native-vector-icons/dist/AntDesign';
@@ -27,7 +27,7 @@ const AyarlarStackNavigator = ({navigation}) => {
     <Stack.Navigator>
       <Stack.Screen
         name="Ayarlar"
-        component={Ayarlar}
+        component={Settings}
         options={{
           headerShown: true,
           headerTitle: `${t('Settings.settings')}`,

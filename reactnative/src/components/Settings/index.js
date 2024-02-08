@@ -4,7 +4,7 @@ import Theme from '../../assets/Theme';
 import {useSelector} from 'react-redux';
 import Language from '../../assets/Language';
 
-const Ayarlar = () => {
+const Settings = () => {
   const darkMode = useSelector(state => state.theme.darkMode);
   return (
     <View
@@ -17,4 +17,4 @@ const Ayarlar = () => {
   );
 };
 
-export default Ayarlar;
+export default Settings;
