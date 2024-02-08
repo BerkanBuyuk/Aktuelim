@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import axios from 'axios';
 import {REGISTER_ENDPOINT} from '@env';
@@ -81,6 +81,7 @@ const Register = () => {
   };
 
   console.log(formData);
+  console.log(picPhoto);
 
   const handleClick = async () => {
     setModalVisible(true);
@@ -94,6 +95,14 @@ const Register = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    // Bu efekt picPhoto değiştiğinde çalışacak
+    setFormData(prevState => ({
+      ...prevState,
+      user_pic: picPhoto,
+    }));
+  }, [picPhoto]);
 
   return (
     <View className="justify-center">
