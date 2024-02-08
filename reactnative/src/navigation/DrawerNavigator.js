@@ -73,7 +73,7 @@ const CustomDrawerContent = ({navigation}) => {
         )}
         onPress={() => navigation.navigate('ContactUs1')}
       />
-      <DrawerItem
+      {/* <DrawerItem
         label="Çıkış yap"
         icon={() => (
           <MaterialCommunityIcons
@@ -83,7 +83,7 @@ const CustomDrawerContent = ({navigation}) => {
           />
         )}
         // onPress={() => navigation.navigate('Login')}
-      />
+      /> */}
     </DrawerContentScrollView>
   );
 };
