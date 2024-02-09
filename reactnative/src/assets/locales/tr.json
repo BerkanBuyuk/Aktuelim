@@ -32,7 +32,10 @@
         "settings_theme_tr": "Açık Tema",
         "settings_theme_dark_en": "Dark Mode",
         "settings_theme_dark_tr": "Koyu Tema",
-        "settings_language": "Dil / Türkçe"
+        "settings_language": "Dil / Türkçe",
+        "settings_account": "Hesap Ayarı",
+        "settings_account_title": "Hesap",
+        "settings_app_title": "Uygulama"
     },
     "AddCatalogs" : {
         "catalogTitle": "Katalog başlığı girin.",

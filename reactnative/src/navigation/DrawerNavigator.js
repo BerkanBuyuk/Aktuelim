@@ -16,8 +16,7 @@ import Styles from '../assets/Styles';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
-import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
-import UserInfo from '../components/UserInfo';
+import DrawerUserInfo from '../components/DrawerUserInfo';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
 
 const Drawer = createDrawerNavigator();
@@ -28,7 +27,7 @@ const CustomDrawerContent = ({navigation}) => {
 
   return (
     <DrawerContentScrollView>
-      <UserInfo />
+      <DrawerUserInfo />
       <DrawerItem
         label={t('home')}
         icon={() => (

@@ -16,6 +16,7 @@ import FavoriteBtn from '../components/FavoriteBtn';
 import {useNavigation} from '@react-navigation/native';
 import DownloadBtn from '../components/DownloadBtn';
 import {View} from 'react-native';
+import SettingsUserInfo from '../components/SettingsUserInfo';
 
 const Stack = createNativeStackNavigator();
 
@@ -48,6 +49,31 @@ const AyarlarStackNavigator = ({navigation}) => {
               }}
             />
           ),
+        }}
+      />
+      <Stack.Screen
+        name="SettingsUserInfo"
+        component={SettingsUserInfo}
+        options={{
+          headerShown: true,
+          headerTitle: `${t('Settings.settings')}`,
+          headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: darkMode
+              ? Styles.dark_base_color
+              : Styles.baseColor,
+          },
+          headerTintColor: Styles.textColor,
+          // headerLeft: () => (
+          //   <Entypo
+          //     name="menu"
+          //     size={35}
+          //     color={Styles.textColor}
+          //     onPress={() => {
+          //       navigation.openDrawer();
+          //     }}
+          //   />
+          // ),
         }}
       />
     </Stack.Navigator>

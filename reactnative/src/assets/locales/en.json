@@ -32,7 +32,10 @@
         "settings_theme_tr": "Açık Tema",
         "settings_theme_dark_en": "Dark Mode",
         "settings_theme_dark_tr": "Koyu Tema",
-        "settings_language": "Language / English"
+        "settings_language": "Language / English",
+        "settings_account": "Account Setting",
+        "settings_account_title": "Account",
+        "settings_app_title": "Application"
     },
     "AddCatalogs" : {
         "catalogTitle": "Enter catalog title.",
