@@ -55,25 +55,15 @@ const AyarlarStackNavigator = ({navigation}) => {
         name="SettingsUserInfo"
         component={SettingsUserInfo}
         options={{
-          headerShown: true,
-          headerTitle: `${t('Settings.settings')}`,
-          headerTitleAlign: 'center',
-          headerStyle: {
-            backgroundColor: darkMode
-              ? Styles.dark_base_color
-              : Styles.baseColor,
-          },
-          headerTintColor: Styles.textColor,
-          // headerLeft: () => (
-          //   <Entypo
-          //     name="menu"
-          //     size={35}
-          //     color={Styles.textColor}
-          //     onPress={() => {
-          //       navigation.openDrawer();
-          //     }}
-          //   />
-          // ),
+          headerShown: false,
+          // headerTitle: `${t('Settings.settings')}`,
+          // headerTitleAlign: 'center',
+          // headerStyle: {
+          //   backgroundColor: darkMode
+          //     ? Styles.dark_base_color
+          //     : Styles.baseColor,
+          // },
+          // headerTintColor: Styles.textColor,
         }}
       />
     </Stack.Navigator>

@@ -37,6 +37,13 @@
         "settings_account_title": "Hesap",
         "settings_app_title": "Uygulama"
     },
+    "Account_settings" : {
+        "photo": "Fotoğraf:",
+        "nameSurname": "İsim Soyisim:",
+        "userName": "Kullanıcı Adı:",
+        "email": "E-Posta:",
+        "password": "Şifre:"
+    },
     "AddCatalogs" : {
         "catalogTitle": "Katalog başlığı girin.",
         "catalogImage": "Katalog görsel URL girin.",

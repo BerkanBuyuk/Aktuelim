@@ -17,7 +17,10 @@ const Settings = ({navigation}) => {
         darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
       }`}>
       <View className="mb-2.5">
-        <Text className="font-bold text-2xl">
+        <Text
+          className={`text-2xl font-bold ${
+            darkMode ? 'text-textColor' : 'text-dark_text_color'
+          }`}>
           {t('Settings.settings_account_title')}
         </Text>
       </View>
@@ -55,7 +58,10 @@ const Settings = ({navigation}) => {
       </TouchableOpacity>
       <Divider />
       <View className="mb-3.5">
-        <Text className="font-bold text-2xl">
+        <Text
+          className={`text-2xl font-bold ${
+            darkMode ? 'text-textColor' : 'text-dark_text_color'
+          }`}>
           {t('Settings.settings_app_title')}
         </Text>
       </View>

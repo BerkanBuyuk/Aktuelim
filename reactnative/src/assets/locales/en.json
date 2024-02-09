@@ -37,6 +37,13 @@
         "settings_account_title": "Account",
         "settings_app_title": "Application"
     },
+    "Account_settings" : {
+        "photo": "Photo:",
+        "nameSurname": "Name Surname:",
+        "userName": "User Name:",
+        "email": "E-Mail:",
+        "password": "Password:"
+    },
     "AddCatalogs" : {
         "catalogTitle": "Enter catalog title.",
         "catalogImage": "Enter catalog image URL.",

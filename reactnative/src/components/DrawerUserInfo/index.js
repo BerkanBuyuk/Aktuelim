@@ -1,17 +1,14 @@
 import {View, Text, Image} from 'react-native';
 import React, {useEffect, useState} from 'react';
-import axios from 'axios';
-import {USERS_URL, CLOUDINARY_PIC_URL} from '@env';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const UserInfo = () => {
   const [userPicture, setUserPicture] = useState(null);
   const [userNameSurname, setUserNameSurname] = useState(null);
   const [userName, setUserName] = useState(null);
-  // const userPicture = AsyncStorage.getItem('userPicture');
 
   useEffect(() => {
-    const getUserPicture = async () => {
+    const getUserDetail = async () => {
       try {
         const pictureUri = await AsyncStorage.getItem('userPicture');
         setUserPicture(pictureUri);
@@ -24,7 +21,7 @@ const UserInfo = () => {
       }
     };
 
-    getUserPicture();
+    getUserDetail();
   }, []);
 
   // const getUsers = async url => {
