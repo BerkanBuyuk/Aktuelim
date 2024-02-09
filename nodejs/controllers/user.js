@@ -20,5 +20,4 @@ export const getUser = (req, res) => {
 };
 
 //getUser Post yapılacak.
-//user role = admin, user
 //async storage user_role tut

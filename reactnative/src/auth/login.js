@@ -39,6 +39,19 @@ const Login = () => {
     try {
       const response = await axios.post(LOGIN_ENDPOINT, formData);
       console.log('Başarılı giriş:', response.data);
+      console.log('Kullanıcı Görseli: ', response.data.user_pic);
+      console.log('Kullanıcı Rolü: ', response.data.user_role);
+
+      const userPicture = response.data.user_pic;
+      AsyncStorage.setItem('userPicture', userPicture);
+      const userNameSurname = response.data.user_name;
+      AsyncStorage.setItem('userNameSurname', userNameSurname);
+      const userName = response.data.user_username;
+      AsyncStorage.setItem('userName', userName);
+      const userEmail = response.data.user_email;
+      AsyncStorage.setItem('userEmail', userEmail);
+      const userRole = response.data.user_role;
+      AsyncStorage.setItem('userRole', userRole);
 
       const cookies = response.headers['set-cookie'];
       const accessToken = extractAccessTokenFromCookies(cookies);
@@ -51,6 +64,7 @@ const Login = () => {
       navigation.navigate('DrawerNavigator');
     } catch (error) {
       setErr(error.response.data);
+      setModalVisible(false);
     }
   };
 
