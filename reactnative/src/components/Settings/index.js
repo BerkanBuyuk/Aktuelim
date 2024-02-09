@@ -16,7 +16,7 @@ const Settings = ({navigation}) => {
       className={`flex-1 p-6 ${
         darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
       }`}>
-      <View className="mb-2.5">
+      <View className="mb-4">
         <Text
           className={`text-2xl font-bold ${
             darkMode ? 'text-textColor' : 'text-dark_text_color'
@@ -57,16 +57,18 @@ const Settings = ({navigation}) => {
         </View>
       </TouchableOpacity>
       <Divider />
-      <View className="mb-3.5">
-        <Text
-          className={`text-2xl font-bold ${
-            darkMode ? 'text-textColor' : 'text-dark_text_color'
-          }`}>
-          {t('Settings.settings_app_title')}
-        </Text>
+      <View className="mt-5">
+        <View className="mb-4">
+          <Text
+            className={`text-2xl font-bold ${
+              darkMode ? 'text-textColor' : 'text-dark_text_color'
+            }`}>
+            {t('Settings.settings_app_title')}
+          </Text>
+        </View>
+        <Theme />
+        <Language />
       </View>
-      <Theme />
-      <Language />
     </View>
   );
 };

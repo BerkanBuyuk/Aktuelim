@@ -6,7 +6,6 @@ import Settings from '../components/Settings';
 import Downloads from '../components/Downloads';
 import ContactUs from '../components/ContactUs';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
-import AntDesign from 'react-native-vector-icons/dist/AntDesign';
 import AddCatalogs from '../pages/AddCatalogs';
 import {useTranslation} from 'react-i18next';
 import Styles from '../assets/Styles';
@@ -17,6 +16,7 @@ import {useNavigation} from '@react-navigation/native';
 import DownloadBtn from '../components/DownloadBtn';
 import {View} from 'react-native';
 import SettingsUserInfo from '../components/SettingsUserInfo';
+import AddCatalog from '../components/UserRoleVisibility/AddCatalog';
 
 const Stack = createNativeStackNavigator();
 
@@ -56,14 +56,6 @@ const AyarlarStackNavigator = ({navigation}) => {
         component={SettingsUserInfo}
         options={{
           headerShown: false,
-          // headerTitle: `${t('Settings.settings')}`,
-          // headerTitleAlign: 'center',
-          // headerStyle: {
-          //   backgroundColor: darkMode
-          //     ? Styles.dark_base_color
-          //     : Styles.baseColor,
-          // },
-          // headerTintColor: Styles.textColor,
         }}
       />
     </Stack.Navigator>
@@ -167,14 +159,7 @@ const MainStackNavigator = ({fetchFavorites}) => {
               }}
             />
           ),
-          headerRight: () => (
-            <AntDesign
-              name="addfile"
-              size={30}
-              color={Styles.textColor}
-              onPress={() => navigation.navigate('AddCatalogs')}
-            />
-          ),
+          headerRight: () => <AddCatalog />,
         }}
       />
 

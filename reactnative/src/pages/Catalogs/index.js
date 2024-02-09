@@ -6,14 +6,18 @@ import {useSelector} from 'react-redux';
 import LoadingLoader from '../../components/Loader/loadingLoader';
 import DeleteCatalogBtn from '../../components/DeleteCatalogBtn';
 import UpdateCatalogBtn from '../../components/UpdateCatalogBtn';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Catalogs = ({route, navigation}) => {
   const [catalogs, setCatalogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [userRole, setUserRole] = useState(null);
   const darkMode = useSelector(state => state.theme.darkMode);
 
   const getCatalogs = async url => {
     try {
+      const getUserRoleFromStorage = await AsyncStorage.getItem('userRole');
+      setUserRole(getUserRoleFromStorage);
       const response = await axios.get(url);
       const result = response.data.filter(
         val => val.market_id === route.params.market_id,
@@ -65,9 +69,19 @@ const Catalogs = ({route, navigation}) => {
               {abbreviatedTitle}
             </Text>
           </TouchableOpacity>
-          <View className="flex-row justify-between mt-2">
-            <UpdateCatalogBtn catalogs={item} onUpdate={handleUpdateCatalog} />
-            <DeleteCatalogBtn catalogs={item} onDelete={handleCatalogDelete} />
+          <View>
+            {userRole === 'admin' ? (
+              <View className="flex-row justify-between mt-2">
+                <UpdateCatalogBtn
+                  catalogs={item}
+                  onUpdate={handleUpdateCatalog}
+                />
+                <DeleteCatalogBtn
+                  catalogs={item}
+                  onDelete={handleCatalogDelete}
+                />
+              </View>
+            ) : null}
           </View>
         </View>
       </View>
