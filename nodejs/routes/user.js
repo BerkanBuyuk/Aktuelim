@@ -4,6 +4,6 @@ import { getUser, putUser } from "../controllers/user.js";
 const router = express.Router();
 
 router.get("/api/user", getUser);
-router.put("/api/user", putUser);
+router.put("/api/user/:id", putUser);
 
 export default router;
