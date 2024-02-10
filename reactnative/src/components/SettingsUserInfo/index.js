@@ -16,10 +16,13 @@ const SettingsUserInfo = ({navigation}) => {
   const [userNameSurname, setUserNameSurname] = useState(null);
   const [userName, setUserName] = useState(null);
   const [userEmail, setUserEmail] = useState(null);
+  const [userId, setUserId] = useState(null);
 
   useEffect(() => {
     const getUserDetail = async () => {
       try {
+        const user_id = await AsyncStorage.getItem('userId');
+        setUserId(user_id);
         const pictureUri = await AsyncStorage.getItem('userPicture');
         setUserPicture(pictureUri);
         const nameSurnameText = await AsyncStorage.getItem('userNameSurname');
@@ -34,7 +37,7 @@ const SettingsUserInfo = ({navigation}) => {
     };
 
     getUserDetail();
-  }, []);
+  }, [userId]);
 
   return (
     <SafeAreaView
@@ -64,12 +67,12 @@ const SettingsUserInfo = ({navigation}) => {
       <View className="justify-center">
         <View className="flex-row mx-5 mt-14">
           <View className="flex-1 justify-center">
-            <Text
+            {/* <Text
               className={`text-xl ${
-                darkMode ? 'text-textColor' : 'text-dark_text_color'
+                darkMode ? 'text-textColor' : 'text-dark_categories_color'
               }`}>
               {t('Account_settings.photo')}
-            </Text>
+            </Text> */}
           </View>
           <View className="flex-1 items-center">
             <Image

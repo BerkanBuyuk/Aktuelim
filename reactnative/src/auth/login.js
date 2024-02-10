@@ -39,8 +39,6 @@ const Login = () => {
     try {
       const response = await axios.post(LOGIN_ENDPOINT, formData);
       console.log('Başarılı giriş:', response.data);
-      console.log('Kullanıcı Görseli: ', response.data.user_pic);
-      console.log('Kullanıcı Rolü: ', response.data.user_role);
 
       const userPicture = response.data.user_pic;
       AsyncStorage.setItem('userPicture', userPicture);
@@ -52,12 +50,13 @@ const Login = () => {
       AsyncStorage.setItem('userEmail', userEmail);
       const userRole = response.data.user_role;
       AsyncStorage.setItem('userRole', userRole);
+      const userId = response.data.user_id.toString();
+      AsyncStorage.setItem('userId', userId);
 
       const cookies = response.headers['set-cookie'];
       const accessToken = extractAccessTokenFromCookies(cookies);
 
       await AsyncStorage.setItem('accessToken', accessToken);
-      console.log('AccessToken: ', accessToken);
       toast.show(`Hoşgeldin ${response.data.user_name}`, {type: 'success'});
       setModalVisible(false);
 

@@ -11,7 +11,6 @@ export const getAllUser = (req, res) => {
 
 export const getUser = (req, res) => {
   const id = req.body.user_id;
-  console.log(typeof id);
   const q = `${process.env.GET_USER_QUERY}${id}`;
   db.query(q, (err, data) => {
     if (err) return res.json(err);
@@ -19,5 +18,19 @@ export const getUser = (req, res) => {
   });
 };
 
-//getUser Post yapılacak.
-//async storage user_role tut
+export const putUser = (req, res) => {
+  const userId = req.params.id;
+  const q = process.env.PUT_USER_QUERY;
+
+  const values = [
+    req.body.user_id,
+    req.body.user_username,
+    req.body.user_name,
+    req.body.user_pic,
+  ];
+
+  db.query(q, [...values, userId], (err, data) => {
+    if (err) return res.json(err);
+    return res.json(`User ID: ${userId} Güncellendi.`);
+  });
+};
