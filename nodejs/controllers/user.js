@@ -9,12 +9,17 @@ export const getAllUser = (req, res) => {
   });
 };
 
-export const getUser = (req, res) => {
-  const id = req.body.user_id;
-  const q = `${process.env.GET_USER_QUERY}${id}`;
-  db.query(q, (err, data) => {
-    if (err) return res.json(err);
-    return res.json(data);
+export const getUserById = (req, res) => {
+  const userId = req.params.id;
+
+  const q = process.env.GET_USER_QUERY;
+
+  db.query(q, userId, (err, data) => {
+    if (err) return res.status(500).json({ error: "Veritabanı hatası" });
+    if (data.length === 0)
+      return res.status(404).json({ error: "Kullanıcı bulunamadı" });
+
+    return res.json(data[0]);
   });
 };
 
