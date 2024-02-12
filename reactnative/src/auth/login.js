@@ -40,14 +40,6 @@ const Login = () => {
       const response = await axios.post(LOGIN_ENDPOINT, formData);
       console.log('Başarılı giriş:', response.data);
 
-      // const userPicture = response.data.user_pic;
-      // AsyncStorage.setItem('userPicture', userPicture);
-      // const userNameSurname = response.data.user_name;
-      // AsyncStorage.setItem('userNameSurname', userNameSurname);
-      // const userName = response.data.user_username;
-      // AsyncStorage.setItem('userName', userName);
-      // const userEmail = response.data.user_email;
-      // AsyncStorage.setItem('userEmail', userEmail);
       const userRole = response.data.user_role;
       AsyncStorage.setItem('userRole', userRole);
       const userId = response.data.user_id.toString();
