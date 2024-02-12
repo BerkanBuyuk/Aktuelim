@@ -17,12 +17,7 @@ import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
 import Modal from 'react-native-modal';
 import axios from 'axios';
 import {useToast} from 'react-native-toast-notifications';
-import {
-  USERS_URL,
-  CLOUDINARY_POST_URL,
-  CLOUDINARY_PIC_URL,
-  CLOUDINARY_CLOUDNAME,
-} from '@env';
+import {USERS_URL, CLOUDINARY_POST_URL, CLOUDINARY_CLOUDNAME} from '@env';
 import LoadingLoader from '../Loader/loadingLoader';
 import {launchImageLibrary} from 'react-native-image-picker';
 

@@ -1,10 +1,14 @@
 import {TouchableOpacity} from 'react-native';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Feather from 'react-native-vector-icons/dist/Feather';
 import RNFetchBlob from 'rn-fetch-blob';
 import {Platform, PermissionsAndroid} from 'react-native';
+import {useToast} from 'react-native-toast-notifications';
 
 const DownloadBtn = ({catalogImage}) => {
+  const [isDownload, setIsDownload] = useState(false);
+  const toast = useToast();
+
   const getDownloadPermissionAndroid = async () => {
     try {
       const granted = await PermissionsAndroid.request(
