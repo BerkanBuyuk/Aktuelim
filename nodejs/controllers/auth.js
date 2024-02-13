@@ -21,6 +21,7 @@ export const register = (req, res) => {
       hashedPassword,
       req.body.user_name,
       req.body.user_pic,
+      req.body.user_phone,
     ];
 
     db.query(q, [values], (err, data) => {

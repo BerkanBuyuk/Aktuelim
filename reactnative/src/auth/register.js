@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  SafeAreaView,
+} from 'react-native';
 import axios from 'axios';
 import {REGISTER_ENDPOINT} from '@env';
 import RegisterLottie from '../components/Loader/registerLottie';
@@ -74,6 +81,7 @@ const Register = () => {
     user_password: '',
     user_name: '',
     user_pic: picPhoto,
+    user_phone: '',
   });
 
   const handleChange = (key, value) => {
@@ -82,6 +90,7 @@ const Register = () => {
 
   console.log(formData);
   console.log(picPhoto);
+  console.log('USER NUMBER: ', formData.user_phone);
 
   const handleClick = async () => {
     setModalVisible(true);
@@ -104,11 +113,11 @@ const Register = () => {
   }, [picPhoto]);
 
   return (
-    <View className="justify-center">
+    <View className="justify-center -mt-6">
       <View className="items-center mt-3">
         <RegisterLottie />
       </View>
-      <View className="items-center -mt-20">
+      <View className="items-center -mt-24">
         <TouchableOpacity onPress={selectPhotoTapped}>
           <Image source={{uri: picPhoto}} className="w-24 h-24 rounded-full" />
         </TouchableOpacity>
@@ -125,6 +134,7 @@ const Register = () => {
           name="user_email"
           onChangeText={text => handleChange('user_email', text)}
           className="border p-5 text-xl my-2 rounded-xl"
+          keyboardType="email-address"
         />
         <TextInput
           placeholder="Şifre"
@@ -139,6 +149,16 @@ const Register = () => {
           onChangeText={text => handleChange('user_name', text)}
           className="border p-5 text-xl my-2 rounded-xl"
         />
+        <View className="flex-row items-center">
+          <Text className="text-xl mr-1">+90</Text>
+          <TextInput
+            placeholder="Telefon Numarası"
+            name="user_phone"
+            onChangeText={text => handleChange('user_phone', text)}
+            className="border p-5 text-xl my-2 rounded-xl flex-1"
+            keyboardType="number-pad"
+          />
+        </View>
       </View>
       <View>
         <TouchableOpacity
@@ -148,11 +168,11 @@ const Register = () => {
         </TouchableOpacity>
       </View>
 
-      <View className="mx-2.5">
+      <View className="mx-2.5 -mt-3">
         <Divider />
       </View>
 
-      <View className="flex-row justify-center mt-2">
+      <View className="flex-row justify-center">
         <Text className="text-base">Hesabınız var mı ?</Text>
         <TouchableOpacity onPress={() => navigation.navigate('Login')}>
           <Text className="text-baseColor text-base"> Giriş Yap</Text>
