@@ -50,7 +50,7 @@ const CustomDrawerContent = ({navigation}) => {
         )}
         onPress={() => navigation.navigate('Ayarlar1')}
       />
-      <DrawerItem
+      {/* <DrawerItem
         label={t('downloads')}
         icon={() => (
           <Entypo
@@ -60,7 +60,7 @@ const CustomDrawerContent = ({navigation}) => {
           />
         )}
         onPress={() => navigation.navigate('Downloads1')}
-      />
+      /> */}
       <DrawerItem
         label={t('contact_us')}
         icon={() => (

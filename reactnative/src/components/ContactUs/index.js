@@ -82,7 +82,7 @@ const ContactUs = () => {
       showsVerticalScrollIndicator={false}
       className={` ${darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'}`}>
       <View className="justify-center">
-        <View className="items-center">
+        <View className="items-center -mt-5">
           <MailLottie />
         </View>
 
