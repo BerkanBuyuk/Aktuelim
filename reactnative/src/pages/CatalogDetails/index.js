@@ -2,6 +2,8 @@ import {View, Image, Text} from 'react-native';
 import React, {useState, useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import LoadingLoader from '../../components/Loader/loadingLoader';
+import Comments from './comments';
+import Divider from '../../components/Divider';
 
 const CatalogDetails = ({route}) => {
   const darkMode = useSelector(state => state.theme.darkMode);
@@ -24,22 +26,26 @@ const CatalogDetails = ({route}) => {
 
   return (
     <View
-      className={`flex-1 p-2.5 justify-center content-center ${
+      className={`flex-1 p-2.5 content-center ${
         darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
       }`}>
       {loading ? (
         <LoadingLoader />
       ) : (
-        <>
+        <View>
           {err ? (
             <Text className="text-red-600">{err}</Text>
           ) : (
-            <Image
-              source={{uri: `${route.params.catalog_image}`}}
-              className="w-full h-[calc(100vh/1.5)]"
-            />
+            <View>
+              <Image
+                source={{uri: `${route.params.catalog_image}`}}
+                className="w-full h-[calc(100vh/1.5)]"
+              />
+              <Divider />
+              <Comments />
+            </View>
           )}
-        </>
+        </View>
       )}
     </View>
   );
