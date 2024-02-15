@@ -8,6 +8,7 @@ import usersRoutes from "./routes/users.js";
 import downloadsRoutes from "./routes/downloads.js";
 import sendMails from "./routes/send-emails.js";
 import notificationsRoutes from "./routes/notifications.js";
+import commentsRoutes from "./routes/comments.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -33,6 +34,7 @@ app.use("/", sendMails);
 app.use("/", notificationsRoutes);
 app.use("/", usersRoutes);
 app.use("/", downloadsRoutes);
+app.use("/", commentsRoutes);
 
 app.listen(localPort, () => {
   console.log(`Sunucu ${localPort} portunda çalışıyor.`);
