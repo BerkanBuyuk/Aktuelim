@@ -12,26 +12,12 @@ export const getComment = (req, res) => {
 
 //POST COMMENT
 export const postComment = (req, res) => {
-  const {
-    comment_id,
-    description,
-    user_pic,
-    user_name,
-    comment_created_at,
-    catalog_id,
-  } = req.body;
+  const { comment_id, description, user_pic, user_name, catalog_id } = req.body;
 
   const sql = process.env.POST_COMMENTS_QUERY;
   db.query(
     sql,
-    [
-      comment_id,
-      description,
-      user_pic,
-      user_name,
-      comment_created_at,
-      catalog_id,
-    ],
+    [comment_id, description, user_pic, user_name, catalog_id],
     (err, result) => {
       if (err) {
         res.status(500).send("Sorgu hatası");
