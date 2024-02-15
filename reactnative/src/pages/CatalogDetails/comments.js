@@ -17,6 +17,14 @@ const Comments = () => {
   // const deviceWidth = Dimensions.get('window').height;
   // const deviceHeight = Dimensions.get('screen').height;
 
+  function getCurrentDate() {
+    let date = new Date().toLocaleDateString('tr-TR');
+    // let time = new Date().toLocaleTimeString('tr-TR');
+    return `${date}`;
+  }
+
+  console.log(getCurrentDate());
+
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };

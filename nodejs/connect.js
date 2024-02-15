@@ -7,6 +7,4 @@ export const db = mysql.createConnection({
   user: "ulcbew6yepkrndxs",
   password: "F0TAxDDv8BY9g9ECiQC6",
   port: 3306,
-  timezone: "utc",
-  timezone: "+03:00",
 });
