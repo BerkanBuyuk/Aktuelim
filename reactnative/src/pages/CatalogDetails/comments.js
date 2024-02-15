@@ -16,8 +16,9 @@ import {COMMENTS_URL, USERS_URL} from '@env';
 import Divider from '../../components/Divider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useToast} from 'react-native-toast-notifications';
+import {useTranslation} from 'react-i18next';
 
-const Comments = () => {
+const Comments = ({catalogID}) => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [comment, setComment] = useState([]);
   const [descriptionText, setDescriptionText] = useState('');
@@ -25,6 +26,7 @@ const Comments = () => {
   const [userName, setUserName] = useState('');
   const [userRole, setUserRole] = useState(null);
   const toast = useToast();
+  const {t} = useTranslation();
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -45,7 +47,7 @@ const Comments = () => {
         description: descriptionText,
         user_pic: userPicture,
         user_name: userName,
-        catalog_id: 76,
+        catalog_id: catalogID,
       };
       await axios.post(COMMENTS_URL, data);
       getComments(COMMENTS_URL);
@@ -87,6 +89,7 @@ const Comments = () => {
   }, []);
 
   const commentsContainer = ({item}) => {
+    let date = new Date().toLocaleDateString('tr-TR');
     return (
       <View className="flex-row mx-2.5 pb-3">
         <Image
@@ -97,7 +100,8 @@ const Comments = () => {
         />
         <View className="mx-2.5 flex-1">
           <Text className="text-white">{`${item.user_name}`}</Text>
-          <Text className="text-black">{` ${item.description}`}</Text>
+          <Text className="text-black">{`${item.description}`}</Text>
+          <Text>{date}</Text>
         </View>
         <View className="justify-center mx-2.5">
           {userRole === 'admin' ? (
@@ -118,10 +122,10 @@ const Comments = () => {
   return (
     <View>
       <TouchableOpacity className="flex-row" onPress={toggleModal}>
-        <Text className="text-lg">Yorumlar...</Text>
+        <Text className="text-lg">{`${t('Comments.comments')}...`}</Text>
         <CommentLottie />
       </TouchableOpacity>
-      <Modal isVisible={isModalVisible} style={{display: 'flex'}}>
+      <Modal isVisible={isModalVisible}>
         <View className="bg-slate-500 rounded-2xl">
           <TouchableOpacity onPress={toggleModal} className="items-center">
             <FontAwesome name="close" size={30} color={Styles.textColor} />
@@ -134,14 +138,13 @@ const Comments = () => {
 
           <View className="flex-row items-center p-2">
             <TextInput
-              // placeholder={t('AddCatalogs.catalogDescription')}
-              placeholder="Yorum yaz."
+              placeholder={t('Comments.writeComment')}
               value={descriptionText}
               onChangeText={text => setDescriptionText(text)}
               className=" bg-white border p-5 text-xl my-2 rounded-xl flex-1"
             />
             <TouchableOpacity className="mx-2.5" onPress={postComments}>
-              <Text>Gönder</Text>
+              <Text>{t('Comments.send')}</Text>
             </TouchableOpacity>
           </View>
         </View>

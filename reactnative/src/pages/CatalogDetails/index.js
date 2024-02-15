@@ -42,7 +42,7 @@ const CatalogDetails = ({route}) => {
                 className="w-full h-[calc(100vh/1.5)]"
               />
               <Divider />
-              <Comments />
+              <Comments catalogID={route.params.catalog_id} />
             </View>
           )}
         </View>

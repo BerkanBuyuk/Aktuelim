@@ -9,14 +9,12 @@ const UserInfo = () => {
   const [userPicture, setUserPicture] = useState(null);
   const [userNameSurname, setUserNameSurname] = useState(null);
   const [userName, setUserName] = useState(null);
-  const [userId, setUserId] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getUserDetail = async () => {
       try {
-        const user_id = await AsyncStorage.getItem('userId');
-        setUserId(user_id);
+        const userId = await AsyncStorage.getItem('userId');
         const response = await axios.get(`${USERS_URL}/${userId}`);
         setUserPicture(response.data.user_pic);
         setUserNameSurname(response.data.user_name);
@@ -28,7 +26,7 @@ const UserInfo = () => {
     };
 
     getUserDetail();
-  }, [userId]);
+  }, []);
 
   return (
     <View className="items-center my-5 flex-row ml-2.5">

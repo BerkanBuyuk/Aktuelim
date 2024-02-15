@@ -59,5 +59,10 @@
         "error_mail": "Write your e-mail correctly.",
         "toast_success": "The e-mail was sent successfully.",
         "toast_danger": "An error occurred while sending the email."
+    },
+    "Comments" : {
+        "comments": "Comments",
+        "writeComment": "Write a comment.",
+        "send": "Send"
     }
 }
