@@ -33,6 +33,7 @@ const AyarlarStackNavigator = ({navigation}) => {
           headerShown: true,
           headerTitle: `${t('Settings.settings')}`,
           headerTitleAlign: 'center',
+          headerTitleStyle: {fontFamily: 'REM-Regular', fontWeight: 'bold'},
           headerStyle: {
             backgroundColor: darkMode
               ? Styles.dark_base_color
@@ -108,6 +109,7 @@ const ContactUsStackNavigator = ({navigation}) => {
         options={{
           headerTitle: `${t('contact_us')}`,
           headerTitleAlign: 'center',
+          headerTitleStyle: {fontFamily: 'REM-Regular'},
           headerStyle: {
             backgroundColor: darkMode
               ? Styles.dark_base_color
@@ -149,6 +151,8 @@ const MainStackNavigator = ({fetchFavorites}) => {
         options={{
           headerTitle: `${t('home')}`,
           headerTitleAlign: 'center',
+          // headerTitleStyle: {fontFamily: 'REM-Regular'},
+          headerBackTitleStyle: {fontFamily: 'REM-Regular'},
           headerLeft: () => (
             <Entypo
               name="menu"
@@ -168,6 +172,8 @@ const MainStackNavigator = ({fetchFavorites}) => {
         component={Catalogs}
         options={({route}) => ({
           headerTitle: `${route.params.market_name}`,
+          headerTitleStyle: {fontFamily: 'REM-Regular'},
+          headerBackTitleStyle: {fontFamily: 'REM-Regular'},
           headerTitleAlign: 'center',
         })}
       />
@@ -178,6 +184,8 @@ const MainStackNavigator = ({fetchFavorites}) => {
         options={({route}) => ({
           headerTitle: `${route.params.catalog_title}`,
           headerTitleAlign: 'center',
+          headerTitleStyle: {fontFamily: 'REM-Regular'},
+          headerBackTitleStyle: {fontFamily: 'REM-Regular'},
           headerRight: () => (
             <View className="flex-row">
               <DownloadBtn catalogImage={route.params.catalog_image} />
@@ -197,7 +205,9 @@ const MainStackNavigator = ({fetchFavorites}) => {
         options={{
           headerTitle: `${t('add_catalog')}`,
           headerTitleAlign: 'center',
+          headerTitleStyle: {fontFamily: 'REM-Regular'},
           headerBackTitle: `${t('home')}`,
+          headerBackTitleStyle: {fontFamily: 'REM-Regular'},
         }}
       />
     </Stack.Navigator>

@@ -18,7 +18,7 @@ const Settings = ({navigation}) => {
       }`}>
       <View className="mb-4">
         <Text
-          className={`text-2xl font-bold ${
+          className={`text-2xl font-remRegular font-bold ${
             darkMode ? 'text-textColor' : 'text-dark_text_color'
           }`}>
           {t('Settings.settings_account_title')}
@@ -41,7 +41,7 @@ const Settings = ({navigation}) => {
               />
             )}
             <Text
-              className={` ml-6 text-xl ${
+              className={` ml-6 text-xl font-remRegular ${
                 darkMode ? 'text-textColor' : 'text-dark_text_color'
               }`}>
               {t('Settings.settings_account')}
@@ -60,7 +60,7 @@ const Settings = ({navigation}) => {
       <View className="mt-5">
         <View className="mb-4">
           <Text
-            className={`text-2xl font-bold ${
+            className={`text-2xl font-bold font-remRegular ${
               darkMode ? 'text-textColor' : 'text-dark_text_color'
             }`}>
             {t('Settings.settings_app_title')}

@@ -73,7 +73,7 @@ const Catalogs = ({route, navigation}) => {
               className="w-36 h-36"
             />
             <Text
-              className={`font-myFont ${
+              className={`font-remRegular ${
                 darkMode ? 'text-textColor' : 'text-dark_text_color'
               }`}>
               {abbreviatedTitle}

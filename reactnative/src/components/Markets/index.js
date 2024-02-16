@@ -56,7 +56,7 @@ const Markets = ({navigation}) => {
           className="h-24 w-36 rounded-lg"
         />
         <Text
-          className={`text-center mt-1.5 text-base font-myFont ${
+          className={`text-center mt-1.5 text-base font-remRegular ${
             darkMode ? 'text-textColor' : 'text-dark_text_color'
           }`}>
           {item.market_name}
@@ -76,7 +76,7 @@ const Markets = ({navigation}) => {
         <View>
           <Categories setSelectedCategory={setSelectedCategory} />
           <Text
-            className={`ml-2.5 text-xl font-myFont ${
+            className={`ml-2.5 text-xl font-remRegular font-bold ${
               darkMode ? 'text-textColor' : 'text-dark_text_color'
             }`}>
             {t('stores')}

@@ -88,37 +88,33 @@ const ContactUs = () => {
 
         <TextInput
           placeholder={t('ContactMail.nameSurname')}
+          style={{fontFamily: 'REM-Regular'}}
           value={userNameSurname}
           onChangeText={text => setUserNameSurname(text)}
           className=" bg-white border p-5 text-xl my-2.5 mx-2.5 rounded-xl"
         />
         <TextInput
           placeholder={t('ContactMail.mail')}
+          style={{fontFamily: 'REM-Regular'}}
           value={userMail}
           onChangeText={text => setUserMail(text)}
           className=" bg-white border p-5 text-xl my-2 mx-2.5 rounded-xl"
         />
         <TextInput
           placeholder={t('ContactMail.explanation')}
+          style={{fontFamily: 'REM-Regular'}}
           value={userExplanation}
           onChangeText={text => setUserExplanation(text)}
           multiline={true}
           numberOfLines={4}
           className="bg-white border p-5 text-xl my-2 mx-2.5 rounded-xl"
         />
-        {/* <TouchableOpacity
-        className="items-center"
-        onPress={handleMailPostRequest}>
-        <MaterialCommunityIcons
-          name="email-send"
-          size={65}
-          color={darkMode ? Styles.textColor : Styles.dark_text_color}
-        />
-      </TouchableOpacity> */}
         <TouchableOpacity
           onPress={handleMailPostRequest}
           className="items-center bg-baseColor rounded-2xl mx-20 my-5 p-4">
-          <Text className="text-white text-2xl">Gönder</Text>
+          <Text className="text-white text-2xl font-remRegular">
+            {t('Comments.send')}
+          </Text>
         </TouchableOpacity>
         <Modal isVisible={isModalVisible}>
           <View>

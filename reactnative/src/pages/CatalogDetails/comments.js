@@ -125,7 +125,7 @@ const Comments = ({catalogID}) => {
   return (
     <View>
       <TouchableOpacity className="flex-row" onPress={toggleModal}>
-        <Text className="text-lg font-myFont">{`${t(
+        <Text className="text-lg font-remRegular">{`${t(
           'Comments.comments',
         )}...`}</Text>
         <CommentLottie />
@@ -149,7 +149,7 @@ const Comments = ({catalogID}) => {
               className=" bg-white border p-5 text-xl my-2 rounded-xl flex-1"
             />
             <TouchableOpacity className="mx-2.5" onPress={postComments}>
-              <Text className="font-myFont">{t('Comments.send')}</Text>
+              <Text className="font-remRegular">{t('Comments.send')}</Text>
             </TouchableOpacity>
           </View>
         </View>

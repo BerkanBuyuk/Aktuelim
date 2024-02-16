@@ -4,12 +4,14 @@ import axios from 'axios';
 import {USERS_URL} from '@env';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LoadingLoader from '../Loader/loadingLoader';
+import {useSelector} from 'react-redux';
 
 const UserInfo = () => {
   const [userPicture, setUserPicture] = useState(null);
   const [userNameSurname, setUserNameSurname] = useState(null);
   const [userName, setUserName] = useState(null);
   const [loading, setLoading] = useState(true);
+  const darkMode = useSelector(state => state.theme.darkMode);
 
   useEffect(() => {
     const getUserDetail = async () => {
@@ -41,8 +43,16 @@ const UserInfo = () => {
             />
           </View>
           <View className="ml-3">
-            <Text className="text-baseColor text-xl">{userNameSurname}</Text>
-            <Text className=" text-dark_categories_color text-sm">{`@${userName}`}</Text>
+            <Text
+              className={`text-xl font-remRegular font-bold ${
+                darkMode ? 'text-textColor' : 'text-baseColor'
+              }`}>
+              {userNameSurname}
+            </Text>
+            <Text
+              className={`text-sm font-remRegular ${
+                darkMode ? 'text-dark_base_color' : 'text-baseColor'
+              }`}>{`@${userName}`}</Text>
           </View>
         </View>
       )}

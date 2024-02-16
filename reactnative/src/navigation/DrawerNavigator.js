@@ -30,6 +30,10 @@ const CustomDrawerContent = ({navigation}) => {
       <DrawerUserInfo />
       <DrawerItem
         label={t('home')}
+        labelStyle={{
+          fontFamily: 'REM-Regular',
+          color: darkMode ? `${Styles.textColor}` : `${Styles.dark_text_color}`,
+        }}
         icon={() => (
           <FontAwesome
             name="home"
@@ -41,6 +45,10 @@ const CustomDrawerContent = ({navigation}) => {
       />
       <DrawerItem
         label={t('Settings.settings')}
+        labelStyle={{
+          fontFamily: 'REM-Regular',
+          color: darkMode ? `${Styles.textColor}` : `${Styles.dark_text_color}`,
+        }}
         icon={() => (
           <Ionicons
             name="settings"
@@ -63,6 +71,10 @@ const CustomDrawerContent = ({navigation}) => {
       /> */}
       <DrawerItem
         label={t('contact_us')}
+        labelStyle={{
+          fontFamily: 'REM-Regular',
+          color: darkMode ? `${Styles.textColor}` : `${Styles.dark_text_color}`,
+        }}
         icon={() => (
           <MaterialIcons
             name="quick-contacts-mail"

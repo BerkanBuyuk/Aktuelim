@@ -39,7 +39,10 @@ module.exports = {
         dark_text_color: '#000',
       },
       fontFamily: {
-        myFont: 'REM-Regular',
+        remRegular: 'REM-Regular',
+        remRegularBold: 'REM-ExtraBold',
+        gupterRegular: 'Gupter-Regular',
+        gupterBold: 'Gupter-Bold',
       },
     },
   },

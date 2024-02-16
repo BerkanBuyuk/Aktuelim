@@ -49,9 +49,14 @@ const BottomTabNavigator = ({navigation}) => {
           // tabBarStyle: {backgroundColor: Styles.baseColor},
           headerTitle: `${t('favorites')}`,
           tabBarLabel: `${t('favorites')}`,
-          tabBarLabelStyle: {color: Styles.textColor, fontSize: 11},
+          tabBarLabelStyle: {
+            color: Styles.textColor,
+            fontSize: 12,
+            fontFamily: 'REM-Regular',
+          },
           headerTitleAlign: 'center',
           // headerTitleStyle: {color: Styles.textColor},
+          headerTitleStyle: {fontFamily: 'REM-Regular'},
           headerTintColor: Styles.textColor,
           tabBarIcon: () => (
             <MaterialIcons name="favorite" size={30} color={Styles.textColor} />
@@ -77,7 +82,11 @@ const BottomTabNavigator = ({navigation}) => {
           // tabBarStyle: {backgroundColor: Styles.baseColor},
           headerShown: false,
           tabBarLabel: `${t('home')}`,
-          tabBarLabelStyle: {color: Styles.textColor, fontSize: 11},
+          tabBarLabelStyle: {
+            color: Styles.textColor,
+            fontSize: 12,
+            fontFamily: 'REM-Regular',
+          },
           // headerTintColor: Styles.textColor,
           tabBarIcon: () => (
             <Entypo name="home" size={30} color={Styles.textColor} />
@@ -91,11 +100,18 @@ const BottomTabNavigator = ({navigation}) => {
           // tabBarStyle: {backgroundColor: Styles.baseColor},
           headerTitle: `${t('ShopList.shop_list')}`,
           tabBarLabel: `${t('ShopList.shop_list')}`,
-          tabBarLabelStyle: {fontSize: 11, color: Styles.textColor},
+          tabBarLabelStyle: {
+            fontSize: 12,
+            fontFamily: 'REM-Regular',
+            color: Styles.textColor,
+          },
           headerTitleAlign: 'center',
           // tabBarActiveTintColor: Styles.textColor,
           // tabBarInactiveTintColor: Styles.inActiveTextColor,
-          headerTitleStyle: {color: Styles.textColor},
+          headerTitleStyle: {
+            color: Styles.textColor,
+            fontFamily: 'REM-Regular',
+          },
           headerTintColor: Styles.textColor,
           tabBarIcon: () => (
             <Entypo name="shop" size={30} color={Styles.textColor} />

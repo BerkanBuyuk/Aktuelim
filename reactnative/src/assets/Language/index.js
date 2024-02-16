@@ -48,7 +48,7 @@ const Language = () => {
             />
           )}
           <Text
-            className={` ml-6 text-xl ${
+            className={` ml-6 text-xl font-remRegular ${
               darkMode ? 'text-textColor' : 'text-dark_text_color'
             }`}>
             {t('Settings.settings_language')}

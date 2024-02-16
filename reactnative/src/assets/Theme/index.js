@@ -29,7 +29,7 @@ const Theme = () => {
             color={darkMode ? Styles.textColor : Styles.dark_text_color}
           />
           <Text
-            className={` ml-6 text-xl ${
+            className={` ml-6 text-xl font-remRegular ${
               darkMode ? 'text-textColor' : 'text-dark_text_color'
             }`}>
             {(() => {

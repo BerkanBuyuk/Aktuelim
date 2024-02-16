@@ -124,7 +124,7 @@ const AddCatalogs = ({navigation}) => {
             placeholder={t('AddCatalogs.catalogTitle')}
             value={catalogTitle}
             onChangeText={text => setCatalogTitle(text)}
-            className={`border p-5 text-xl my-2 rounded-xl ${
+            className={`border p-5 text-xl my-2 rounded-xl font-remRegular ${
               darkMode ? 'bg-dark_textInput_color' : 'bg-light_textInput_color'
             }`}
           />
@@ -132,7 +132,7 @@ const AddCatalogs = ({navigation}) => {
             placeholder={t('AddCatalogs.catalogDescription')}
             value={catalogDescription}
             onChangeText={text => setCatalogDescription(text)}
-            className={`border p-5 text-xl my-2 rounded-xl ${
+            className={`border p-5 text-xl my-2 rounded-xl font-remRegular ${
               darkMode ? 'bg-dark_textInput_color' : 'bg-light_textInput_color'
             }`}
           />
@@ -144,6 +144,10 @@ const AddCatalogs = ({navigation}) => {
             labelField="market_name"
             valueField="market_id"
             placeholder={t('AddCatalogs.selectMarket')}
+            placeholderStyle={{fontFamily: 'REM-Regular'}}
+            itemTextStyle={{fontFamily: 'REM-Regular'}}
+            selectedTextStyle={{fontFamily: 'REM-Regular'}}
+            inputSearchStyle={{fontFamily: 'REM-Regular'}}
             searchPlaceholder={t('AddCatalogs.searchMarket')}
             value={marketId}
             onChange={item => {
@@ -161,7 +165,7 @@ const AddCatalogs = ({navigation}) => {
           <TouchableOpacity
             onPress={handlePostRequest}
             className="items-center bg-baseColor rounded-2xl mx-2.5 my-5 p-4">
-            <Text className="text-white text-2xl">
+            <Text className="text-white text-2xl font-remRegular">
               {t('ShopList.shopList_addBtn')}
             </Text>
           </TouchableOpacity>

@@ -2,6 +2,18 @@
   "migIndex": 1,
   "data": [
     {
+      "path": "src/assets/fonts/Gupter-Bold.ttf",
+      "sha1": "aa996a51c71dfccb0ed93665079def57360e14e4"
+    },
+    {
+      "path": "src/assets/fonts/Gupter-Regular.ttf",
+      "sha1": "121dc6f5271a27f9df2584ba17833277b85ed617"
+    },
+    {
+      "path": "src/assets/fonts/REM-ExtraBold.ttf",
+      "sha1": "9ee171418c2916d47524aa5fe69bab298fe1a911"
+    },
+    {
       "path": "src/assets/fonts/REM-Regular.ttf",
       "sha1": "3fdecb6513703af5ea401b7bb0d41eb2e834e44a"
     }

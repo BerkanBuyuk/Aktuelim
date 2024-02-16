@@ -144,7 +144,7 @@ const SettingsUserInfo = ({navigation}) => {
             </View>
             <View className="flex-1 items-center">
               <Text
-                className={`text-2xl text-center font-bold ${
+                className={`text-2xl text-center font-bold font-remRegular ${
                   darkMode ? 'text-textColor' : 'text-dark_text_color'
                 }`}>
                 {t('Settings.settings_account_title')}
@@ -167,7 +167,7 @@ const SettingsUserInfo = ({navigation}) => {
             <View className="flex-row mx-5 items-center my-5">
               <View className="flex-1 justify-center">
                 <Text
-                  className={`text-xl ${
+                  className={`text-xl font-gupterRegular font-bold ${
                     darkMode ? 'text-textColor' : 'text-dark_text_color'
                   }`}>
                   {t('Account_settings.nameSurname')}
@@ -175,7 +175,7 @@ const SettingsUserInfo = ({navigation}) => {
               </View>
               <View className="flex-1 items-center">
                 <Text
-                  className={`text-lg text-center ${
+                  className={`text-lg text-center font-remRegular font-bold ${
                     darkMode ? 'text-textColor' : 'text-dark_text_color'
                   }`}>
                   {userName}
@@ -189,7 +189,7 @@ const SettingsUserInfo = ({navigation}) => {
             <View className="flex-row mx-5 items-center my-5">
               <View className="flex-1 justify-center">
                 <Text
-                  className={`text-xl ${
+                  className={`text-xl font-gupterRegular font-bold ${
                     darkMode ? 'text-textColor' : 'text-dark_text_color'
                   }`}>
                   {t('Account_settings.userName')}
@@ -197,7 +197,7 @@ const SettingsUserInfo = ({navigation}) => {
               </View>
               <View className="flex-1 items-center">
                 <Text
-                  className={`text-lg text-center ${
+                  className={`text-lg text-center font-remRegular font-bold ${
                     darkMode ? 'text-textColor' : 'text-dark_text_color'
                   }`}>
                   {userNameText}
@@ -211,7 +211,7 @@ const SettingsUserInfo = ({navigation}) => {
             <View className="flex-row mx-5 items-center my-5">
               <View className="flex-1 justify-center">
                 <Text
-                  className={`text-xl ${
+                  className={`text-xl font-gupterRegular font-bold ${
                     darkMode ? 'text-textColor' : 'text-dark_text_color'
                   }`}>
                   {t('Account_settings.email')}
@@ -219,7 +219,7 @@ const SettingsUserInfo = ({navigation}) => {
               </View>
               <View className="flex-1 items-center">
                 <Text
-                  className={`text-lg text-center ${
+                  className={`text-lg text-center font-remRegular font-bold ${
                     darkMode ? 'text-textColor' : 'text-dark_text_color'
                   }`}>
                   {userMail}
@@ -227,13 +227,11 @@ const SettingsUserInfo = ({navigation}) => {
               </View>
               <View className="flex-1" />
             </View>
-            <View className="mx-5">
-              <Divider />
-            </View>
+            <View className="mx-5">{/* <Divider /> */}</View>
             <View className="flex-row mx-5 items-center my-5">
-              <View className="flex-1 justify-center">
+              {/* <View className="flex-1 justify-center">
                 <Text
-                  className={`text-xl ${
+                  className={`text-xl font-gupterRegular font-bold ${
                     darkMode ? 'text-textColor' : 'text-dark_text_color'
                   }`}>
                   {t('Account_settings.password')}
@@ -247,7 +245,7 @@ const SettingsUserInfo = ({navigation}) => {
                   ************
                 </Text>
               </View>
-              <View className="flex-1 items-end justify-center" />
+              <View className="flex-1 items-end justify-center" /> */}
             </View>
             <View className="items-center mt-2.5">
               <TouchableOpacity onPress={toggleModal}>
