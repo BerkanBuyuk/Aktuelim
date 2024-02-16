@@ -38,6 +38,9 @@ module.exports = {
         textColor: '#fff',
         dark_text_color: '#000',
       },
+      fontFamily: {
+        body: 'ProtestRevolution-Regular',
+      },
     },
   },
   plugins: [],
