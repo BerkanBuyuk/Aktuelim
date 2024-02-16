@@ -7,12 +7,22 @@ import LoadingLoader from '../../components/Loader/loadingLoader';
 import DeleteCatalogBtn from '../../components/DeleteCatalogBtn';
 import UpdateCatalogBtn from '../../components/UpdateCatalogBtn';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import Modal from 'react-native-modal';
+import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
+import Styles from '../../assets/Styles';
 
 const Catalogs = ({route, navigation}) => {
   const [catalogs, setCatalogs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [userRole, setUserRole] = useState(null);
   const darkMode = useSelector(state => state.theme.darkMode);
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  const toggleModal = item => {
+    setSelectedItem(item);
+    setModalVisible(!isModalVisible);
+  };
 
   const getCatalogs = async url => {
     try {
@@ -38,7 +48,6 @@ const Catalogs = ({route, navigation}) => {
 
   useEffect(() => {
     getCatalogs(CATALOGS_URL);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -57,7 +66,8 @@ const Catalogs = ({route, navigation}) => {
             darkMode ? 'border-textColor' : 'border-dark_text_color'
           }`}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('CatalogDetails', item)}>
+            onPress={() => navigation.navigate('CatalogDetails', item)}
+            onLongPress={() => toggleModal(item)}>
             <Image
               source={{uri: `${item.catalog_image}`}}
               className="w-36 h-36"
@@ -84,6 +94,25 @@ const Catalogs = ({route, navigation}) => {
             ) : null}
           </View>
         </View>
+        <Modal
+          isVisible={isModalVisible}
+          animationIn="zoomIn"
+          animationOut="zoomOut"
+          backdropColor="rgba(0,0,0,0.6)">
+          <TouchableOpacity
+            onPress={() => setModalVisible(!isModalVisible)}
+            className="items-center mb-2.5">
+            <FontAwesome name="close" size={30} color={Styles.textColor} />
+          </TouchableOpacity>
+          {selectedItem && (
+            <View className="items-center">
+              <Image
+                source={{uri: `${selectedItem.catalog_image}`}}
+                className="w-full h-[calc(100vh/1.6)]"
+              />
+            </View>
+          )}
+        </Modal>
       </View>
     );
   };
