@@ -35,7 +35,10 @@ const Comments = ({catalogID}) => {
   const getComments = async url => {
     try {
       const response = await axios.get(url);
-      setComment(response.data);
+      const filteredComments = response.data.filter(
+        c => c.catalog_id === catalogID,
+      );
+      setComment(filteredComments);
     } catch (error) {
       console.log('Comment gelirken hata oluştu: ', error);
     }
