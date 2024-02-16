@@ -43,7 +43,7 @@ const Categories = ({setSelectedCategory}) => {
             />
           </View>
           <Text
-            className={`text-base mb-1.5 ${
+            className={`text-base mb-1.5 font-myFont ${
               darkMode ? 'text-textColor' : 'text-dark_text_color'
             }`}>
             {t(item.category_name)}
@@ -56,7 +56,7 @@ const Categories = ({setSelectedCategory}) => {
   return (
     <View>
       <Text
-        className={`mx-2.5 text-xl font-body ${
+        className={`mx-2.5 text-xl font-myFont ${
           darkMode ? 'text-textColor' : 'text-dark_text_color'
         }`}>
         {t('categories')}
