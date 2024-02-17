@@ -20,6 +20,7 @@ import {useToast} from 'react-native-toast-notifications';
 import {USERS_URL, CLOUDINARY_POST_URL, CLOUDINARY_CLOUDNAME} from '@env';
 import LoadingLoader from '../Loader/loadingLoader';
 import {launchImageLibrary} from 'react-native-image-picker';
+import DarkLoadingLoader from '../Loader/darkLoadingLoader';
 
 const SettingsUserInfo = ({navigation}) => {
   const darkMode = useSelector(state => state.theme.darkMode);
@@ -113,6 +114,7 @@ const SettingsUserInfo = ({navigation}) => {
       toast.show(`${userId} güncellendi.`, {type: 'success'});
     } catch (error) {
       console.log(error);
+      toggleModal();
       toast.show(`${userId} güncellenirken hata oluştu.`, {
         type: 'danger',
       });
@@ -129,7 +131,11 @@ const SettingsUserInfo = ({navigation}) => {
         darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
       }`}>
       {loading ? (
-        <LoadingLoader />
+        darkMode ? (
+          <DarkLoadingLoader />
+        ) : (
+          <LoadingLoader />
+        )
       ) : (
         <View>
           <View className="flex-row justify-between items-center">

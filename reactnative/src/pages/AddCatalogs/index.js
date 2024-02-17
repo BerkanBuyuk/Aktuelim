@@ -15,6 +15,8 @@ import {useToast} from 'react-native-toast-notifications';
 import LoadingLoader from '../../components/Loader/loadingLoader';
 import Modal from 'react-native-modal';
 import {launchImageLibrary} from 'react-native-image-picker';
+import DarkLoadingLoader from '../../components/Loader/darkLoadingLoader';
+import Styles from '../../assets/Styles';
 
 const AddCatalogs = ({navigation}) => {
   const [catalogTitle, setCatalogTitle] = useState('');
@@ -117,7 +119,11 @@ const AddCatalogs = ({navigation}) => {
         darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
       }`}>
       {loading ? (
-        <LoadingLoader />
+        darkMode ? (
+          <DarkLoadingLoader />
+        ) : (
+          <LoadingLoader />
+        )
       ) : (
         <View className="mx-2.5 my-2.5">
           <TextInput
@@ -144,9 +150,20 @@ const AddCatalogs = ({navigation}) => {
             labelField="market_name"
             valueField="market_id"
             placeholder={t('AddCatalogs.selectMarket')}
-            placeholderStyle={{fontFamily: 'REM-Regular'}}
-            itemTextStyle={{fontFamily: 'REM-Regular'}}
-            selectedTextStyle={{fontFamily: 'REM-Regular'}}
+            placeholderStyle={{
+              fontFamily: 'REM-Regular',
+              color: darkMode
+                ? `${Styles.textColor}`
+                : `${Styles.dark_text_color}`,
+            }}
+            itemTextStyle={{
+              fontFamily: 'REM-Regular',
+              color: Styles.dark_text_color,
+            }}
+            selectedTextStyle={{
+              fontFamily: 'REM-Regular',
+              color: darkMode ? Styles.textColor : Styles.dark_text_color,
+            }}
             inputSearchStyle={{fontFamily: 'REM-Regular'}}
             searchPlaceholder={t('AddCatalogs.searchMarket')}
             value={marketId}
@@ -171,9 +188,7 @@ const AddCatalogs = ({navigation}) => {
           </TouchableOpacity>
 
           <Modal isVisible={isModalVisible}>
-            <View>
-              <LoadingLoader />
-            </View>
+            <View>{darkMode ? <DarkLoadingLoader /> : <LoadingLoader />}</View>
           </Modal>
         </View>
       )}

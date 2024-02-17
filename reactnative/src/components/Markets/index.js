@@ -76,7 +76,7 @@ const Markets = ({navigation}) => {
         <View>
           <Categories setSelectedCategory={setSelectedCategory} />
           <Text
-            className={`ml-2.5 text-xl font-remRegular font-bold ${
+            className={`ml-2.5 text-xl font-remRegular ${
               darkMode ? 'text-textColor' : 'text-dark_text_color'
             }`}>
             {t('stores')}

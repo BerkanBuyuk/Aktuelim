@@ -15,6 +15,7 @@ import {useTranslation} from 'react-i18next';
 import LoadingLoader from '../../components/Loader/loadingLoader';
 import Modal from 'react-native-modal';
 import MailLottie from '../Loader/mailLottie';
+import DarkLoadingLoader from '../Loader/darkLoadingLoader';
 
 const ContactUs = () => {
   const [userNameSurname, setUserNameSurname] = useState('');
@@ -117,9 +118,7 @@ const ContactUs = () => {
           </Text>
         </TouchableOpacity>
         <Modal isVisible={isModalVisible}>
-          <View>
-            <LoadingLoader />
-          </View>
+          <View>{darkMode ? <DarkLoadingLoader /> : <LoadingLoader />}</View>
         </Modal>
       </View>
     </ScrollView>

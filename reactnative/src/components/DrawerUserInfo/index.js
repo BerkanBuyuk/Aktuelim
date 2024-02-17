@@ -51,7 +51,7 @@ const UserInfo = () => {
             </Text>
             <Text
               className={`text-sm font-remRegular ${
-                darkMode ? 'text-dark_base_color' : 'text-baseColor'
+                darkMode ? 'text-dark_base_color' : 'text-dark_bg_color'
               }`}>{`@${userName}`}</Text>
           </View>
         </View>

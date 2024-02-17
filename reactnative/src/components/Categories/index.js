@@ -56,7 +56,7 @@ const Categories = ({setSelectedCategory}) => {
   return (
     <View>
       <Text
-        className={`mx-2.5 text-xl font-remRegular font-bold ${
+        className={`mx-2.5 text-xl font-remRegular ${
           darkMode ? 'text-textColor' : 'text-dark_text_color'
         }`}>
         {t('categories')}

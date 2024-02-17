@@ -10,6 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from 'react-native-modal';
 import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
 import Styles from '../../assets/Styles';
+import DarkLoadingLoader from '../../components/Loader/darkLoadingLoader';
 
 const Catalogs = ({route, navigation}) => {
   const [catalogs, setCatalogs] = useState([]);
@@ -123,7 +124,11 @@ const Catalogs = ({route, navigation}) => {
         darkMode ? 'bg-dark_bg_color' : 'bg-light_bg_color'
       }`}>
       {loading ? (
-        <LoadingLoader />
+        darkMode ? (
+          <DarkLoadingLoader />
+        ) : (
+          <LoadingLoader />
+        )
       ) : (
         <View>
           <FlatList
