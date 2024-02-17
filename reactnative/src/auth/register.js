@@ -1,12 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  Image,
-  SafeAreaView,
-} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
 import axios from 'axios';
 import {REGISTER_ENDPOINT} from '@env';
 import RegisterLottie from '../components/Loader/registerLottie';
@@ -18,7 +11,7 @@ import {useToast} from 'react-native-toast-notifications';
 import {launchImageLibrary} from 'react-native-image-picker';
 import {
   CLOUDINARY_POST_URL,
-  CLOUDINARY_PIC_URL,
+  CLOUDINARY_NO_PIC,
   CLOUDINARY_CLOUDNAME,
 } from '@env';
 
@@ -26,7 +19,7 @@ const Register = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const toast = useToast();
   const navigation = useNavigation();
-  const [picPhoto, setPicPhoto] = useState(CLOUDINARY_PIC_URL);
+  const [picPhoto, setPicPhoto] = useState(CLOUDINARY_NO_PIC);
 
   const selectPhotoTapped = () => {
     const options = {

@@ -9,6 +9,7 @@ import {
 import React, {useEffect, useState} from 'react';
 import Modal from 'react-native-modal';
 import CommentLottie from '../../components/Loader/commentLottie';
+import DarkCommentLottie from '../../components/Loader/darkCommentLottie';
 import FontAwesome from 'react-native-vector-icons/dist/FontAwesome';
 import Styles from '../../assets/Styles';
 import axios from 'axios';
@@ -17,6 +18,7 @@ import Divider from '../../components/Divider';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useToast} from 'react-native-toast-notifications';
 import {useTranslation} from 'react-i18next';
+import {useSelector} from 'react-redux';
 
 const Comments = ({catalogID}) => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -27,6 +29,7 @@ const Comments = ({catalogID}) => {
   const [userRole, setUserRole] = useState(null);
   const toast = useToast();
   const {t} = useTranslation();
+  const darkMode = useSelector(state => state.theme.darkMode);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -102,9 +105,9 @@ const Comments = ({catalogID}) => {
           className="w-16 h-16 rounded-full"
         />
         <View className="mx-2.5 flex-1">
-          <Text className="text-white">{`${item.user_name}`}</Text>
-          <Text className="text-black">{`${item.description}`}</Text>
-          <Text>{date}</Text>
+          <Text className="text-white font-remRegular">{`${item.user_name}`}</Text>
+          <Text className="text-black font-remRegular">{`${item.description}`}</Text>
+          <Text className="font-remRegular">{date}</Text>
         </View>
         <View className="justify-center mx-2.5">
           {userRole === 'admin' ? (
@@ -112,7 +115,7 @@ const Comments = ({catalogID}) => {
               <FontAwesome
                 name="trash-o"
                 size={25}
-                // color={darkMode ? Styles.textColor : Styles.dark_text_color}
+                color={darkMode ? Styles.textColor : Styles.dark_text_color}
               />
             </TouchableOpacity>
           ) : null}
@@ -125,10 +128,11 @@ const Comments = ({catalogID}) => {
   return (
     <View>
       <TouchableOpacity className="flex-row" onPress={toggleModal}>
-        <Text className="text-lg font-remRegular">{`${t(
-          'Comments.comments',
-        )}...`}</Text>
-        <CommentLottie />
+        <Text
+          className={`font-remRegular text-lg ${
+            darkMode ? 'text-textColor' : 'text-dark_text_color'
+          }`}>{`${t('Comments.comments')}...`}</Text>
+        {darkMode ? <DarkCommentLottie /> : <CommentLottie />}
       </TouchableOpacity>
       <Modal isVisible={isModalVisible}>
         <View className="bg-slate-500 rounded-2xl">
@@ -146,10 +150,12 @@ const Comments = ({catalogID}) => {
               placeholder={t('Comments.writeComment')}
               value={descriptionText}
               onChangeText={text => setDescriptionText(text)}
-              className=" bg-white border p-5 text-xl my-2 rounded-xl flex-1"
+              className=" bg-white border p-5 text-xl my-2 rounded-xl flex-1 font-remRegular"
             />
             <TouchableOpacity className="mx-2.5" onPress={postComments}>
-              <Text className="font-remRegular">{t('Comments.send')}</Text>
+              <Text className="font-remRegular text-textColor">
+                {t('Comments.send')}
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

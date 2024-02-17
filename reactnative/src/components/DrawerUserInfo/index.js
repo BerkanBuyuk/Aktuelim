@@ -28,7 +28,7 @@ const UserInfo = () => {
     };
 
     getUserDetail();
-  }, []);
+  }, [userPicture, userNameSurname, userName]);
 
   return (
     <View className="items-center my-5 flex-row ml-2.5">
