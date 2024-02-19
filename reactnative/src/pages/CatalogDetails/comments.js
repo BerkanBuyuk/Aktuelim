@@ -95,7 +95,7 @@ const Comments = ({catalogID}) => {
   }, []);
 
   const commentsContainer = ({item}) => {
-    let date = new Date().toLocaleDateString('tr-TR');
+    // let date = new Date().toLocaleDateString('tr-TR');
     return (
       <View className="flex-row mx-2.5 pb-3">
         <Image
@@ -107,7 +107,7 @@ const Comments = ({catalogID}) => {
         <View className="mx-2.5 flex-1">
           <Text className="text-white font-remRegular">{`${item.user_name}`}</Text>
           <Text className="text-black font-remRegular">{`${item.description}`}</Text>
-          <Text className="font-remRegular">{date}</Text>
+          {/* <Text className="font-remRegular">{date}</Text> */}
         </View>
         <View className="justify-center mx-2.5">
           {userRole === 'admin' ? (
@@ -135,7 +135,7 @@ const Comments = ({catalogID}) => {
         {darkMode ? <DarkCommentLottie /> : <CommentLottie />}
       </TouchableOpacity>
       <Modal isVisible={isModalVisible}>
-        <View className="bg-slate-500 rounded-2xl">
+        <View className="bg-sky-600 rounded-2xl">
           <TouchableOpacity onPress={toggleModal} className="items-center">
             <FontAwesome name="close" size={30} color={Styles.textColor} />
           </TouchableOpacity>
