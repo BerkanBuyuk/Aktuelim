@@ -135,11 +135,10 @@ const Comments = ({catalogID}) => {
         {darkMode ? <DarkCommentLottie /> : <CommentLottie />}
       </TouchableOpacity>
       <Modal isVisible={isModalVisible}>
-        <View className="bg-sky-600 rounded-2xl">
+        <View className="bg-[#618e6ced] rounded-2xl max-h-[75%] min-h-[55%]">
           <TouchableOpacity onPress={toggleModal} className="items-center">
             <FontAwesome name="close" size={30} color={Styles.textColor} />
           </TouchableOpacity>
-
           <FlatList
             data={comment}
             renderItem={item => commentsContainer(item)}

@@ -11,7 +11,7 @@ import notificationsRoutes from "./routes/notifications.js";
 import commentsRoutes from "./routes/comments.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-// require("dotenv").config();
+import "dotenv/config";
 const app = express();
 const localPort = 8800;
 
