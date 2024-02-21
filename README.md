@@ -28,8 +28,11 @@ Market ve mağazaların güncel kataloglarını kullanıcıya gösteren, Android
 
 - Backend Nodejs (Express) ile yazılmıştır.
 - Frontend React Native ile yazılmıştır. (Web tarafı NextJS ve Typescript ile yazılacaktır.)
+- Nativewind (Tailwind) ile CSS yazılmıştır.
 - Redux ile tema ve dil yapılmıştır.
 - Async Storage (Local Storage) ile tema ve dil özellikleri tutulmuştur.
-- SQLite
-- MySQL
-- Cloudinary
+- SQLite ile CRUD alışveriş listesi yapılmıştır.
+- MySQL ile veritabanı kullanılmıştır.
+- Cloudinary ile görseller tutulmuştur.
+- i18next ile türkçe ve ingilizce dil seçeneği yapılmıştır.
+- Lottie ile gifler kullanılmıştır.
