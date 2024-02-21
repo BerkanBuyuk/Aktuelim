@@ -135,7 +135,7 @@ const Comments = ({catalogID}) => {
         {darkMode ? <DarkCommentLottie /> : <CommentLottie />}
       </TouchableOpacity>
       <Modal isVisible={isModalVisible}>
-        <View className="bg-[#618e6ced] rounded-2xl max-h-[75%] min-h-[55%]">
+        <View className="bg-[#618e6ced] rounded-2xl max-h-[60%] min-h-[60%]">
           <TouchableOpacity onPress={toggleModal} className="items-center">
             <FontAwesome name="close" size={30} color={Styles.textColor} />
           </TouchableOpacity>
