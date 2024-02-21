@@ -63,6 +63,7 @@
     "Comments" : {
         "comments": "Comments",
         "writeComment": "Write a comment.",
-        "send": "Send"
+        "send": "Send",
+        "noComments": "There are no comments."
     }
 }

@@ -19,6 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useToast} from 'react-native-toast-notifications';
 import {useTranslation} from 'react-i18next';
 import {useSelector} from 'react-redux';
+import LoadingLoader from '../../components/Loader/darkLoadingLoader';
 
 const Comments = ({catalogID}) => {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -30,6 +31,7 @@ const Comments = ({catalogID}) => {
   const toast = useToast();
   const {t} = useTranslation();
   const darkMode = useSelector(state => state.theme.darkMode);
+  const [loading, setLoading] = useState(true);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -42,6 +44,7 @@ const Comments = ({catalogID}) => {
         c => c.catalog_id === catalogID,
       );
       setComment(filteredComments);
+      setLoading(false);
     } catch (error) {
       console.log('Comment gelirken hata oluştu: ', error);
     }
@@ -139,10 +142,20 @@ const Comments = ({catalogID}) => {
           <TouchableOpacity onPress={toggleModal} className="items-center">
             <FontAwesome name="close" size={30} color={Styles.textColor} />
           </TouchableOpacity>
-          <FlatList
-            data={comment}
-            renderItem={item => commentsContainer(item)}
-          />
+          {loading ? (
+            <LoadingLoader />
+          ) : comment.length === 0 ? (
+            <View className="justify-center items-center flex-1">
+              <Text className="text-textColor font-remRegular">
+                {t('Comments.noComments')}
+              </Text>
+            </View>
+          ) : (
+            <FlatList
+              data={comment}
+              renderItem={item => commentsContainer(item)}
+            />
+          )}
 
           <View className="flex-row items-center p-2">
             <TextInput

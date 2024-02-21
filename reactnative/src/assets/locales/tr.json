@@ -63,6 +63,7 @@
     "Comments" : {
         "comments": "Yorumlar",
         "writeComment": "Yorum yazın.",
-        "send": "Gönder"
+        "send": "Gönder",
+        "noComments": "Hiç yorum yok."
     }
 }
