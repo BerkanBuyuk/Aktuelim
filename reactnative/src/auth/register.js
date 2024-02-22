@@ -1,5 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, Image} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from 'react-native';
 import axios from 'axios';
 import {REGISTER_ENDPOINT} from '@env';
 import RegisterLottie from '../components/Loader/registerLottie';
@@ -106,77 +113,82 @@ const Register = () => {
   }, [picPhoto]);
 
   return (
-    <View className="justify-center -mt-6">
-      <View className="items-center mt-3">
-        <RegisterLottie />
-      </View>
-      <View className="items-center -mt-24">
-        <TouchableOpacity onPress={selectPhotoTapped}>
-          <Image source={{uri: picPhoto}} className="w-24 h-24 rounded-full" />
-        </TouchableOpacity>
-      </View>
-      <View className="mx-2.5 my-2">
-        <TextInput
-          placeholder="Kullanıcı Adı"
-          name="user_username"
-          onChangeText={text => handleChange('user_username', text)}
-          className="border p-5 text-xl my-2 rounded-xl"
-        />
-        <TextInput
-          placeholder="E-Posta"
-          name="user_email"
-          onChangeText={text => handleChange('user_email', text)}
-          className="border p-5 text-xl my-2 rounded-xl"
-          keyboardType="email-address"
-        />
-        <TextInput
-          placeholder="Şifre"
-          name="user_password"
-          secureTextEntry
-          onChangeText={text => handleChange('user_password', text)}
-          className="border p-5 text-xl my-2 rounded-xl"
-        />
-        <TextInput
-          placeholder="İsim"
-          name="user_name"
-          onChangeText={text => handleChange('user_name', text)}
-          className="border p-5 text-xl my-2 rounded-xl"
-        />
-        <View className="flex-row items-center">
-          <Text className="text-xl mr-1">+90</Text>
+    <ScrollView className="flex-1">
+      <View className="justify-center -mt-6 flex-1">
+        <View className="items-center mt-3">
+          <RegisterLottie />
+        </View>
+        <View className="items-center -mt-24">
+          <TouchableOpacity onPress={selectPhotoTapped}>
+            <Image
+              source={{uri: picPhoto}}
+              className="w-24 h-24 rounded-full"
+            />
+          </TouchableOpacity>
+        </View>
+        <View className="mx-2.5 my-2">
           <TextInput
-            placeholder="Telefon Numarası"
-            name="user_phone"
-            onChangeText={text => handleChange('user_phone', text)}
-            className="border p-5 text-xl my-2 rounded-xl flex-1"
-            keyboardType="number-pad"
+            placeholder="Kullanıcı Adı"
+            name="user_username"
+            onChangeText={text => handleChange('user_username', text)}
+            className="border p-5 text-xl my-2 rounded-xl"
           />
+          <TextInput
+            placeholder="E-Posta"
+            name="user_email"
+            onChangeText={text => handleChange('user_email', text)}
+            className="border p-5 text-xl my-2 rounded-xl"
+            keyboardType="email-address"
+          />
+          <TextInput
+            placeholder="Şifre"
+            name="user_password"
+            secureTextEntry
+            onChangeText={text => handleChange('user_password', text)}
+            className="border p-5 text-xl my-2 rounded-xl"
+          />
+          <TextInput
+            placeholder="İsim"
+            name="user_name"
+            onChangeText={text => handleChange('user_name', text)}
+            className="border p-5 text-xl my-2 rounded-xl"
+          />
+          <View className="flex-row items-center">
+            <Text className="text-xl mr-1">+90</Text>
+            <TextInput
+              placeholder="Telefon Numarası"
+              name="user_phone"
+              onChangeText={text => handleChange('user_phone', text)}
+              className="border p-5 text-xl my-2 rounded-xl flex-1"
+              keyboardType="number-pad"
+            />
+          </View>
         </View>
-      </View>
-      <View>
-        <TouchableOpacity
-          onPress={handleClick}
-          className="items-center bg-baseColor rounded-2xl mx-2.5 my-3 p-4">
-          <Text className="text-white text-2xl">Kayıt Ol</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View className="mx-2.5 -mt-3">
-        <Divider />
-      </View>
-
-      <View className="flex-row justify-center">
-        <Text className="text-base">Hesabınız var mı ?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-          <Text className="text-baseColor text-base"> Giriş Yap</Text>
-        </TouchableOpacity>
-      </View>
-      <Modal isVisible={isModalVisible}>
         <View>
-          <LoadingLoader />
+          <TouchableOpacity
+            onPress={handleClick}
+            className="items-center bg-baseColor rounded-2xl mx-2.5 my-3 p-4">
+            <Text className="text-white text-2xl">Kayıt Ol</Text>
+          </TouchableOpacity>
         </View>
-      </Modal>
-    </View>
+
+        <View className="mx-2.5 -mt-3">
+          <Divider />
+        </View>
+
+        <View className="flex-row justify-center">
+          <Text className="text-base">Hesabınız var mı ?</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+            <Text className="text-baseColor text-base"> Giriş Yap</Text>
+          </TouchableOpacity>
+        </View>
+        <Modal isVisible={isModalVisible}>
+          <View>
+            <LoadingLoader />
+          </View>
+        </Modal>
+      </View>
+    </ScrollView>
   );
 };
 

@@ -2,6 +2,7 @@
 
 Market ve mağazaların güncel kataloglarını kullanıcıya gösteren, Android ve iOS işletim sisteminde çalışan bir aktuel uygulaması.
 
+<h2 align="left"><a href="https://youtu.be/kcmNsmFgLac" target="_blank">iOS Video İçin Tıklayın !</a></h2>
 ### Uygulama Özellikleri
 
 -- USER --
