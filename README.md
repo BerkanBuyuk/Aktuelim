@@ -2,7 +2,9 @@
 
 Market ve mağazaların güncel kataloglarını kullanıcıya gösteren, Android ve iOS işletim sisteminde çalışan bir aktuel uygulaması.
 
-<h2 align="left"><a href="https://youtu.be/kcmNsmFgLac" target="_blank">iOS Video İçin Tıklayın !</a></h2>
+<h2 align="left"><a href="https://youtu.be/h7NFWDJHkLM" target="_blank">iOS Video İçin Tıklayın !</a>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://youtu.be/SXsWaDGP5xI" target="_blank">Android Video İçin Tıklayın !</a></h2>
 
 ### Uygulama Özellikleri
 
@@ -28,13 +30,13 @@ Market ve mağazaların güncel kataloglarını kullanıcıya gösteren, Android
 
 ## Kullanılan Teknolojiler
 
-- Backend Nodejs (Express) ile yazılmıştır.
+- Backend NodeJS (Express) ile yazılmıştır.
+- MySQL ile veritabanı kullanılmıştır.
 - Frontend React Native ile yazılmıştır. (Web tarafı NextJS ve Typescript ile yazılacaktır.)
 - Nativewind (Tailwind) ile CSS yazılmıştır.
 - Redux ile tema ve dil yapılmıştır.
 - Async Storage (Local Storage) ile tema ve dil özellikleri tutulmuştur.
 - SQLite ile CRUD alışveriş listesi yapılmıştır.
-- MySQL ile veritabanı kullanılmıştır.
 - Cloudinary ile görseller tutulmuştur.
 - i18next ile türkçe ve ingilizce dil seçeneği yapılmıştır.
 - Lottie ile gifler kullanılmıştır.
