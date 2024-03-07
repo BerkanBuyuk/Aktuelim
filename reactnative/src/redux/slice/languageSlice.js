@@ -9,14 +9,11 @@ const languageSlice = createSlice({
   reducers: {
     setLanguage: (state, action) => {
       state.language = action.payload;
-      console.log(action.payload);
+      // console.log('Language: ' + action.payload);
       AsyncStorage.setItem('language', action.payload);
     },
   },
 });
 
 export const {setLanguage} = languageSlice.actions;
-
-export const selectLanguage = state => state.language.language;
-
 export default languageSlice.reducer;

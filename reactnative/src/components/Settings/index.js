@@ -1,8 +1,8 @@
 import {Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import Theme from '../../assets/Theme';
+import Theme from '../Theme';
 import {useSelector} from 'react-redux';
-import Language from '../../assets/Language';
+import Language from '../Language';
 import MaterialCommunityIcons from 'react-native-vector-icons/dist/MaterialCommunityIcons';
 import Styles from '../../assets/Styles';
 import {useTranslation} from 'react-i18next';

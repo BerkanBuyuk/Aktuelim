@@ -1,12 +1,12 @@
 import {Switch, View, Text} from 'react-native';
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {toggleDarkMode} from '../../redux/store/themeSlice';
-import Styles from '../Styles';
+import {toggleDarkMode} from '../../redux/slice/themeSlice';
+import Styles from '../../assets/Styles';
 import MaterialIcons from 'react-native-vector-icons/dist/MaterialIcons';
 import Divider from '../../components/Divider';
 import {useTranslation} from 'react-i18next';
-import i18n from '../locales/services/i18next';
+import i18n from '../../assets/locales/services/i18next';
 
 const Theme = () => {
   const dispatch = useDispatch();
@@ -15,8 +15,9 @@ const Theme = () => {
   const {t} = useTranslation();
 
   const handleToggleDarkMode = () => {
-    dispatch(toggleDarkMode());
-    setIsEnabled(previousState => !previousState);
+    const newTheme = !darkMode;
+    dispatch(toggleDarkMode(newTheme));
+    setIsEnabled(newTheme);
   };
 
   return (
@@ -51,7 +52,7 @@ const Theme = () => {
             thumbColor={isEnabled ? Styles.textColor : Styles.textColor}
             ios_backgroundColor={Styles.dark_bg_color}
             onValueChange={handleToggleDarkMode}
-            value={isEnabled}
+            value={darkMode}
           />
         </View>
       </View>

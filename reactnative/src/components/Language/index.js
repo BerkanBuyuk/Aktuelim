@@ -1,12 +1,12 @@
 import {Switch, View, Text} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import Styles from '../Styles';
+import Styles from '../../assets/Styles';
 import Entypo from 'react-native-vector-icons/dist/Entypo';
 import Divider from '../../components/Divider';
 import {useTranslation} from 'react-i18next';
-import i18n from '../locales/services/i18next';
-import {setLanguage} from '../../redux/store/languageSlice';
+import i18n from '../../assets/locales/services/i18next';
+import {setLanguage} from '../../redux/slice/languageSlice';
 import Ionicons from 'react-native-vector-icons/dist/Ionicons';
 import CountryFlag from 'react-native-country-flag';
 import AsyncStorage from '@react-native-async-storage/async-storage';
