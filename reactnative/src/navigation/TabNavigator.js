@@ -10,13 +10,13 @@ import Styles from '../assets/Styles';
 import {useSelector} from 'react-redux';
 import axios from 'axios';
 import {FAVORITES_URL} from '@env';
+import {Text} from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabNavigator = ({navigation}) => {
   const {t} = useTranslation();
   const darkMode = useSelector(state => state.theme.darkMode);
-
   const [favorites, setFavorites] = useState([]);
 
   const fetchFavorites = async () => {
@@ -31,35 +31,67 @@ const BottomTabNavigator = ({navigation}) => {
   return (
     <Tab.Navigator
       initialRouteName="Markets"
-      screenOptions={{
+      screenOptions={() => ({
         headerStyle: {
           backgroundColor: darkMode ? Styles.dark_base_color : Styles.baseColor,
         },
         tabBarStyle: {
           backgroundColor: darkMode ? Styles.dark_base_color : Styles.baseColor,
+          borderRadius: 15,
+          marginHorizontal: 10,
+          marginBottom: 30,
+          position: 'absolute',
         },
-      }}>
+        tabBarItemStyle: {
+          borderRadius: 15,
+        },
+        tabBarActiveBackgroundColor: `${
+          darkMode ? Styles.dark_text_color : Styles.textColor
+        }`,
+        headerTitleAlign: 'center',
+        headerTitleStyle: {
+          color: Styles.textColor,
+          fontFamily: 'REM-Regular',
+        },
+        headerTintColor: Styles.textColor,
+      })}>
       <Tab.Screen
         name="Favorites"
-        // component={Favorites}
         children={() => (
           <Favorites favorites={favorites} fetchFavorites={fetchFavorites} />
         )}
         options={{
-          // tabBarStyle: {backgroundColor: Styles.baseColor},
           headerTitle: `${t('favorites')}`,
-          tabBarLabel: `${t('favorites')}`,
-          tabBarLabelStyle: {
-            color: Styles.textColor,
-            fontSize: 12,
-            fontFamily: 'REM-Regular',
-          },
-          headerTitleAlign: 'center',
-          // headerTitleStyle: {color: Styles.textColor},
-          headerTitleStyle: {fontFamily: 'REM-Regular'},
-          headerTintColor: Styles.textColor,
-          tabBarIcon: () => (
-            <MaterialIcons name="favorite" size={30} color={Styles.textColor} />
+          tabBarLabel: ({focused}) => (
+            <Text
+              style={{
+                fontSize: focused ? 14 : 12,
+                fontFamily: 'REM-Regular',
+                color: focused
+                  ? darkMode
+                    ? Styles.textColor
+                    : Styles.baseColor
+                  : darkMode
+                  ? Styles.dark_categories_color
+                  : Styles.categories_color,
+              }}>
+              {t('favorites')}
+            </Text>
+          ),
+          tabBarIcon: ({focused}) => (
+            <MaterialIcons
+              name="favorite"
+              size={focused ? 30 : 25}
+              color={
+                focused
+                  ? darkMode
+                    ? Styles.textColor
+                    : Styles.baseColor
+                  : darkMode
+                  ? Styles.dark_categories_color
+                  : Styles.categories_color
+              }
+            />
           ),
           headerLeft: () => (
             <Entypo
@@ -76,20 +108,39 @@ const BottomTabNavigator = ({navigation}) => {
       />
       <Tab.Screen
         name="Markets"
-        // component={MainStackNavigator}
         children={() => <MainStackNavigator fetchFavorites={fetchFavorites} />}
         options={{
-          // tabBarStyle: {backgroundColor: Styles.baseColor},
           headerShown: false,
-          tabBarLabel: `${t('home')}`,
-          tabBarLabelStyle: {
-            color: Styles.textColor,
-            fontSize: 12,
-            fontFamily: 'REM-Regular',
-          },
-          // headerTintColor: Styles.textColor,
-          tabBarIcon: () => (
-            <Entypo name="home" size={30} color={Styles.textColor} />
+          tabBarLabel: ({focused}) => (
+            <Text
+              style={{
+                fontSize: focused ? 14 : 12,
+                fontFamily: 'REM-Regular',
+                color: focused
+                  ? darkMode
+                    ? Styles.textColor
+                    : Styles.baseColor
+                  : darkMode
+                  ? Styles.dark_categories_color
+                  : Styles.categories_color,
+              }}>
+              {t('home')}
+            </Text>
+          ),
+          tabBarIcon: ({focused}) => (
+            <Entypo
+              name="home"
+              size={focused ? 30 : 25}
+              color={
+                focused
+                  ? darkMode
+                    ? Styles.textColor
+                    : Styles.baseColor
+                  : darkMode
+                  ? Styles.dark_categories_color
+                  : Styles.categories_color
+              }
+            />
           ),
         }}
       />
@@ -97,24 +148,37 @@ const BottomTabNavigator = ({navigation}) => {
         name="ShopList"
         component={ShopList}
         options={{
-          // tabBarStyle: {backgroundColor: Styles.baseColor},
           headerTitle: `${t('ShopList.shop_list')}`,
-          tabBarLabel: `${t('ShopList.shop_list')}`,
-          tabBarLabelStyle: {
-            fontSize: 12,
-            fontFamily: 'REM-Regular',
-            color: Styles.textColor,
-          },
-          headerTitleAlign: 'center',
-          // tabBarActiveTintColor: Styles.textColor,
-          // tabBarInactiveTintColor: Styles.inActiveTextColor,
-          headerTitleStyle: {
-            color: Styles.textColor,
-            fontFamily: 'REM-Regular',
-          },
-          headerTintColor: Styles.textColor,
-          tabBarIcon: () => (
-            <Entypo name="shop" size={30} color={Styles.textColor} />
+          tabBarLabel: ({focused}) => (
+            <Text
+              style={{
+                fontSize: focused ? 14 : 12,
+                fontFamily: 'REM-Regular',
+                color: focused
+                  ? darkMode
+                    ? Styles.textColor
+                    : Styles.baseColor
+                  : darkMode
+                  ? Styles.dark_categories_color
+                  : Styles.categories_color,
+              }}>
+              {t('ShopList.shop_list')}
+            </Text>
+          ),
+          tabBarIcon: ({focused}) => (
+            <Entypo
+              name="shop"
+              size={focused ? 30 : 25}
+              color={
+                focused
+                  ? darkMode
+                    ? Styles.textColor
+                    : Styles.baseColor
+                  : darkMode
+                  ? Styles.dark_categories_color
+                  : Styles.categories_color
+              }
+            />
           ),
           headerLeft: () => (
             <Entypo
